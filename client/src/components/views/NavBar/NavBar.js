@@ -85,8 +85,42 @@ function NavBar(props) {
 		</div>
 	);
 
+	const boardHandler = () => {
+		if (props.history.location.pathname.substring(0, 4) === '/sns') {
+			return (
+				<div
+					style={{
+						float: 'right',
+						height: '100%',
+						display: 'flex',
+						alignItems: 'flex-start',
+					}}
+				>
+					<button
+						style={{
+							backgroundColor: '#1b1d1f',
+							color: '#FFFFFF',
+							borderRadius: '30px',
+							marginTop: '1em',
+							marginRight: '1em',
+							fontSize: '18px',
+							padding: '2em auto',
+							border: 'none',
+						}}
+					>
+						<Link to="/sns/posts" style={{ color: 'inherit' }}>
+							포스팅
+						</Link>
+					</button>
+				</div>
+			);
+		} else {
+			return;
+		}
+	};
+
 	return (
-		<div style={{ height: '20vh', background: '#FFFFFF' }}>
+		<div style={{ height: '15vh', background: '#FFFFFF' }}>
 			<div className="container" style={{ width: '30%', display: 'inline' }}>
 				<h1
 					style={{
@@ -116,6 +150,7 @@ function NavBar(props) {
 
 			{userData && !userData.isAuth && loginHandler()}
 			{userData && userData.isAuth && logoutHandler()}
+			{userData && userData.isAuth && boardHandler()}
 		</div>
 	);
 }
