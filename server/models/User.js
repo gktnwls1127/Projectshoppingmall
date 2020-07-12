@@ -41,10 +41,6 @@ const userSchema = mongoose.Schema({
 userSchema.pre("save", function (next) {
   let user = this; //arrow function 대신 function을 사용한 이유
   //password 변경시에만 실행 -다른 정보 수정할 때는 비밀번호를 암호화 하지 않음.
-<<<<<<< HEAD
-
-=======
->>>>>>> 564a7dc95486edd51dfb569a22b43ec25e7e4607
   if (user.isModified("password")) {
     bcrypt.genSalt(saltRounds, function (err, salt) {
       if (err) return next(err);
