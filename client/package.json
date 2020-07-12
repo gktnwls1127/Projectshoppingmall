@@ -9,7 +9,10 @@
     "antd": "^4.3.5",
     "axios": "^0.19.2",
     "http-proxy-middleware": "^1.0.4",
+<<<<<<< HEAD
     "node-sass": "^4.14.1",
+=======
+>>>>>>> 564a7dc95486edd51dfb569a22b43ec25e7e4607
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-kakao-login": "^1.2.2",
