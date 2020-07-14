@@ -10,7 +10,6 @@ const config = require('./server/config/key');
 
 //www url을 분석해서 가져올 수 있게 해주는 것
 app.use(bodyParser.urlencoded({ extended: true }));
-//json형식을 가져올 수 있게 해주는 것.
 app.use(bodyParser.json());
 app.use(cookieParser());
 

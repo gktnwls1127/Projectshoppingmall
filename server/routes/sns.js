@@ -3,7 +3,6 @@ const router = express.Router();
 const multer = require('multer');
 
 const { SNSPost } = require('../models/SNSPosts');
-const { User } = require('../models/User');
 
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
@@ -22,10 +21,19 @@ router.post('/uploadImages', upload.single('files'), (req, res) => {
 
 router.post('/post', (req, res) => {
 	const snsPost = new SNSPost(req.body);
-	snsPost.save((err, doc) => {
+	snsPost.save((err, post) => {
 		if (err) res.status(400).json({ success: false, err });
-		res.status(200).json({ success: true });
+		res.status(200).json({ success: true, post });
 	});
+});
+
+router.post('/getProduct', (req, res) => {
+	SNSPost.find()
+		.populate('writer')
+		.exec((err, posts) => {
+			if (err) return res.status(400).json({ success: false, err });
+			res.status(200).json({ success: true, posts });
+		});
 });
 
 module.exports = router;
