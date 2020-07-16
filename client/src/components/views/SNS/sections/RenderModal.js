@@ -1,41 +1,50 @@
-import React from 'react';
-import { Modal, Carousel } from 'antd';
+import React, { useEffect } from 'react';
+import Modal from 'react-modal';
+import Slick from 'react-slick';
+
+import './RenderModal.scss';
+
+const customStyles = {
+	overlay: {},
+	content: {
+		margin: 'auto',
+		width: '955px',
+		height: '851px',
+		overflow: 'hidden',
+		background: '#F7F8F9',
+	},
+};
 
 function RenderModal(props) {
-	const handleOk = () => {
-		props.setVisible(false);
-	};
+	useEffect(() => {
+		Modal.setAppElement('#root');
+	});
 	const handleCancel = () => {
 		props.setVisible(false);
 	};
 
-	const renderImages = (snapshots) => (
-		<div>
-			<Carousel>
-				{snapshots.map((snapshot, index) => (
-					<img
-						key={index}
-						width="20%"
-						height="20%"
-						alt="포스트"
-						src={`http://localhost:5000/${snapshot}`}
-					/>
-				))}
-			</Carousel>
-		</div>
-	);
 	return (
 		<div>
 			<Modal
-				width="800"
-				centered
-				cancelText="닫기"
 				okText="확인"
-				visible={props.visible}
-				onOk={handleOk}
-				onCancel={handleCancel}
+				isOpen={props.visible}
+				onRequestClose={handleCancel}
+				style={customStyles}
 			>
-				{renderImages(props.snapshots)}
+				<div className="modal_container">
+					<div className="modal_image">
+						<Slick
+							dots={true}
+							infinite={true}
+							speed={500}
+							slidesToScroll={1}
+							slidesToShow={1}
+						>
+							{props.renderImages(props.snapshots)}
+						</Slick>
+					</div>
+					<div className="modal_info"></div>
+				</div>
 			</Modal>
 		</div>
 	);

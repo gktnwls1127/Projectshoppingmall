@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Avatar, Row, Col, Typography } from 'antd';
 import axios from 'axios';
-import RenderImages from './Sns_RenderImages';
+import RenderImages from './sections/Sns_RenderImages';
 import './Sns_LandingPage.scss';
 import {
 	EditOutlined,
