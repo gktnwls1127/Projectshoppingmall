@@ -1,7 +1,19 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
 const { auth } = require('../middleware/auth');
 const { User } = require('../models/User');
+
+const storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, 'uploads/user');
+	},
+	filename: function (req, file, cb) {
+		cb(null, file.originalname + '-' + Date.now());
+	},
+});
+
+const upload = multer({ storage: storage });
 
 router.post('/register', (req, res) => {
 	//회원가입 할 때 필요한 정보들을 client에서 가져오면
@@ -89,6 +101,48 @@ router.get('/logout', auth, (req, res) => {
 	User.findOneAndUpdate({ _id: req.user._id }, { token: '' }, (err, user) => {
 		if (err) return res.json({ success: false, err });
 		return res.status(200).send({ success: true });
+	});
+});
+
+router.post('/uploadImages', upload.single('files'), (req, res) => {
+	res.status(200).json({ success: true, filePath: req.file.path });
+});
+
+router.post('/update', (req, res) => {
+	User.findOneAndUpdate(
+		{ _id: req.body.id },
+		{ email: req.body.email, name: req.body.name, image: req.body.image },
+		(err, user) => {
+			if (err) return res.json({ success: false, err });
+			return res.status(200).json({ success: true, user });
+		}
+	);
+});
+
+router.post('/updatePassword', (req, res) => {
+	User.findOne({ _id: req.body.id }, (err, user) => {
+		if (err) return res.json({ success: false, err });
+		user.comparePassword(req.body.password, (err, isMatch) => {
+			if (!isMatch) {
+				return res.json({
+					loginSuccess: false,
+					message: '비밀번호를 잘못 입력했습니다.',
+				});
+			}
+
+			User.updateOne(
+				{ _id: user._id },
+				{
+					$set: {
+						password: req.body.newPassword,
+					},
+				},
+				(err, user) => {
+					if (err) return res.json({ success: false, err });
+					res.status(200).json({ success: true, user });
+				}
+			);
+		});
 	});
 });
 

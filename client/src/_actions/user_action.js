@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOGIN_USER, REGISTER_USER, AUTH_USER } from './types';
+import { LOGIN_USER, REGISTER_USER, AUTH_USER, UPDATE_USER } from './types';
 export function loginUser(dataToSubmit) {
 	const request = axios.post('/api/users/login', dataToSubmit).then(
 		(response) => response.data
@@ -29,6 +29,23 @@ export function auth() {
 		.then((response) => response.data);
 	return {
 		type: AUTH_USER,
+		payload: request,
+	};
+}
+
+export function updateUser(dataToSend) {
+	const request = axios
+		.post('/api/users/update', dataToSend)
+		.then((response) => {
+			if (response.data.success) {
+				console.log(response.data);
+				return response.data;
+			} else {
+				alert('전송 실패');
+			}
+		});
+	return {
+		type: UPDATE_USER,
 		payload: request,
 	};
 }
