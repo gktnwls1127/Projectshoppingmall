@@ -1,0 +1,145 @@
+.page {
+    padding-top: 128px;
+}
+
+.catalog-page {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 128px;
+    max-width: 1180px;
+}
+
+.page {
+    padding-top: 64px;
+    min-height: calc(100vh - 64px - 520px);
+    clear: both;
+}
+
+abbr, address, article, aside, audio, b, blockquote, body, body div, caption, cite, code, dd, del, details, dfn, dl, dt, em, fieldset, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, p, pre, q, samp, section, small, span, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font-weight: 400;
+    vertical-align: baseline;
+    background: 0 0;
+}
+
+article, aside, details, figure, footer, header, hr, nav, section, summary {
+    display: block;
+}
+
+*, :after, :before {
+    box-sizing: inherit;
+}
+
+.catalog-page .catalog-header {
+    margin-top: 24px;
+}
+
+.catalog-page .catalog-header {
+    margin-top: 24px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1180px;
+}
+
+.catalog-page .catalog-header .cover-image-wrapper {
+    position: relative;
+    display: block;
+    width: 708px;
+}
+
+.left, .modal .modal-header .modal-title {
+    float: left;
+}
+
+.catalog-page .catalog-header .cover-image {
+    display: block;
+    width: 100%;
+}
+
+.catalog-page .catalog-header .cover-image, .catalog-page .catalog-header .cover-info {
+    height: 394px;
+}
+
+img {
+    border: 0;
+}
+
+embed, img, object {
+    max-width: 100%;
+}
+
+.catalog-page .catalog-header .cover-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 40px;
+    padding-right: 40px;
+    text-align: left;
+    opacity: .8;
+}
+
+.remaining-width {
+    display: block;
+    overflow: hidden;
+}
+
+.catalog-page .catalog-header .cover-info .inner-wrapper {
+    width: 100%;
+    text-align: left;
+}
+
+.catalog-page .catalog-header .cover-title {
+    font-size: 34px;
+    font-weight: bold;
+    line-height: 1.2em;
+    letter-spacing: -.015em;
+}
+
+.catalog-page .catalog-header .cover-description {
+    margin-top: 14px;
+    max-height: 72px;
+    font-size: 16px;
+    line-height: 1.5em;
+    overflow-y: auto;
+}
+
+@media (min-width: 1180px){
+    .goods-card-container {
+        width: 1180px;
+    }
+}
+
+.goods-card-container {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 24px;
+    overflow: hidden;
+}
+
+.goods-card-container .inner-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-right: -20px;
+    margin-bottom: -18px;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.goods-card-container .goods-card {
+    
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 18px;
+}
+
+.goods-card {
+    width: 220px;
+}

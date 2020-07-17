@@ -9,6 +9,9 @@ import Sns_LandingPage from './views/SNS/Sns_LandingPage';
 import Sns_posts from './views/SNS/Sns_posts';
 import Auth from '../hoc/auth';
 import S_NavBar from '../components/views/NavBar/S_NavBar';
+import Shop_Landingpage from './views/Shoppingmall/LandingPage/Shop_Landingpage'
+import Shop_EventPages from './views/Shoppingmall/EventPage/EventPages';
+
 
 function App() {
 	return (
@@ -23,6 +26,8 @@ function App() {
 					<Route exact path="/mypage" component={Auth(Mypage, true)} />
 					<Route exact path="/sns" component={Auth(Sns_LandingPage, null)} />
 					<Route exact path="/sns/posts" component={Auth(Sns_posts, true)} />
+					<Route exact path="/shoppingmall" component={Auth(Shop_Landingpage, null)} />
+					<Route exact path="/shoppingmall/eventpage" component={Auth(Shop_EventPages, null)} />
 				</Switch>
 			</Router>
 		</div>
