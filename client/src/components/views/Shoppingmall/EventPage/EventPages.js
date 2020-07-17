@@ -6,21 +6,19 @@ const {Meta} = Card
 
 function EventPages() {
     return (
-        <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+        <div className="catalog" style={{backgroundColor: 'rgb(255, 127, 127)'}}>
             <article className="catalog-page page">
-                <section className="catalog-header clearfix ">
+                <section className="catalog-header clearfix" style={{backgroundColor: 'rgba(255, 127, 127, 0.3)'}}>
                        <div className="cover-image-wrapper left">
-                        <img className="cover-image" src="https://usercontents-c.styleshare.io/images/46126060/708x394" style={{backgroundColor: '#e17f7f'}}/>
-                        <div className="gradient" id="catalog-gradient" style={{background: 'linear-gradient(to right, rgba(255, 216, 216, 0), rgb(255, 216, 216))'}}></div>
+                        <img className="cover-image" src="https://usercontents-c.styleshare.io/images/46126060/708x394" background-color= '#e17f7f'/>
+                        <div className="gradient" id="catalog-gradient" style ={{background: 'linear-gradient(to right, rgba(255, 216, 216, 0), rgb(255, 216, 216))'}}></div>
                     </div>
-                    <div className="cover-info remaining-width ">
+                    <div className="cover-info remaining-width">
                         <div className="inner-wrapper">
-                            <p className="cover-title">
-                            이번 주 신상
+                            <p className="cover-title">이번 주 신상
                             아이템 확인하기 
                             </p>
-                            <p className="cover_description">
-                            바이제이키스ㅣ블랙루즈ㅣ그라미치
+                            <p className="cover_description">바이제이키스ㅣ블랙루즈ㅣ그라미치
                             이번 주 신상템 체크하기     
                             </p>
                         </div>
@@ -28,7 +26,8 @@ function EventPages() {
                 </section>
                 <section>
                     <div className="goods-card-container in-catalog">
-                        <Row gutter={[32,32]}className="inner-wrapper clearfix">
+                        <Row gutter={[32,32]} className="inner-wrapper clearfix">
+            
                                 <Card className="goods-card"
                                     hoverable
                                     style={{ width: 200 }}
@@ -83,7 +82,6 @@ function EventPages() {
                                     description='aa'
                                 />
                                 </Card>
-                      
                         </Row>
                     </div>
                 </section>

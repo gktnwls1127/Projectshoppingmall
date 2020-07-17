@@ -1,5 +1,5 @@
 import React from 'react'
-import './WeeklyIssue.css'
+import './WeeklyIssue.scss'
 
 function WeeklyIssue() {
     return (

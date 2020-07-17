@@ -8,6 +8,7 @@ import SNSBorder from './sections/SNS_Border';
 import LogoutHandler from './sections/LogoutHandler';
 import UpdateNav from './sections/UpdateNav';
 import './NavBar.scss';
+import SellerUpload from './sections/SellerUpload';
 
 function NavBar(props) {
 	const userData = useSelector((state) => state.user.userData);
@@ -25,8 +26,8 @@ function NavBar(props) {
 	const boardHandler = () => {
 		if (props.history.location.pathname.substring(0, 4) === '/sns') {
 			return <SNSBorder />;
-		} else {
-			return;
+		}  else {
+			return <SellerUpload/>;
 		}
 	};
 

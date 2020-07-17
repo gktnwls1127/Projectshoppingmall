@@ -11,6 +11,7 @@ import Auth from '../hoc/auth';
 import S_NavBar from '../components/views/NavBar/S_NavBar';
 import Shop_Landingpage from './views/Shoppingmall/LandingPage/Shop_Landingpage'
 import Shop_EventPages from './views/Shoppingmall/EventPage/EventPages';
+import UploadProductPage from './views/Shoppingmall/UploadProductPage/UploadProductPage'
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
 				<NavBar />
 				<S_NavBar/>
 				<Switch>
-					<Route exact path="/" component={Auth(LandingPage, null)} />
+					<Route exact path="/" component={Auth(Shop_Landingpage, null)} />
 					<Route exact path="/login" component={Auth(LoginPage, false)} />
 					<Route exact path="/register" component={Auth(RegisterPage, false)} />
 					<Route exact path="/mypage" component={Auth(Mypage, true)} />
@@ -28,6 +29,7 @@ function App() {
 					<Route exact path="/sns/posts" component={Auth(Sns_posts, true)} />
 					<Route exact path="/shoppingmall" component={Auth(Shop_Landingpage, null)} />
 					<Route exact path="/shoppingmall/eventpage" component={Auth(Shop_EventPages, null)} />
+					<Route exact path="/product/upload" component={Auth(UploadProductPage, true)} />
 				</Switch>
 			</Router>
 		</div>

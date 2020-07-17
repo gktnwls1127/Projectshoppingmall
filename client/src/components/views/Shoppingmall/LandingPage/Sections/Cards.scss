@@ -5,19 +5,11 @@ section {
 .hot_section {
     box-sizing: border-box;
     overflow: hidden;
-}
-
-@media screen and (min-width: 64em)
-{
-    .hot_section {
+    @media screen and (min-width: 64em) {
         margin-top: 5rem;
         margin-bottom: 7.5rem;
     }
-}
-
-@media (min-width: 80em)
-{
-    .hot_section {
+    @media (min-width: 80em) {
         margin-right: auto;
         margin-left: auto;
     }
@@ -41,9 +33,30 @@ section {
     margin: 0px;
 }
 
+.hot_ol {
+    position: relative;
+    text-align: left;
+    margin-left: -0.75rem;
+    margin-right: -1.25rem;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    list-style: none;
+    padding: 0px;
+    @media screen and (max-width: 64em) {
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+    }
+    @media screen and (min-width: 64em) {
+        margin-left: 0px;
+        margin-right: 0px;
+        text-align: center;
+    }
+}
+
 ol {
-    display: flex;
-    justify-content: center;
+    display: block;
+    list-style-type: decimal;
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
@@ -51,16 +64,21 @@ ol {
     padding-inline-start: 40px;
 }
 
-.hot_li_click {
+.hot_li_click.active, .hot_li_click.active > a, .hot_li_click.active > button {
     color: rgb(38, 40, 43);
-    font-weight: 800;
+    font-weight: 700;
+    @media screen and (max-width: 64em) {
+        color: rgb(38, 40, 43);
+        font-weight: 700;
+    }
 }
 
-.hot_li {
-    margin-right: inherit;
-    font-size: 1rem;
+.hot_li, .hot_li > a, .hot_li > button {
+    color: rgb(158, 164, 170);
+    font-weight: 700;
+    font-size: 1.125rem;
     letter-spacing: -0.025rem;
-    line-height: 1.31;
+    line-height: 1.38;
     background: transparent;
     border-width: 0px;
     border-style: initial;
@@ -68,13 +86,70 @@ ol {
     border-image: initial;
     outline: none;
     transition: color 0.2s ease-in-out 0s;
+    @media screen and (max-width: 64em) {
+        color: rgb(158, 164, 170);
+        font-weight: 700;
+        font-size: 1rem;
+        letter-spacing: -0.025rem;
+        line-height: 1.31;
+        background: transparent;
+        border-width: 0px;
+        border-style: initial;
+        border-color: initial;
+        border-image: initial;
+        outline: none;
+        transition: color 0.2s ease-in-out 0s;
+    }
+}
+
+.hot_li > a, .hot_li > button {
+    display: block;
+    cursor: pointer;
+    padding: 0.625rem 0.75rem;
+    @media screen and (max-width: 64em){
+        display: block;
+        cursor: pointer;
+        padding: 0.625rem 0.75rem;
+    }
+}
+
+.hot_li {
     display: inline-block;
     vertical-align: middle;
 }
 
 li {
+    display: list-item;
     text-align: -webkit-match-parent;
 }
+
+.li_underbar {
+        position: absolute;
+        bottom: 0.375rem;
+        height: 0.125rem;
+        background-color: rgb(38, 40, 43);
+        border-radius: 1px;
+        transition: width 0.5s ease 0s, transform 0.5s ease 0s;
+}
+
+a, button {
+    color: inherit;
+    cursor: pointer;
+}
+
+button, input, optgroup, textarea, select {
+    background-color: transparent;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+}
+
+button, select {
+    text-transform: none;
+}
+
+
 
 .hot_button {
     display: block;
@@ -137,23 +212,19 @@ button {
     justify-content: center;
 }
 
-@media screen and (max-width: 64em)
-{
-    .more_button > div {
-        min-width: 100%;
-    }
-
-}
-
 .more_button > div {
     flex: 0 0 auto;
+    @media screen and (max-width: 64em) {
+        min-width: 100%;
+    }    
 }
 
-.more_button_B:visited {
+.more_a:visited {
     color: rgb(38, 40, 43);
 }
 
-.more_button_B  {
+
+.more_a  {
     -webkit-box-align: center;
     align-items: center;
     -webkit-appearance: none;
@@ -180,5 +251,9 @@ button {
     border-style: solid;
     border-width: 1px;
     padding: 0px 1.25rem;
+    @media screen and (min-width: 64em) {
+        height : 3.5rem;
+    }
+    
 }
 

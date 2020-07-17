@@ -18,6 +18,7 @@ const createStoreWithMiddleware = applyMiddleware(
 )(createStore);
 //App에서 redux를 사용하기 위해서 Provider를 연결 해주어야 한다.
 ReactDOM.render(
+	
 	<Provider
 		store={createStoreWithMiddleware(
 			Reducer,

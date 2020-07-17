@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ImageSlider from '../../utils/ImageSlider';
 import { Icon, Col, Card, Row } from 'antd';
-import './Cards.css'
+import './Cards.scss'
 
 const { Meta } = Card;
 
@@ -28,16 +28,8 @@ function HotCards() {
 
     }, [])
 
-    const onLoadMore = () => {
-        let skip = Skip + Limit;
-
-        const variables = {
-            skip: skip,
-            limit: Limit,
-            loadMore: true,
-        }
-        getProducts(variables)
-        setSkip(skip)
+    const onPageMove = () => {
+        
     }
 
 
@@ -75,30 +67,16 @@ function HotCards() {
         </Col>
     })
 
-    const handleFilters = (filters, category) => {
+    const menu = ['전체', '아우터', '상의', '바지', '원피스', '치마', '신발']
 
-        const newFilters = { ...Filters }
+    const menulist = menu.map(
+        (menu) => <li className="hot_li">
+                    <button className="hot_button">
+                        {menu}
+                    </button>
+                 </li>
+    )
 
-        newFilters[category] = filters
-
-        console.log(newFilters)
-
-        showFilteredResults(newFilters)
-        setFilters(newFilters)
-    }
-
-    const showFilteredResults = (filters) => {
-
-        const variables = {
-            skip: 0,
-            limit: Limit,
-            filters: filters
-
-        }
-        getProducts(variables)
-        setSkip(0)
-
-    }
 
     return (
         <div>
@@ -107,28 +85,9 @@ function HotCards() {
                     <div className="hot_div_h2">
                         <h2 className="hot_h2" style={{color: 'gray20', fontWeight: 'bold' }}>인기상품</h2>
                     </div>
-                    <ol>
-                        <li className="hot_li hot_li_click">
-                            <button type="button" className="hot_button" onClick={filters => handleFilters(filters, "continents")}>전체</button>
-                        </li>
-                        <li className="hot_li">
-                            <button type="button" className="hot_button" onClick={filters => handleFilters(filters, "continents")}>아우터</button>
-                        </li>
-                        <li className="hot_li">
-                            <button type="button" className="hot_button" onClick={filters => handleFilters(filters, "continents")}>상의</button>
-                        </li>
-                        <li className="hot_li">
-                            <button type="button" className="hot_button" onClick={filters => handleFilters(filters, "continents")}>바지</button>
-                        </li>
-                        <li className="hot_li">
-                            <button type="button" className="hot_button" onClick={filters => handleFilters(filters, "continents")}>원피스</button>
-                        </li>
-                        <li className="hot_li">
-                            <button type="button" className="hot_button" onClick={filters => handleFilters(filters, "continents")}>스커트</button>
-                        </li>
-                        <li className="hot_li">
-                            <button type="button" className="hot_button" onClick={filters => handleFilters(filters, "continents")}>신발</button>
-                        </li>
+                    <ol className="hot_ol">
+                        {menulist}
+                        <div class="li_underbar" style={{transform: 'translateX(12px) translateZ(0px)', width: '29px'}}></div>
                     </ol>
                     <div style={{display : 'flex', justifyContent: 'center'}}>
                         <div width="0.5, 0.25">
@@ -139,13 +98,15 @@ function HotCards() {
                     </div>
                 
                 <br /><br />
+                
                 <div className="more_button">
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <button className="more_button_B" onClick={onLoadMore} >전체 더보기
+                            <a className="more_a" href="/shopppingmall/best" >전체 더보기
                                 <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" class="sc-Axmtr StoreSectionLinkButtonIcon___StyledCaretRight-gkYQiY iMnOGp">
                                     <path fill-rule="evenodd" d="M9.5 18.66c.2.002.39-.078.53-.22l6-6a.75.75 0 000-1.06l-6-6A.75.75 0 009 6.44l5.44 5.47L9 17.38a.75.75 0 00.5 1.28z"></path>
                                 </svg>
-                            </button>
+                            </a>
+                                 
                         </div>
                 </div>
             </section>

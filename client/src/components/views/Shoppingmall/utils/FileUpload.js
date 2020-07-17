@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Dropzone from 'react-dropzone'
-import {Icon} from 'antd'
+import { PlusOutlined } from '@ant-design/icons';
 import axios from 'axios'
 
 function FileUpload(props) {
@@ -14,6 +14,7 @@ function FileUpload(props) {
         const config = {
             header : {'content-type' : 'multipart/form-data'}
         }
+
         formData.append("file", files[0])
 
         axios.post('/api/product/image', formData, config)
@@ -50,7 +51,7 @@ function FileUpload(props) {
                         }} 
                         {...getRootProps()}>
                         <input {...getInputProps()} />
-                        <Icon type="plus" style={{ fontSize: '3rem'}} />
+                        <PlusOutlined style={{ fontSize: '3rem' }} />
                     </div>
                     </section>
                 )}

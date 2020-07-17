@@ -1,6 +1,21 @@
+.catalog{
+    @media (min-width: 940px){
+    background-color: white !important;
+    }
+}
+
+
 .page {
     padding-top: 128px;
+    @media (max-width: 768px) {
+            min-height: unset;
+    }
+    @media screen and (max-width: 960px) {
+            padding-top: 80px;
+    }
 }
+
+
 
 .catalog-page {
     text-align: center;
@@ -36,7 +51,12 @@ article, aside, details, figure, footer, header, hr, nav, section, summary {
 
 .catalog-page .catalog-header {
     margin-top: 24px;
+    @media (max-width: 939px) and (min-width: 0) {
+            margin-top: 0;
+    }
 }
+
+
 
 .catalog-page .catalog-header {
     margin-top: 24px;
@@ -50,7 +70,23 @@ article, aside, details, figure, footer, header, hr, nav, section, summary {
     position: relative;
     display: block;
     width: 708px;
+    @media (max-width: 939px) and (min-width: 0) {
+            float: none;
+            width: 100%;
+    }
 }
+
+.catalog-page .catalog-header .gradient {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 120px;
+    @media (max-width: 939px) and (min-width: 0){
+        display: none;
+    }
+}
+
 
 .left, .modal .modal-header .modal-title {
     float: left;
@@ -59,7 +95,12 @@ article, aside, details, figure, footer, header, hr, nav, section, summary {
 .catalog-page .catalog-header .cover-image {
     display: block;
     width: 100%;
+    @media (max-width: 939px) and (min-width: 0) {
+            height: auto;
+            height: 56.22vw;
+    }
 }
+
 
 .catalog-page .catalog-header .cover-image, .catalog-page .catalog-header .cover-info {
     height: 394px;
@@ -81,6 +122,14 @@ embed, img, object {
     padding-right: 40px;
     text-align: left;
     opacity: .8;
+    @media (max-width: 939px) and (min-width: 0) {
+        float: none;
+        display: block;
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+        height: auto;
+    }
 }
 
 .remaining-width {
@@ -91,6 +140,10 @@ embed, img, object {
 .catalog-page .catalog-header .cover-info .inner-wrapper {
     width: 100%;
     text-align: left;
+    @media (max-width: 731px) and (min-width: 0){
+        padding-left: 16px;
+        padding-right: 16px;
+    }
 }
 
 .catalog-page .catalog-header .cover-title {
@@ -98,6 +151,10 @@ embed, img, object {
     font-weight: bold;
     line-height: 1.2em;
     letter-spacing: -.015em;
+    @media (max-width: 731px) and (min-width: 0){
+        margin-top: 16px;
+        font-size: 22px;
+    }
 }
 
 .catalog-page .catalog-header .cover-description {
@@ -106,13 +163,13 @@ embed, img, object {
     font-size: 16px;
     line-height: 1.5em;
     overflow-y: auto;
-}
-
-@media (min-width: 1180px){
-    .goods-card-container {
-        width: 1180px;
+    @media (max-width: 731px) and (min-width: 0){
+        margin-top: 10px;
+        max-height: 64px;
+        font-size: 14px;
     }
 }
+
 
 .goods-card-container {
     text-align: center;
@@ -120,11 +177,27 @@ embed, img, object {
     margin-right: auto;
     margin-top: 24px;
     overflow: hidden;
+    @media (min-width: 1180px){
+            width: 1180px;
+    }
+    @media (max-width: 699px) and (min-width: 481px){   
+        width: 460px;
+    }
+    @media (max-width: 939px) and (min-width: 481px) {
+        margin-top: 30px;
+    }
+    
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 }
 
 .goods-card-container .inner-wrapper {
-    display: flex;
-    justify-content: space-between;
     margin-right: -20px;
     margin-bottom: -18px;
 }
@@ -134,7 +207,6 @@ embed, img, object {
 }
 
 .goods-card-container .goods-card {
-    
     float: left;
     margin-right: 20px;
     margin-bottom: 18px;
