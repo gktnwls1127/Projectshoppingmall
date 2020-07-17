@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Card, Avatar, Row, Col, Typography } from 'antd';
 import axios from 'axios';
 import RenderImages from './sections/Sns_RenderImages';
@@ -13,7 +14,7 @@ const { Title } = Typography;
 //snapshots , name, text
 function Sns_LandingPage() {
 	const [posts, setPosts] = useState([]);
-
+	const user = useSelector((state) => state.user.userData);
 	const getPosts = (data) => {
 		axios.post('/api/sns/getProduct').then((response) => {
 			if (response.data.success) {
@@ -24,7 +25,15 @@ function Sns_LandingPage() {
 	useEffect(() => {
 		getPosts();
 	}, []);
-	// xs: 8, sm: 16, md: 24, lg: 32
+
+	const renderProfileImage = () => {
+		if (user && user.image) {
+			return `http://localhost:5000/${user.image}`;
+		} else {
+			return 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png';
+		}
+	};
+
 	const renderPosts = (posts) =>
 		posts.map((post) => (
 			<Col key={post._id} lg={6} xs={24}>
@@ -41,9 +50,7 @@ function Sns_LandingPage() {
 					]}
 				>
 					<Meta
-						avatar={
-							<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-						}
+						avatar={<Avatar src={renderProfileImage()} />}
 						description={post.text}
 					/>
 				</Card>
