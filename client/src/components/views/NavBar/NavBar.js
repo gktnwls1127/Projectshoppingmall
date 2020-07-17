@@ -8,6 +8,7 @@ import SNSBorder from './sections/SNS_Border';
 import LogoutHandler from './sections/LogoutHandler';
 import UpdateNav from './sections/UpdateNav';
 import './NavBar.scss';
+
 function NavBar(props) {
 	const userData = useSelector((state) => state.user.userData);
 

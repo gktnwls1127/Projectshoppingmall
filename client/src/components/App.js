@@ -9,12 +9,14 @@ import NavBar from './views/NavBar/NavBar';
 import Sns_LandingPage from './views/SNS/Sns_LandingPage';
 import Sns_posts from './views/SNS/Sns_posts';
 import Auth from '../hoc/auth';
+import S_NavBar from '../components/views/NavBar/S_NavBar';
 
 function App() {
 	return (
 		<div>
 			<Router>
 				<NavBar />
+				<S_NavBar/>
 				<Switch>
 					<Route exact path="/" component={Auth(LandingPage, null)} />
 					<Route exact path="/login" component={Auth(LoginPage, false)} />
