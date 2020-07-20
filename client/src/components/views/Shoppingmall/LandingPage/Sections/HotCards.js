@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ImageSlider from '../../utils/ImageSlider';
-import { Icon, Col, Card, Row } from 'antd';
+import { Icon, Col, Card, Row, Tabs } from 'antd';
 import { continents } from './Datas';
 import './Cards.scss'
 
 const { Meta } = Card;
+const { TabPane } = Tabs;
 
 function HotCards() {
 
@@ -93,49 +94,167 @@ function HotCards() {
         setFilters(newFilters)
     }
 
-
-    const menu = ['전체', '아우터', '상의', '바지', '원피스', '치마', '신발']
-
-    const menulist = menu.map(
-        (menu) => <li className="hot_li">
-                    <button className="hot_button" handleFilters={filters => handleFilters(filters, "continents")}>
-                        {menu}
-                    </button>
-                 </li>
-    )
+    function callback(key) {
+        console.log(key);
+      }
 
 
     return (
         <div>
             <section className="hot_section" >
-
-                    <div className="hot_div_h2">
-                        <h2 className="hot_h2" style={{color: 'gray20', fontWeight: 'bold' }}>인기상품</h2>
-                    </div>
-                    <ol className="hot_ol">
-                        {menulist}
-                        <div class="li_underbar" style={{transform: 'translateX(12px) translateZ(0px)', width: '29px'}}></div>
-                    </ol>
-                    <div style={{display : 'flex', justifyContent: 'center'}}>
-                        <div width="0.5, 0.25">
-                            <Row gutter={[16, 16]}>
-                                {renderCards}
-                            </Row>
-                        </div>
-                    </div>
-                
-                <br /><br />
-                
-                <div className="more_button">
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <a className="more_a" href="/shopppingmall/best" >전체 더보기
-                                <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" class="sc-Axmtr StoreSectionLinkButtonIcon___StyledCaretRight-gkYQiY iMnOGp">
-                                    <path fill-rule="evenodd" d="M9.5 18.66c.2.002.39-.078.53-.22l6-6a.75.75 0 000-1.06l-6-6A.75.75 0 009 6.44l5.44 5.47L9 17.38a.75.75 0 00.5 1.28z"></path>
-                                </svg>
-                            </a>
-         
-                        </div>
+                <div className="hot_div_h2">
+                    <h2 className="hot_h2" style={{color: 'gray20', fontWeight: 'bold' }}>인기상품</h2>
                 </div>
+                <Tabs defaultActiveKey="1" centered>
+                    <TabPane tab="전체" key="1">
+                        <div style={{display : 'flex', justifyContent: 'center'}}>
+                            <div width="0.5, 0.25">
+                                <Row gutter={[16, 16]}>
+                                    {renderCards}
+                                </Row>
+                            </div>
+                        </div>
+                        <br /><br />
+                
+                        <div className="more_button">
+                                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                    <a className="more_a" href="/shopppingmall/best" >전체 더보기
+                                        <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" class="sc-Axmtr StoreSectionLinkButtonIcon___StyledCaretRight-gkYQiY iMnOGp">
+                                            <path fill-rule="evenodd" d="M9.5 18.66c.2.002.39-.078.53-.22l6-6a.75.75 0 000-1.06l-6-6A.75.75 0 009 6.44l5.44 5.47L9 17.38a.75.75 0 00.5 1.28z"></path>
+                                        </svg>
+                                    </a>
+                
+                                </div>
+                        </div>
+                    </TabPane>
+                    <TabPane tab="아우터" key="2">
+                        <div style={{display : 'flex', justifyContent: 'center'}}>
+                            <div width="0.5, 0.25">
+                                <Row gutter={[16, 16]}>
+                                    {renderCards}
+                                </Row>
+                            </div>
+                        </div>
+                        <br /><br />
+                
+                        <div className="more_button">
+                                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                    <a className="more_a" href="/shopppingmall/best" >아우터 더보기
+                                        <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" class="sc-Axmtr StoreSectionLinkButtonIcon___StyledCaretRight-gkYQiY iMnOGp">
+                                            <path fill-rule="evenodd" d="M9.5 18.66c.2.002.39-.078.53-.22l6-6a.75.75 0 000-1.06l-6-6A.75.75 0 009 6.44l5.44 5.47L9 17.38a.75.75 0 00.5 1.28z"></path>
+                                        </svg>
+                                    </a>
+                
+                                </div>
+                        </div>
+                    </TabPane>
+                    <TabPane tab="상의" key="3">
+                        <div style={{display : 'flex', justifyContent: 'center'}}>
+                            <div width="0.5, 0.25">
+                                <Row gutter={[16, 16]}>
+                                    {renderCards}
+                                </Row>
+                            </div>
+                        </div>
+                        <br /><br />
+                
+                        <div className="more_button">
+                                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                    <a className="more_a" href="/shopppingmall/best" >상의 더보기
+                                        <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" class="sc-Axmtr StoreSectionLinkButtonIcon___StyledCaretRight-gkYQiY iMnOGp">
+                                            <path fill-rule="evenodd" d="M9.5 18.66c.2.002.39-.078.53-.22l6-6a.75.75 0 000-1.06l-6-6A.75.75 0 009 6.44l5.44 5.47L9 17.38a.75.75 0 00.5 1.28z"></path>
+                                        </svg>
+                                    </a>
+                
+                                </div>
+                        </div>
+                    </TabPane>
+                    <TabPane tab="바지" key="4">
+                        <div style={{display : 'flex', justifyContent: 'center'}}>
+                            <div width="0.5, 0.25">
+                                <Row gutter={[16, 16]}>
+                                    {renderCards}
+                                </Row>
+                            </div>
+                        </div>
+                        <br /><br />
+                
+                        <div className="more_button">
+                                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                    <a className="more_a" href="/shopppingmall/best" >바지 더보기
+                                        <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" class="sc-Axmtr StoreSectionLinkButtonIcon___StyledCaretRight-gkYQiY iMnOGp">
+                                            <path fill-rule="evenodd" d="M9.5 18.66c.2.002.39-.078.53-.22l6-6a.75.75 0 000-1.06l-6-6A.75.75 0 009 6.44l5.44 5.47L9 17.38a.75.75 0 00.5 1.28z"></path>
+                                        </svg>
+                                    </a>
+                
+                                </div>
+                        </div>
+                    </TabPane>
+                    <TabPane tab="원피스" key="5">
+                        <div style={{display : 'flex', justifyContent: 'center'}}>
+                            <div width="0.5, 0.25">
+                                <Row gutter={[16, 16]}>
+                                    {renderCards}
+                                </Row>
+                            </div>
+                        </div>
+                        <br /><br />
+                
+                        <div className="more_button">
+                                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                    <a className="more_a" href="/shopppingmall/best" >원피스 더보기
+                                        <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" class="sc-Axmtr StoreSectionLinkButtonIcon___StyledCaretRight-gkYQiY iMnOGp">
+                                            <path fill-rule="evenodd" d="M9.5 18.66c.2.002.39-.078.53-.22l6-6a.75.75 0 000-1.06l-6-6A.75.75 0 009 6.44l5.44 5.47L9 17.38a.75.75 0 00.5 1.28z"></path>
+                                        </svg>
+                                    </a>
+                
+                                </div>
+                        </div>
+                    </TabPane>
+                    <TabPane tab="치마" key="6">
+                        <div style={{display : 'flex', justifyContent: 'center'}}>
+                            <div width="0.5, 0.25">
+                                <Row gutter={[16, 16]}>
+                                    {renderCards}
+                                </Row>
+                            </div>
+                        </div>
+                        <br /><br />
+                
+                        <div className="more_button">
+                                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                    <a className="more_a" href="/shopppingmall/best" >치마 더보기
+                                        <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" class="sc-Axmtr StoreSectionLinkButtonIcon___StyledCaretRight-gkYQiY iMnOGp">
+                                            <path fill-rule="evenodd" d="M9.5 18.66c.2.002.39-.078.53-.22l6-6a.75.75 0 000-1.06l-6-6A.75.75 0 009 6.44l5.44 5.47L9 17.38a.75.75 0 00.5 1.28z"></path>
+                                        </svg>
+                                    </a>
+                
+                                </div>
+                        </div>
+                    </TabPane>
+                    <TabPane tab="신발" key="7">
+                        <div style={{display : 'flex', justifyContent: 'center'}}>
+                            <div width="0.5, 0.25">
+                                <Row gutter={[16, 16]}>
+                                    {renderCards}
+                                </Row>
+                            </div>
+                        </div>
+                        <br /><br />
+                
+                        <div className="more_button">
+                                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                    <a className="more_a" href="/shopppingmall/best" >신발 더보기
+                                        <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" class="sc-Axmtr StoreSectionLinkButtonIcon___StyledCaretRight-gkYQiY iMnOGp">
+                                            <path fill-rule="evenodd" d="M9.5 18.66c.2.002.39-.078.53-.22l6-6a.75.75 0 000-1.06l-6-6A.75.75 0 009 6.44l5.44 5.47L9 17.38a.75.75 0 00.5 1.28z"></path>
+                                        </svg>
+                                    </a>
+                
+                                </div>
+                        </div>
+                    </TabPane>
+                </Tabs>
+                
             </section>
         </div>
     )
