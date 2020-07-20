@@ -12,6 +12,7 @@ import S_NavBar from '../components/views/NavBar/S_NavBar';
 import Shop_Landingpage from './views/Shoppingmall/LandingPage/Shop_Landingpage'
 import Shop_EventPages from './views/Shoppingmall/EventPage/EventPages';
 import UploadProductPage from './views/Shoppingmall/UploadProductPage/UploadProductPage'
+import DetailPage from './views/Shoppingmall/DetailProductPage/DetailProductPage'
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
 					<Route exact path="/shoppingmall" component={Auth(Shop_Landingpage, null)} />
 					<Route exact path="/shoppingmall/eventpage" component={Auth(Shop_EventPages, null)} />
 					<Route exact path="/product/upload" component={Auth(UploadProductPage, true)} />
+					<Route exact path="/product/:productId" component={Auth(DetailPage, null)} />
 				</Switch>
 			</Router>
 		</div>

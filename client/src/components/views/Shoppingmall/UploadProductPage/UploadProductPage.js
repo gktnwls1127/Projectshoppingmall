@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
+import { withRouter } from 'react-router-dom';
 import {Typography, Button, Form, Input} from 'antd';
+import {useSelector} from 'react-redux'
 import FileUpload from '../utils/FileUpload'
 import Axios from 'axios';
 
@@ -16,6 +18,8 @@ const Continents = [
 ]
 
 function UploadProducPage(props) {
+
+    const userInfo = useSelector((state) => state.user.userData);
 
     const [Title, setTitle] = useState("")
     const [Description, setDescription] = useState("")
@@ -52,7 +56,7 @@ function UploadProducPage(props) {
 
         const body = {
             //로그인 된 사람의 ID
-            writer: props.user.userData._id,
+            writer: userInfo._id,
             title : Title,
             description : Description,
             price : Price,
@@ -113,4 +117,4 @@ function UploadProducPage(props) {
     )
 }
 
-export default UploadProducPage;
+export default withRouter(UploadProducPage);

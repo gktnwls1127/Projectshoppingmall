@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ImageSlider from '../../utils/ImageSlider';
 import { Icon, Col, Card, Row } from 'antd';
+import { continents } from './Datas';
 import './Cards.scss'
 
 const { Meta } = Card;
@@ -67,11 +68,37 @@ function HotCards() {
         </Col>
     })
 
+    const showFilteredResults = (filters) => {
+
+        const variables = {
+            skip: 0,
+            limit: Limit,
+            filters: filters
+
+        }
+        getProducts(variables)
+        setSkip(0)
+
+    }
+
+    const handleFilters = (filters, category) => {
+
+        const newFilters = { ...Filters }
+
+        newFilters[category] = filters
+
+        console.log(newFilters)
+
+        showFilteredResults(newFilters)
+        setFilters(newFilters)
+    }
+
+
     const menu = ['전체', '아우터', '상의', '바지', '원피스', '치마', '신발']
 
     const menulist = menu.map(
         (menu) => <li className="hot_li">
-                    <button className="hot_button">
+                    <button className="hot_button" handleFilters={filters => handleFilters(filters, "continents")}>
                         {menu}
                     </button>
                  </li>
@@ -106,7 +133,7 @@ function HotCards() {
                                     <path fill-rule="evenodd" d="M9.5 18.66c.2.002.39-.078.53-.22l6-6a.75.75 0 000-1.06l-6-6A.75.75 0 009 6.44l5.44 5.47L9 17.38a.75.75 0 00.5 1.28z"></path>
                                 </svg>
                             </a>
-                                 
+         
                         </div>
                 </div>
             </section>
