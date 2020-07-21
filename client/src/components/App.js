@@ -4,6 +4,7 @@ import LandingPage from './views/LandingPage/LandingPage';
 import LoginPage from './views/LoginPage/LoginPage';
 import RegisterPage from './views/RegisterPage/RegisterPage';
 import Mypage from './views/MyPage/Mypage';
+import UpdateProfile from './views/RegisterPage/UpdateProfile';
 import NavBar from './views/NavBar/NavBar';
 import Sns_LandingPage from './views/SNS/Sns_LandingPage';
 import Sns_posts from './views/SNS/Sns_posts';
@@ -34,6 +35,12 @@ function App() {
 					<Route exact path="/login" component={Auth(LoginPage, false)} />
 					<Route exact path="/register" component={Auth(RegisterPage, false)} />
 					<Route exact path="/mypage" component={Auth(Mypage, true)} />
+					<Route exact path="/update" component={Auth(UpdateProfile, true)} />
+					<Route
+						exact
+						path="/change_password"
+						component={Auth(UpdateProfile, true)}
+					/>
 					<Route exact path="/sns" component={Auth(Sns_LandingPage, null)} />
 					<Route exact path="/sns/posts" component={Auth(Sns_posts, true)} />
 					

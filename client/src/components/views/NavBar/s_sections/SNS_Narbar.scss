@@ -1,10 +1,13 @@
-.sns_navbar{
-    display: inline;
+.sns_navbar {
+	width: 100%;
+	display: inline-block;
 
-    h1 {
-        color: #1b1d1f;
-		display : inline;
-	    margin-Left: 1em;
-		font-Weight: bold;
-    }
+	h1 {
+		color: #1b1d1f;
+
+		margin-left: 1em;
+		font-weight: bold;
+		display: flex;
+		justify-content: center;
+	}
 }
