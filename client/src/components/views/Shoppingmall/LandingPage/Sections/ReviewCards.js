@@ -27,19 +27,6 @@ function ReviewCards() {
 
     }, [])
 
-    const onLoadMore = () => {
-        let skip = Skip + Limit;
-
-        const variables = {
-            skip: skip,
-            limit: Limit,
-            loadMore: true,
-        }
-        getProducts(variables)
-        setSkip(skip)
-    }
-
-
     const getProducts = (body) => {
 
         axios.post('/api/product/products', body)

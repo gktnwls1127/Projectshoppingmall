@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react'
-import { useDispatch } from 'react-redux';
-import { getCartItems, removeCartItem, onSuccessBuy } from '../../../_actions/user_actions'
+import { useDispatch , useSelector} from 'react-redux';
+import { getCartItems, removeCartItem, onSuccessBuy } from '../../../../_actions/shop_action'
 import UserCardBlock from './Sections/UserCardBlock';
 import { Empty, Result } from 'antd';
 import Paypal from '../utils/Paypal'
 
 function CartPage(props) {
+    const userData = useSelector((props) => props.user.userData);
+    const user = useSelector((props) => props.user)
 
     const dispatch = useDispatch();
     const [Total, setTotal] = useState(0)
@@ -17,13 +19,13 @@ function CartPage(props) {
         let cartItems = []
 
         //리덕스 User state안에 cart안에 상품이 들어있는지 확인
-        if(props.user.userData && props.user.userData.cart) {
-            if(props.user.userData.cart.length > 0) {
-                props.user.userData.cart.forEach(item => {
+        if(userData && userData.cart) {
+            if(userData.cart.length > 0) {
+                userData.cart.forEach(item => {
                     cartItems.push(item.id)
                 })
 
-                dispatch(getCartItems(cartItems, props.user.userData.cart))
+                dispatch(getCartItems(cartItems, userData.cart))
                 .then((response) => {
                     if (response.payload.length > 0) {
                         calculateTotal(response.payload)
@@ -33,7 +35,7 @@ function CartPage(props) {
             }
             
         }
-    }, [props.user.userData])
+    }, [])
 
     const calculateTotal = (cartDetail) => {
         let total = 0;
@@ -63,7 +65,7 @@ function CartPage(props) {
 
         dispatch(onSuccessBuy({
             paymentData : data,
-            cartDetail : props.user.cartDetail
+            cartDetail : user.cartDetail
         }))
         .then(response => {
             if(response.payload.success) {
@@ -79,7 +81,7 @@ function CartPage(props) {
 
             <div>
                 <UserCardBlock 
-                    products={props.user.cartDetail}
+                    products={user.cartDetail}
                     removeItem={removeFromCart}            
                 />
             </div>

@@ -21,7 +21,7 @@ function Stroe_NavBar() {
 		    </Link>
         </h3>
         <h3>
-            <Link to="/shoppingmall/shirt_blouse" style={{ color: 'inherit' }}>
+            <Link to="/shoppingmall/top" style={{ color: 'inherit' }}>
                 상의
 		    </Link>
         </h3>
