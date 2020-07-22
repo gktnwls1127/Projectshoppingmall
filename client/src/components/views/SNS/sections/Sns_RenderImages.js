@@ -10,6 +10,8 @@ function Sns_RenderImages(props) {
 		snapshots.map((snapshot, index) => (
 			<div key={index}>
 				<img
+					id={props.id}
+					style={{ borderRadius: '16px' }}
 					onClick={() => setVisible(true)}
 					width="250px"
 					background-color="inherit"

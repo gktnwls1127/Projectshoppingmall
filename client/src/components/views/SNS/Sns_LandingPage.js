@@ -3,12 +3,9 @@ import { useSelector } from 'react-redux';
 import { Card, Avatar, Row, Col, Typography } from 'antd';
 import axios from 'axios';
 import RenderImages from './sections/Sns_RenderImages';
+import RenderText from './sections/RenderText';
 import './Sns_LandingPage.scss';
-import {
-	EditOutlined,
-	EllipsisOutlined,
-	SettingOutlined,
-} from '@ant-design/icons';
+
 const { Meta } = Card;
 const { Title } = Typography;
 //snapshots , name, text
@@ -30,7 +27,7 @@ function Sns_LandingPage() {
 		if (user && user.image) {
 			return `http://localhost:5000/${user.image}`;
 		} else {
-			return 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png';
+			return 'https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg';
 		}
 	};
 
@@ -41,17 +38,13 @@ function Sns_LandingPage() {
 					style={{
 						width: 250,
 						border: '2px solid #e8ebed',
+						borderRadius: '20px',
 					}}
-					cover={<RenderImages snapshots={post.snapshots} />}
-					actions={[
-						<SettingOutlined key="setting" />,
-						<EditOutlined key="edit" />,
-						<EllipsisOutlined key="ellipsis" />,
-					]}
+					cover={<RenderImages snapshots={post.snapshots} id={post._id} />}
 				>
 					<Meta
 						avatar={<Avatar src={renderProfileImage()} />}
-						description={post.text}
+						description={<RenderText post={post} />}
 					/>
 				</Card>
 			</Col>
