@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch , useSelector} from 'react-redux';
-import { getCartItems, removeCartItem, onSuccessBuy } from '../../../../_actions/shop_action'
+import { getCartItems, removeCartItem, onSuccessBuy } from '../../../../_actions/user_action'
 import UserCardBlock from './Sections/UserCardBlock';
 import { Empty, Result } from 'antd';
 import Paypal from '../utils/Paypal'
+import { withRouter } from 'react-router-dom'
 
 function CartPage(props) {
-    const userData = useSelector((props) => props.user.userData);
-    const user = useSelector((props) => props.user)
+    const userData = useSelector((state) => state.user.userData);
+    const user = useSelector((state) => state.user)
 
     const dispatch = useDispatch();
     const [Total, setTotal] = useState(0)
@@ -15,7 +16,7 @@ function CartPage(props) {
     const [ShowSuccess, setShowSuccess] = useState(false)
     
     useEffect(() => {
-        
+          
         let cartItems = []
 
         //리덕스 User state안에 cart안에 상품이 들어있는지 확인
@@ -119,4 +120,4 @@ function CartPage(props) {
     )
 }
 
-export default CartPage
+export default withRouter(CartPage)

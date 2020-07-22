@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Descriptions } from 'antd'
 import { useDispatch } from 'react-redux'
-import { addToCart } from '../../../../../_actions/shop_action'
+import { addToCart } from '../../../../../_actions/user_action'
  
 function ProductInfo(props) {
 
