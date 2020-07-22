@@ -44,6 +44,11 @@ function App() {
 					<Route exact path="/sns" component={Auth(Sns_LandingPage, null)} />
 					<Route exact path="/sns/posts" component={Auth(Sns_posts, true)} />
 					
+					
+					{/* <Route exact path="/!#" component={Auth(Sns_LandingPage/!#, true)} /> */}
+					
+
+
 					<Route exact path="/shoppingmall" component={Auth(Shop_Landingpage, null)} />
 					<Route exact path="/shoppingmall/eventpage" component={Auth(Shop_EventPages, null)} />
 					<Route exact path="/product/upload" component={Auth(UploadProductPage, true)} />

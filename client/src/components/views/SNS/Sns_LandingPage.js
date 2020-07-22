@@ -5,12 +5,22 @@ import axios from 'axios';
 import RenderImages from './sections/Sns_RenderImages';
 import RenderText from './sections/RenderText';
 import './Sns_LandingPage.scss';
+import Pageination from './sections/Pageination';
+import { animateScroll as scroll } from 'react-scroll';
 
 const { Meta } = Card;
 const { Title } = Typography;
 //snapshots , name, text
 function Sns_LandingPage() {
+	//처음 페이지
+	const [currentPage, setcurrentPage] = useState(1);
+
 	const [posts, setPosts] = useState([]);
+
+	const [loading, setLoading] = useState(false);
+	//페이지에 올라갈 게시물 갯수 지정
+	const [postsPerPage, setPostPerPage] = useState(12);
+
 	const user = useSelector((state) => state.user.userData);
 	const getPosts = (data) => {
 		axios.post('/api/sns/getProduct').then((response) => {
@@ -19,8 +29,22 @@ function Sns_LandingPage() {
 			}
 		});
 	};
+
+	const indexOfLastPost = currentPage * postsPerPage;
+	const indexOfFirstPost = indexOfLastPost - postsPerPage;
+	const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+	//Chage page
+	const pageinate = (pageNumber) => setcurrentPage(pageNumber);
+
 	useEffect(() => {
-		getPosts();
+		const fetchPosts = async () => {
+			setLoading(true);
+
+			getPosts();
+			setLoading(false);
+		};
+
+		fetchPosts();
 	}, []);
 
 	const renderProfileImage = (post) => {
@@ -55,7 +79,13 @@ function Sns_LandingPage() {
 			<Title level={3} style={{ marginBottom: '3rem' }}>
 				지금의 트렌드
 			</Title>
-			<Row gutter={[16, 32]}>{renderPosts(posts)}</Row>
+			<Row gutter={[16, 32]}>{renderPosts(currentPosts)}</Row>
+			<Pageination
+				postsPerPage={postsPerPage}
+				totalPosts={posts.length}
+				pageinate={pageinate}
+			/>
+			<button onClick={() => scroll.scrollToTop}>위로가기</button>
 		</div>
 	);
 }

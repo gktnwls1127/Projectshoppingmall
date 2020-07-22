@@ -9,6 +9,7 @@ import LogoutHandler from './sections/LogoutHandler';
 import UpdateNav from './sections/UpdateNav';
 import './NavBar.scss';
 import SellerUpload from './sections/SellerUpload';
+import SearchBar from './SearchBar/SearchBar'
 import CartPageIcon from './sections/CartPageIcon';
 
 function NavBar(props) {
@@ -34,15 +35,21 @@ function NavBar(props) {
 
 	return (
 		<div className="nav_container">
+			<div>
 			<LandingPageNav />
+			</div>
+			<div>
+			{/* <SearchBar/> */}
+			</div>
+			<div>
 			{userData && !userData.isAuth && <LoginHandler />}
 			{userData && userData.isAuth && (
 				<LogoutHandler renderLogout={logoutHandler} />
-			)}
-			
+				)}
 			{userData && userData.isAuth && <UpdateNav />}
 			{userData && userData.isAuth && <CartPageIcon />}
 			{userData && userData.isAuth && boardHandler()}
+				</div>
 		</div>
 	);
 }
