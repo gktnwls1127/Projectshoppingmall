@@ -6,7 +6,7 @@ import { updateUser } from '../../../../_actions/user_action';
 import { Button } from 'antd';
 import swal from 'sweetalert';
 import './Update_Profile.scss';
-function Update_Profile() {
+function Update_Profile(props) {
 	const user = useSelector((state) => state.user.userData);
 	const [id, setId] = useState('');
 	const [userImage, setUserImage] = useState('');
@@ -79,6 +79,33 @@ function Update_Profile() {
 		});
 	};
 
+	const withdrawFromAccount = () => {
+		const data = {
+			id,
+		};
+
+		swal({
+			title: '정말 탈퇴하시겠습니까?',
+			text: '확인을 누르면 해당 계정정보가 사라지며, 복구 할 수 없습니다.',
+			icon: 'warning',
+			buttons: true,
+			dangerMode: true,
+		}).then((willDelete) => {
+			if (willDelete) {
+				axios.post('/api/users/withdraw', data).then((response) => {
+					if (response.data.success) {
+						swal('계정탈퇴에 성공했습니다.');
+						props.history.push('/');
+					} else {
+						swal('계정 탈퇴에 실패했습니다.');
+					}
+				});
+			} else {
+				swal('취소하셨습니다.');
+			}
+		});
+	};
+
 	return (
 		<div className="update_user_container">
 			<div className="head_text">
@@ -116,6 +143,13 @@ function Update_Profile() {
 			<div className="submit_change">
 				<Button type="ghost" onClick={handleSubmit}>
 					다 했어요
+				</Button>
+			</div>
+			<br />
+			<br />
+			<div className="sign_out">
+				<Button type="ghost" onClick={withdrawFromAccount}>
+					탈퇴하기
 				</Button>
 			</div>
 		</div>

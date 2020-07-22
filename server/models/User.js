@@ -4,37 +4,45 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const jwt = require('jsonwebtoken');
 const userSchema = mongoose.Schema({
-	name: {
-		type: String,
-		maxlength: 50,
-	},
-	email: {
-		type: String,
-		trim: true,
-		unique: 1,
-	},
-	password: {
-		type: String,
-		minlength: 5,
-	},
-	lastname: {
-		type: String,
-		maxlength: 50,
-	},
-	role: {
-		//관리자 혹은 일반 유저
-		type: Number,
-		default: 0,
-	},
-	image: String,
-	token: {
-		//token 나중에 유효성 관리.
-		type: String,
-	},
-	tokenExp: {
-		//token의 expiration date
-		type: Number,
-	},
+  name: {
+    type: String,
+    maxlength: 50,
+  },
+  email: {
+    type: String,
+    trim: true,
+    unique: 1,
+  },
+  password: {
+    type: String,
+    minlength: 5,
+  },
+  lastname: {
+    type: String,
+    maxlength: 50,
+  },
+  role: {
+    //관리자 혹은 일반 유저
+    type: Number,
+    default: 0,
+  },
+  cart: {
+    type: Array,
+    default: []
+  },
+  history: {
+      type: Array,
+      default: []
+  },
+  image: String,
+  token: {
+    //token 나중에 유효성 관리.
+    type: String,
+  },
+  tokenExp: {
+    //token의 expiration date
+    type: Number,
+  }
 });
 //Schema를 Model로 감싸줌
 //user스키마를 저장하기 이전에 함수를 실행하는 것 -비밀번호 암호화를 하는데 사용.- 몽구스 내장함수

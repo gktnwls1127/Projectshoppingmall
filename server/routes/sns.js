@@ -36,4 +36,19 @@ router.post('/getProduct', (req, res) => {
 		});
 });
 
+router.post('/upviews', (req, res) => {
+	SNSPost.findOneAndUpdate(
+		{ _id: req.body.id },
+		{
+			$inc: {
+				views: 1,
+			},
+		},
+		(err) => {
+			if (err) res.json({ success: false, err });
+			res.json({ success: true });
+		}
+	);
+});
+
 module.exports = router;

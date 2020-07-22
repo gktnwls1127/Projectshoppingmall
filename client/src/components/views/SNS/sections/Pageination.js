@@ -6,10 +6,10 @@ const Pageination = ( {postsPerPage , totalPosts , pageinate}) => {
     }
     return (
         <nav>
-            <ul className="pagenation">
+            <ul className="pageination">
                 {pageNumbers.map(number => (
                     <li key = {number} className="page=item">
-                        <a onClick={()=>pageinate(number)} href="!#" className="page-link">
+                        <a onClick={()=>pageinate(number)}  className="page-link">
                         {number}
                         </a>
                     </li>

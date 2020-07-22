@@ -10,6 +10,7 @@ import UpdateNav from './sections/UpdateNav';
 import './NavBar.scss';
 import SellerUpload from './sections/SellerUpload';
 import SearchBar from './SearchBar/SearchBar'
+import CartPageIcon from './sections/CartPageIcon';
 
 function NavBar(props) {
 	const userData = useSelector((state) => state.user.userData);
@@ -46,6 +47,7 @@ function NavBar(props) {
 				<LogoutHandler renderLogout={logoutHandler} />
 				)}
 			{userData && userData.isAuth && <UpdateNav />}
+			{userData && userData.isAuth && <CartPageIcon />}
 			{userData && userData.isAuth && boardHandler()}
 				</div>
 		</div>
