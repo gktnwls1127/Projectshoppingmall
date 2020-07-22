@@ -11,7 +11,7 @@ const customStyles = {
 		width: '955px',
 		height: '851px',
 		overflow: 'hidden',
-		background: '#F7F8F9',
+		background: '#FFFFFF',
 	},
 };
 

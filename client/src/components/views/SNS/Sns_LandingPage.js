@@ -22,7 +22,6 @@ function Sns_LandingPage() {
 	useEffect(() => {
 		getPosts();
 	}, []);
-	console.log(posts);
 
 	const renderProfileImage = (post) => {
 		if (post && post.writer.image) {
