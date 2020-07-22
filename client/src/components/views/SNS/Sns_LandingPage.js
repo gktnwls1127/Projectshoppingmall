@@ -4,6 +4,10 @@ import { Card, Avatar, Row, Col, Typography } from 'antd';
 import axios from 'axios';
 import RenderImages from './sections/Sns_RenderImages';
 import './Sns_LandingPage.scss';
+
+
+import Pageination from './sections/Pageination'
+
 import {
 	EditOutlined,
 	EllipsisOutlined,
@@ -14,6 +18,11 @@ const { Title } = Typography;
 //snapshots , name, text
 function Sns_LandingPage() {
 	const [posts, setPosts] = useState([]);
+
+	const [loading, setLoading] = useState(false);
+	const [currnet, setcurrnet] = useState(1)
+	const [postsPerPage, setPostPerPage] = useState(10)
+
 	const user = useSelector((state) => state.user.userData);
 	const getPosts = (data) => {
 		axios.post('/api/sns/getProduct').then((response) => {
@@ -24,7 +33,17 @@ function Sns_LandingPage() {
 	};
 	useEffect(() => {
 		getPosts();
+		setLoading(false)
 	}, []);
+
+
+	const indexOfLastPost = currentPage * postsPerPage;
+	const indexOfFirstPost = indexOfLastPost - postsPerPage;
+	const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
+	//Chage page
+	const pageinate = (pageNumber) => setCurrentPage(pageNumber)
+
+
 
 	const renderProfileImage = () => {
 		if (user && user.image) {
@@ -36,6 +55,7 @@ function Sns_LandingPage() {
 
 	const renderPosts = (posts) =>
 		posts.map((post) => (
+			
 			<Col key={post._id} lg={6} xs={24}>
 				<Card
 					style={{
@@ -63,6 +83,7 @@ function Sns_LandingPage() {
 				지금의 트렌드
 			</Title>
 			<Row gutter={[16, 32]}>{renderPosts(posts)}</Row>
+			<Pageination postsPerPage={postsPerPage} totalPosts={posts.length} pageinate={pageinate}/>
 		</div>
 	);
 }
