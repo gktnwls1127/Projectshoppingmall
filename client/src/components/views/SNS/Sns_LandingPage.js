@@ -22,10 +22,11 @@ function Sns_LandingPage() {
 	useEffect(() => {
 		getPosts();
 	}, []);
+	console.log(posts);
 
-	const renderProfileImage = () => {
-		if (user && user.image) {
-			return `http://localhost:5000/${user.image}`;
+	const renderProfileImage = (post) => {
+		if (post && post.writer.image) {
+			return `http://localhost:5000/${post.writer.image}`;
 		} else {
 			return 'https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg';
 		}
@@ -43,7 +44,7 @@ function Sns_LandingPage() {
 					cover={<RenderImages snapshots={post.snapshots} id={post._id} />}
 				>
 					<Meta
-						avatar={<Avatar src={renderProfileImage()} />}
+						avatar={<Avatar src={renderProfileImage(post)} />}
 						description={<RenderText post={post} />}
 					/>
 				</Card>

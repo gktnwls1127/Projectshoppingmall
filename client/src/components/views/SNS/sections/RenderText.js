@@ -1,8 +1,8 @@
 import React from 'react';
-
+import './RenderText.scss';
 function RenderText(props) {
 	// 더보기 버튼 클릭시 모달창 띄우기
-	const loadMoreText = () => {
+	const openModal = () => {
 		document.getElementById(props.post._id).click();
 	};
 	const renderText = () => {
@@ -11,7 +11,7 @@ function RenderText(props) {
 			return (
 				<p>
 					{slicedText}
-					<button onClick={loadMoreText}>&nbsp;...더 보기</button>
+					<button onClick={openModal}>&nbsp;&nbsp;...더 보기</button>
 				</p>
 			);
 		} else {

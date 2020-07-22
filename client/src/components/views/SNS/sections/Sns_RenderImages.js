@@ -1,10 +1,25 @@
 import React, { useState } from 'react';
 
+import axios from 'axios';
+
 import Slick from 'react-slick';
 import RenderModal from './RenderModal';
 
 function Sns_RenderImages(props) {
 	const [visible, setVisible] = useState(false);
+
+	const onImageClick = () => {
+		let data = {
+			id: props.id,
+		};
+		axios.post('/api/sns/upviews', data).then((response) => {
+			if (response.data.success) {
+			} else {
+				alert('조회수가 올라가지 않았습니다.');
+			}
+		});
+		setVisible(true);
+	};
 
 	const renderImages = (snapshots) =>
 		snapshots.map((snapshot, index) => (
@@ -12,7 +27,7 @@ function Sns_RenderImages(props) {
 				<img
 					id={props.id}
 					style={{ borderRadius: '16px' }}
-					onClick={() => setVisible(true)}
+					onClick={onImageClick}
 					width="250px"
 					background-color="inherit"
 					height="250px"
@@ -34,14 +49,14 @@ function Sns_RenderImages(props) {
 				>
 					{renderImages(props.snapshots)}
 				</Slick>
-			</div>
-			<div>
-				<RenderModal
-					visible={visible}
-					setVisible={setVisible}
-					snapshots={props.snapshots}
-					renderImages={renderImages}
-				/>
+				<div>
+					<RenderModal
+						visible={visible}
+						setVisible={setVisible}
+						snapshots={props.snapshots}
+						renderImages={renderImages}
+					/>
+				</div>
 			</div>
 		</>
 	);

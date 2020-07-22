@@ -11,7 +11,7 @@ import './Sns_posts.scss';
 const { TextArea } = Input;
 
 function Sns_posts(props) {
-	const userInfo = useSelector((state) => state.user.useData);
+	const userInfo = useSelector((state) => state.user.userData);
 
 	const [text, setText] = useState('');
 	const [snapshots, setSnapshots] = useState([]);
