@@ -56,7 +56,7 @@ function Sns_LandingPage() {
 			return 'https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg';
 		}
 	};
-
+	//card actions에 댓글 불러오기
 	const renderPosts = (posts) =>
 		posts.map((post) => (
 
