@@ -51,4 +51,13 @@ router.post('/upviews', (req, res) => {
 	);
 });
 
+router.get('/getsnsposts', (req, res) => {
+	SNSPost.find({ writer: req.query.id })
+		.populate('writer')
+		.exec((err, posts) => {
+			if (err) res.json({ success: false, err });
+			res.status(200).json({ success: true, posts });
+		});
+});
+
 module.exports = router;

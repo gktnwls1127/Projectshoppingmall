@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+
+import axios from 'axios';
+
 import { withRouter } from 'react-router-dom';
+import { Card, Avatar, Row, Col } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
+import RenderImages from './sections/RenderImage';
+import RenderText from './sections/RenderText';
 import './Mypage.scss';
+
+const { Meta } = Card;
 function Mypage(props) {
 	const user = useSelector((state) => state.user.userData);
+	const [posts, setPosts] = useState([]);
+
+	useEffect(() => {
+		if (user) {
+			axios.get(`/api/sns/getsnsposts?id=${user._id}`).then((response) => {
+				if (response.data.success) {
+					setPosts(response.data.posts);
+				} else {
+					alert('포스트 불러오기에 실패했습니다.');
+				}
+			});
+		}
+	}, [user]);
 
 	const renderImage = () => {
 		if (user && user.image) {
@@ -22,11 +43,36 @@ function Mypage(props) {
 		props.history.push('/update');
 	};
 
+	const renderProfileImage = (post) => {
+		if (post && post.writer.image) {
+			return `http://localhost:5000/${post.writer.image}`;
+		} else {
+			return 'https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg';
+		}
+	};
+
+	const renderPosts = () =>
+		posts.map((post) => (
+			<Col key={post._id} lg={6} xs={24}>
+				<Card
+					style={{
+						width: 250,
+						border: '2px solid #e8ebed',
+						borderRadius: '20px',
+					}}
+					cover={<RenderImages snapshots={post.snapshots} id={post._id} />}
+				>
+					<Meta
+						avatar={<Avatar src={renderProfileImage(post)} />}
+						description={<RenderText post={post} />}
+					/>
+				</Card>
+			</Col>
+		));
+
 	return (
 		<div className="container">
 			<div className="list_container">
-				{/* 회원 정보 목록 */}
-
 				<div className="profile_image">{renderImage()}</div>
 				<div className="userInfo">
 					{user && <h1>{`${user.name}(${user.email})`}</h1>}
@@ -39,7 +85,10 @@ function Mypage(props) {
 					</button>
 				</div>
 			</div>
-			<div className="user_posts">{/* 본인 게시글 */}</div>
+			<div className="user_posts">
+				<h2>내 포스트</h2>
+				<Row gutter={[16, 32]}>{renderPosts(posts)}</Row>
+			</div>
 		</div>
 	);
 }
