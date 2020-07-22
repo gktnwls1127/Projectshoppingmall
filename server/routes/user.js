@@ -95,7 +95,7 @@ router.get('/auth', auth, (req, res) => {
 		role: req.user.role,
 		image: req.user.image,
 		cart: req.user.cart,
-        history: req.user.history
+		history: req.user.history,
 	});
 });
 
@@ -145,6 +145,13 @@ router.post('/updatePassword', (req, res) => {
 				}
 			);
 		});
+	});
+});
+
+router.post('/withdraw', (req, res) => {
+	User.findOneAndDelete({ _id: req.body.id }, (err) => {
+		if (err) res.json({ success: false, err });
+		res.status(200).json({ success: true });
 	});
 });
 
