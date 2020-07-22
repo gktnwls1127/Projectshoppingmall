@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ImageSlider from '../../utils/ImageSlider';
-import { Icon, Col, Card, Row, Tabs } from 'antd';
-import { continents } from './Datas';
+import { Col, Card, Row, Tabs } from 'antd';
 import './Cards.scss'
 
 const { Meta } = Card;
@@ -12,7 +11,6 @@ function HotCards() {
 
     const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0)
-    const [Limit, setLimit] = useState(4)
     const [PostSize, setPostSize] = useState(0)
     const [Filters, setFilters] = useState({
         continents: [],
@@ -23,17 +21,11 @@ function HotCards() {
         
         let body = {
             skip : Skip,
-            limit : Limit
         }
 
         getProducts(body)
 
     }, [])
-
-    const onPageMove = () => {
-        
-    }
-
 
     const getProducts = (body) => {
 
@@ -69,35 +61,108 @@ function HotCards() {
         </Col>
     })
 
-    const showFilteredResults = (filters) => {
+    const outerCards = Products.map((product, index) => {
+        if(product.continents === 1) {
 
-        const variables = {
-            skip: 0,
-            limit: Limit,
-            filters: filters
-
+            return <Col lg={6} md={6} xs={6}>
+                <Card 
+                    style ={{width:'320px', height: '435px'}}
+                    hoverable={true}
+                    cover={<a href={`/product/${product._id}`} > <ImageSlider images={product.images} /></a>}
+                >
+                    <Meta
+                        title={product.title}
+                        description={`$${product.price}`}
+                    />
+                </Card>
+            </Col>
         }
-        getProducts(variables)
-        setSkip(0)
+    })
 
-    }
+    const shirtCards = Products.map((product, index) => {
+        if(product.continents === 2) {
+            {return <Col lg={6} md={6} xs={6}>
+                <Card 
+                    style ={{width:'320px', height: '435px'}}
+                    hoverable={true}
+                    cover={<a href={`/product/${product._id}`} > <ImageSlider images={product.images} /></a>}
+                >
+                    <Meta
+                        title={product.title}
+                        description={`$${product.price}`}
+                    />
+                </Card>
+            </Col>}
+        }
+    })
 
-    const handleFilters = (filters, category) => {
+    const pantsCards = Products.map((product, index) => {
+        if(product.continents === 3) {
+            {return <Col lg={6} md={6} xs={6}>
+                <Card 
+                    style ={{width:'320px', height: '435px'}}
+                    hoverable={true}
+                    cover={<a href={`/product/${product._id}`} > <ImageSlider images={product.images} /></a>}
+                >
+                    <Meta
+                        title={product.title}
+                        description={`$${product.price}`}
+                    />
+                </Card>
+            </Col>}
+        }
+    })
 
-        const newFilters = { ...Filters }
+    const onepeiceCards = Products.map((product, index) => {
+        if(product.continents === 4) {
+            {return <Col lg={6} md={6} xs={6}>
+                <Card 
+                    style ={{width:'320px', height: '435px'}}
+                    hoverable={true}
+                    cover={<a href={`/product/${product._id}`} > <ImageSlider images={product.images} /></a>}
+                >
+                    <Meta
+                        title={product.title}
+                        description={`$${product.price}`}
+                    />
+                </Card>
+            </Col>}
+        }
+    })
 
-        newFilters[category] = filters
+    const skirtCards = Products.map((product, index) => {
+        if(product.continents === 5) {
+            {return <Col lg={6} md={6} xs={6}>
+                <Card 
+                    style ={{width:'320px', height: '435px'}}
+                    hoverable={true}
+                    cover={<a href={`/product/${product._id}`} > <ImageSlider images={product.images} /></a>}
+                >
+                    <Meta
+                        title={product.title}
+                        description={`$${product.price}`}
+                    />
+                </Card>
+            </Col>}
+        }
+    })
 
-        console.log(newFilters)
-
-        showFilteredResults(newFilters)
-        setFilters(newFilters)
-    }
-
-    function callback(key) {
-        console.log(key);
-      }
-
+    const shoesCards = Products.map((product, index) => {
+        if(product.continents === 6) {
+            {return <Col lg={6} md={6} xs={6}>
+                <Card 
+                    style ={{width:'320px', height: '435px'}}
+                    hoverable={true}
+                    cover={<a href={`/product/${product._id}`} > <ImageSlider images={product.images} /></a>}
+                >
+                    <Meta
+                        title={product.title}
+                        description={`$${product.price}`}
+                    />
+                </Card>
+            </Col>}
+        }
+    })
 
     return (
         <div>
@@ -118,7 +183,7 @@ function HotCards() {
                 
                         <div className="more_button">
                                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                    <a className="more_a" href="/shopppingmall/best" >전체 더보기
+                                    <a className="more_a" href="/shoppingmall/best_item" >전체 더보기
                                         <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" class="sc-Axmtr StoreSectionLinkButtonIcon___StyledCaretRight-gkYQiY iMnOGp">
                                             <path fill-rule="evenodd" d="M9.5 18.66c.2.002.39-.078.53-.22l6-6a.75.75 0 000-1.06l-6-6A.75.75 0 009 6.44l5.44 5.47L9 17.38a.75.75 0 00.5 1.28z"></path>
                                         </svg>
@@ -131,7 +196,7 @@ function HotCards() {
                         <div style={{display : 'flex', justifyContent: 'center'}}>
                             <div width="0.5, 0.25">
                                 <Row gutter={[16, 16]}>
-                                    {renderCards}
+                                    {outerCards}
                                 </Row>
                             </div>
                         </div>
@@ -139,7 +204,7 @@ function HotCards() {
                 
                         <div className="more_button">
                                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                    <a className="more_a" href="/shopppingmall/outer" >아우터 더보기
+                                    <a className="more_a" href="/shoppingmall/outer" >아우터 더보기
                                         <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" class="sc-Axmtr StoreSectionLinkButtonIcon___StyledCaretRight-gkYQiY iMnOGp">
                                             <path fill-rule="evenodd" d="M9.5 18.66c.2.002.39-.078.53-.22l6-6a.75.75 0 000-1.06l-6-6A.75.75 0 009 6.44l5.44 5.47L9 17.38a.75.75 0 00.5 1.28z"></path>
                                         </svg>
@@ -152,7 +217,7 @@ function HotCards() {
                         <div style={{display : 'flex', justifyContent: 'center'}}>
                             <div width="0.5, 0.25">
                                 <Row gutter={[16, 16]}>
-                                    {renderCards}
+                                    {shirtCards}
                                 </Row>
                             </div>
                         </div>
@@ -160,7 +225,7 @@ function HotCards() {
                 
                         <div className="more_button">
                                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                    <a className="more_a" href="/shopppingmall/shirt_blouse" >상의 더보기
+                                    <a className="more_a" href="/shoppingmall/top" >상의 더보기
                                         <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" class="sc-Axmtr StoreSectionLinkButtonIcon___StyledCaretRight-gkYQiY iMnOGp">
                                             <path fill-rule="evenodd" d="M9.5 18.66c.2.002.39-.078.53-.22l6-6a.75.75 0 000-1.06l-6-6A.75.75 0 009 6.44l5.44 5.47L9 17.38a.75.75 0 00.5 1.28z"></path>
                                         </svg>
@@ -173,7 +238,7 @@ function HotCards() {
                         <div style={{display : 'flex', justifyContent: 'center'}}>
                             <div width="0.5, 0.25">
                                 <Row gutter={[16, 16]}>
-                                    {renderCards}
+                                    {pantsCards}
                                 </Row>
                             </div>
                         </div>
@@ -181,7 +246,7 @@ function HotCards() {
                 
                         <div className="more_button">
                                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                    <a className="more_a" href="/shopppingmall/pants" >바지 더보기
+                                    <a className="more_a" href="/shoppingmall/pants" >바지 더보기
                                         <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" class="sc-Axmtr StoreSectionLinkButtonIcon___StyledCaretRight-gkYQiY iMnOGp">
                                             <path fill-rule="evenodd" d="M9.5 18.66c.2.002.39-.078.53-.22l6-6a.75.75 0 000-1.06l-6-6A.75.75 0 009 6.44l5.44 5.47L9 17.38a.75.75 0 00.5 1.28z"></path>
                                         </svg>
@@ -194,7 +259,7 @@ function HotCards() {
                         <div style={{display : 'flex', justifyContent: 'center'}}>
                             <div width="0.5, 0.25">
                                 <Row gutter={[16, 16]}>
-                                    {renderCards}
+                                    {onepeiceCards}
                                 </Row>
                             </div>
                         </div>
@@ -202,7 +267,7 @@ function HotCards() {
                 
                         <div className="more_button">
                                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                    <a className="more_a" href="/shopppingmall/onepiece" >원피스 더보기
+                                    <a className="more_a" href="/shoppingmall/onepiece" >원피스 더보기
                                         <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" class="sc-Axmtr StoreSectionLinkButtonIcon___StyledCaretRight-gkYQiY iMnOGp">
                                             <path fill-rule="evenodd" d="M9.5 18.66c.2.002.39-.078.53-.22l6-6a.75.75 0 000-1.06l-6-6A.75.75 0 009 6.44l5.44 5.47L9 17.38a.75.75 0 00.5 1.28z"></path>
                                         </svg>
@@ -215,7 +280,7 @@ function HotCards() {
                         <div style={{display : 'flex', justifyContent: 'center'}}>
                             <div width="0.5, 0.25">
                                 <Row gutter={[16, 16]}>
-                                    {renderCards}
+                                    {skirtCards}
                                 </Row>
                             </div>
                         </div>
@@ -223,7 +288,7 @@ function HotCards() {
                 
                         <div className="more_button">
                                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                    <a className="more_a" href="/shopppingmall/skirt" >치마 더보기
+                                    <a className="more_a" href="/shoppingmall/skirt" >치마 더보기
                                         <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" class="sc-Axmtr StoreSectionLinkButtonIcon___StyledCaretRight-gkYQiY iMnOGp">
                                             <path fill-rule="evenodd" d="M9.5 18.66c.2.002.39-.078.53-.22l6-6a.75.75 0 000-1.06l-6-6A.75.75 0 009 6.44l5.44 5.47L9 17.38a.75.75 0 00.5 1.28z"></path>
                                         </svg>
@@ -236,7 +301,7 @@ function HotCards() {
                         <div style={{display : 'flex', justifyContent: 'center'}}>
                             <div width="0.5, 0.25">
                                 <Row gutter={[16, 16]}>
-                                    {renderCards}
+                                    {shoesCards}
                                 </Row>
                             </div>
                         </div>

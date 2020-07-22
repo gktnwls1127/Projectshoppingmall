@@ -8,13 +8,12 @@ import Axios from 'axios';
 const { TextArea } = Input;
 
 const Continents = [
-    {key: 1, value:"전체"},
-    {key: 2, value:"아우터"},
-    {key: 3, value:"상의"},
-    {key: 4, value:"바지"},
-    {key: 5, value:"원피스"},
-    {key: 6, value:"치마"},
-    {key: 7, value:"신발"},
+    {key: 1, value:"아우터"},
+    {key: 2, value:"상의"},
+    {key: 3, value:"바지"},
+    {key: 4, value:"원피스"},
+    {key: 5, value:"치마"},
+    {key: 6, value:"신발"},
 ]
 
 function UploadProducPage(props) {
