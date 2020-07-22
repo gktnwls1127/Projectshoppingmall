@@ -87,7 +87,7 @@ function Sns_LandingPage() {
 			</Title>
 			<Row gutter={[16, 32]}>{renderPosts(currentPosts)}</Row>
 			<Pageination postsPerPage={postsPerPage} totalPosts={posts.length} pageinate={pageinate} />
-			<button onClick={()=>scroll.scrollToTop()}>위로가기</button>
+			<button onClick={()=>scroll.scrollToTop}>위로가기</button>
 		</div>
 		
 	);
