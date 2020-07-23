@@ -4,6 +4,7 @@ import { Card, Avatar, Row, Col, Typography } from 'antd';
 import axios from 'axios';
 import RenderImages from './sections/Sns_RenderImages';
 import RenderText from './sections/RenderText';
+import Comment from './sections/Comment';
 import './Sns_LandingPage.scss';
 import Pageination from './sections/Pageination';
 import { animateScroll as scroll } from 'react-scroll';
@@ -70,6 +71,7 @@ function Sns_LandingPage() {
 						avatar={<Avatar src={renderProfileImage(post)} />}
 						description={<RenderText post={post} />}
 					/>
+					<Comment post={post} />
 				</Card>
 			</Col>
 		));
