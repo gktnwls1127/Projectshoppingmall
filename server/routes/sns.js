@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 
 const { SNSPost } = require('../models/SNSPosts');
-
+const { SNSComment } = require('../models/SNSComment');
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
 		cb(null, 'uploads/sns');
@@ -57,6 +57,24 @@ router.get('/getsnsposts', (req, res) => {
 		.exec((err, posts) => {
 			if (err) res.json({ success: false, err });
 			res.status(200).json({ success: true, posts });
+		});
+});
+
+router.post('/addcomment', (req, res) => {
+	const snsComent = new SNSComment(req.body);
+	snsComent.save((err, comment) => {
+		if (err) res.json({ success: false, err });
+		res.status(200).json({ success: true });
+	});
+});
+
+router.get('/getcomments', (req, res) => {
+	SNSComment.find({ post: req.query.id })
+		.populate('writer')
+
+		.exec((err, comments) => {
+			if (err) res.json({ success: false, err });
+			else res.status(200).json({ success: true, comments });
 		});
 });
 

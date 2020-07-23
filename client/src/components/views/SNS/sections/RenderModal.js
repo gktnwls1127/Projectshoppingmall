@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Modal from 'react-modal';
 import ImageGallery from 'react-image-gallery';
+import RenderDescription from './RenderDescription';
 
 import './RenderModal.scss';
 
@@ -22,12 +23,12 @@ const customStyles = {
 function RenderModal(props) {
 	useEffect(() => {
 		Modal.setAppElement('#root');
-	});
+	}, []);
 	const handleCancel = () => {
 		props.setVisible(false);
 	};
 	let snapshots = [];
-	props.snapshots.map((snapshot) => {
+	props.post.snapshots.map((snapshot) => {
 		snapshots.push({
 			original: `http://localhost:5000/${snapshot}`,
 			thumbnail: `http://localhost:5000/${snapshot}`,
@@ -50,7 +51,9 @@ function RenderModal(props) {
 						/>
 						;
 					</div>
-					<div className="modal_info"></div>
+					<div className="modal_info">
+						<RenderDescription post={props.post} />
+					</div>
 				</div>
 			</Modal>
 		</div>

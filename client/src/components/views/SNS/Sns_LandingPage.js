@@ -64,7 +64,7 @@ function Sns_LandingPage() {
 						border: '2px solid #e8ebed',
 						borderRadius: '20px',
 					}}
-					cover={<RenderImages snapshots={post.snapshots} id={post._id} />}
+					cover={<RenderImages post={post} />}
 				>
 					<Meta
 						avatar={<Avatar src={renderProfileImage(post)} />}

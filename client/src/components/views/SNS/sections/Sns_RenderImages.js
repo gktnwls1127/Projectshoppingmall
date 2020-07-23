@@ -10,7 +10,7 @@ function Sns_RenderImages(props) {
 
 	const onImageClick = () => {
 		let data = {
-			id: props.id,
+			id: props.post._id,
 		};
 		axios.post('/api/sns/upviews', data).then((response) => {
 			if (response.data.success) {
@@ -25,7 +25,7 @@ function Sns_RenderImages(props) {
 		snapshots.map((snapshot, index) => (
 			<div key={index}>
 				<img
-					id={props.id}
+					id={props.post._id}
 					style={{ borderRadius: '16px' }}
 					onClick={onImageClick}
 					width="250px"
@@ -47,13 +47,13 @@ function Sns_RenderImages(props) {
 					slidesToScroll={1}
 					slidesToShow={1}
 				>
-					{renderImages(props.snapshots)}
+					{renderImages(props.post.snapshots)}
 				</Slick>
 				<div>
 					<RenderModal
 						visible={visible}
 						setVisible={setVisible}
-						snapshots={props.snapshots}
+						post={props.post}
 						renderImages={renderImages}
 					/>
 				</div>
