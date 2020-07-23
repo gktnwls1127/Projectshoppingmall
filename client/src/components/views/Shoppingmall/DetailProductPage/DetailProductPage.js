@@ -26,25 +26,26 @@ function DetailProductPage(props) {
             </div>
 
             <br />
+            <div display="flex" class="Box-fzpncP Flex-qawHp Grid__Row-hAirfs kxZXxz">
+                <Row gutter={[16, 16]}>
 
-            <Row gutter={[16, 16]}>
-
-                <Col lg={12} sm={24}>
-                
-                    {/* ProductImage */}
+                    <Col lg={12} sm={24}>
                     
-                    <ProductImage detail={Product}/>
+                        {/* ProductImage */}
+                        
+                        <ProductImage detail={Product}/>
 
-                </Col>
-                <Col lg={12} sm={24}>
-            
-                    {/* ProductInfo */}
-
-                    <ProductInfo detail={Product}/>
+                    </Col>
+                    <Col lg={12} sm={24}>
                 
-                </Col>
+                        {/* ProductInfo */}
 
-            </Row>
+                        <ProductInfo detail={Product}/>
+                    
+                    </Col>
+
+                </Row>
+            </div>
 
         </div>
     )

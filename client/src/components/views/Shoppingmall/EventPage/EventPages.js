@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card, Col, Row} from 'antd'
+import {Card, Row} from 'antd'
 import './EventPages.scss'
 
 const {Meta} = Card

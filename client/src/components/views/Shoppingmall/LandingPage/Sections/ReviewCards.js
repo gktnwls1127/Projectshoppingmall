@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ImageSlider from '../../utils/ImageSlider';
-import { Icon, Col, Card, Row } from 'antd';
+import { Col, Card, Row } from 'antd';
 import './Cards.scss'
 
 const { Meta } = Card;

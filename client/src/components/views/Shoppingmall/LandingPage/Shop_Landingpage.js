@@ -12,7 +12,6 @@ function LandingPage() {
             <div>
                 <ImageBanner /> 
             </div>
-            <br/><br/>
                 <HotCards />
             <br/>
                 <ReviewCards />

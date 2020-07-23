@@ -12,10 +12,6 @@ function PantsCategory() {
     const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0)
     const [PostSize, setPostSize] = useState(0)
-    const [Filters, setFilters] = useState({
-        continents: [],
-        price: []
-    })
 
     useEffect(() => {
         

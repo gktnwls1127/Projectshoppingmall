@@ -12,10 +12,6 @@ function BestItem() {
     const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0)
     const [PostSize, setPostSize] = useState(0)
-    const [Filters, setFilters] = useState({
-        continents: [],
-        price: []
-    })
 
     useEffect(() => {
         
@@ -48,7 +44,7 @@ function BestItem() {
     const renderCards = 
     Products.sort((a,b) => b.sold - a.sold)
         .map((product, index) => {
-            return  <Col lg={6} md={8} xs={12}>
+            return  <Col lg={6} md={8} xs={24}>
                         <Card 
                             style ={{width:'280px', height: '350px'}}
                             hoverable={true}
@@ -60,7 +56,6 @@ function BestItem() {
                             />
                         </Card>
                     </Col>
-        
     })
 
     function handleChange(value) {
