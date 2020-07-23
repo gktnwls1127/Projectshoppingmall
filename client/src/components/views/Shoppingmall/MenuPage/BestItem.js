@@ -45,26 +45,42 @@ function BestItem() {
 
     }
 
-    const renderCards = Products.map((product, index) => {
-        
-        return  <Col lg={6} md={8} xs={12}>
-                    <Card 
+    const renderCards = 
+        Products.sort((a,b) => b.sold - a.sold)
+        .map((product, index) => {
+            return  <Col lg={6} md={8} xs={12}>
+                        <Card 
                             style ={{width:'280px', height: '350px'}}
                             hoverable={true}
-                            cover={<a href={`/product/${product._id}`} > <MenuCardImage images={product.images} /></a>}
-                            >
-                        <Meta
-                            title={product.title}
-                            description={`$${product.price}`}
-                        />
-                    </Card>
-                </Col>
-
+                            cover={<a href={`/product/${product._id}`}><MenuCardImage images={product.images} /></a>}
+                        >
+                            <Meta
+                                title={product.title}
+                                description={`$${product.price}`}
+                            />
+                        </Card>
+                    </Col>
         
     })
 
     function handleChange(value) {
-        console.log(`selected ${value}`);
+        switch (`${value}`) {
+            case "Best":
+                
+                break;
+            case "New":
+                
+                break;
+            case "LowPrice":
+                
+                break;
+            case "HighPrice":
+                
+                break;
+        
+            default:
+                break;
+        }
     }
 
     

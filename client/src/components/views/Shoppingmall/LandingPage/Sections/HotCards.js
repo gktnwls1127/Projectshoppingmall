@@ -179,7 +179,7 @@ function HotCards() {
                                 </Row>
                             </div>
                         </div>
-                        <br /><br />
+                        <br/><br/>
                 
                         <div className="more_button">
                                 <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -272,7 +272,6 @@ function HotCards() {
                                             <path fill-rule="evenodd" d="M9.5 18.66c.2.002.39-.078.53-.22l6-6a.75.75 0 000-1.06l-6-6A.75.75 0 009 6.44l5.44 5.47L9 17.38a.75.75 0 00.5 1.28z"></path>
                                         </svg>
                                     </a>
-                
                                 </div>
                         </div>
                     </TabPane>
