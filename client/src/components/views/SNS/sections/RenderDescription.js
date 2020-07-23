@@ -22,6 +22,7 @@ function RenderDescription(props) {
 		<div className="post_user_container">
 			<div className="post_user_image">
 				<img
+					style={{ width: '40px', height: '40px' }}
 					src={`http://localhost:5000/${props.post.writer.image}`}
 					alt="게시자 프로필사진"
 				/>
@@ -29,6 +30,7 @@ function RenderDescription(props) {
 			<div className="post_user_name">
 				<h4>{props.post.writer.name}</h4>
 			</div>
+			<div className="post_text">{props.post.text}</div>
 		</div>
 	);
 	const commentHandler = (e) => {
