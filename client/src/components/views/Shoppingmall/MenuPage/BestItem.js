@@ -46,7 +46,7 @@ function BestItem() {
     }
 
     const renderCards = 
-        Products.sort((a,b) => b.sold - a.sold)
+    Products.sort((a,b) => b.sold - a.sold)
         .map((product, index) => {
             return  <Col lg={6} md={8} xs={12}>
                         <Card 

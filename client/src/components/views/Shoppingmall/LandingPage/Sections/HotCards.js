@@ -45,7 +45,7 @@ function HotCards() {
 
     }
 
-    const renderCards = Products.map((product, index) => {
+    const renderCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
 
         return <Col lg={6} md={6} xs={6}>
             <Card 
@@ -61,7 +61,7 @@ function HotCards() {
         </Col>
     })
 
-    const outerCards = Products.map((product, index) => {
+    const outerCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
         if(product.continents === 1) {
 
             return <Col lg={6} md={6} xs={6}>
@@ -79,7 +79,7 @@ function HotCards() {
         }
     })
 
-    const shirtCards = Products.map((product, index) => {
+    const shirtCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
         if(product.continents === 2) {
             {return <Col lg={6} md={6} xs={6}>
                 <Card 
@@ -96,7 +96,7 @@ function HotCards() {
         }
     })
 
-    const pantsCards = Products.map((product, index) => {
+    const pantsCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
         if(product.continents === 3) {
             {return <Col lg={6} md={6} xs={6}>
                 <Card 
@@ -113,7 +113,7 @@ function HotCards() {
         }
     })
 
-    const onepeiceCards = Products.map((product, index) => {
+    const onepeiceCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
         if(product.continents === 4) {
             {return <Col lg={6} md={6} xs={6}>
                 <Card 
@@ -130,7 +130,7 @@ function HotCards() {
         }
     })
 
-    const skirtCards = Products.map((product, index) => {
+    const skirtCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
         if(product.continents === 5) {
             {return <Col lg={6} md={6} xs={6}>
                 <Card 
@@ -147,7 +147,7 @@ function HotCards() {
         }
     })
 
-    const shoesCards = Products.map((product, index) => {
+    const shoesCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
         if(product.continents === 6) {
             {return <Col lg={6} md={6} xs={6}>
                 <Card 
