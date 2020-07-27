@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Avatar, Row, Col, Typography } from 'antd';
+import { UpCircleOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import RenderImages from './sections/Sns_RenderImages';
 import RenderText from './sections/RenderText';
@@ -11,6 +12,7 @@ const { Title } = Typography;
 
 const Sns_LandingPage = () => {
 	const [posts, setPosts] = useState([]);
+
 	const limit = 4;
 	let skip = 0;
 
@@ -87,14 +89,13 @@ const Sns_LandingPage = () => {
 			</Title>
 			<div id="scrollArea">
 				<Row gutter={[16, 32]}>{renderPosts(posts)}</Row>
-			</div>
-			<div id="target">
 				<button
+					className="up_to_top"
 					onClick={() => {
-						console.log(skip);
+						window.scrollTo(0, 0);
 					}}
 				>
-					위로가기
+					<UpCircleOutlined />
 				</button>
 			</div>
 		</div>
