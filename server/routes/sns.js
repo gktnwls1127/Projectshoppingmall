@@ -4,6 +4,7 @@ const multer = require('multer');
 
 const { SNSPost } = require('../models/SNSPosts');
 const { SNSComment } = require('../models/SNSComment');
+const { json } = require('body-parser');
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
 		cb(null, 'uploads/sns');
@@ -27,8 +28,12 @@ router.post('/post', (req, res) => {
 	});
 });
 
-router.post('/getProduct', (req, res) => {
+router.get('/getposts', (req, res) => {
+	let skip = parseInt(req.query.skip);
+	let limit = parseInt(req.query.limit);
 	SNSPost.find()
+		.skip(skip)
+		.limit(limit)
 		.populate('writer')
 		.exec((err, posts) => {
 			if (err) return res.status(400).json({ success: false, err });

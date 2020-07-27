@@ -1,51 +1,55 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { Card, Avatar, Row, Col, Typography } from 'antd';
 import axios from 'axios';
 import RenderImages from './sections/Sns_RenderImages';
 import RenderText from './sections/RenderText';
 import Comment from './sections/Comment';
 import './Sns_LandingPage.scss';
-import Pageination from './sections/Pageination';
-import { animateScroll as scroll } from 'react-scroll';
 
 const { Meta } = Card;
 const { Title } = Typography;
-//snapshots , name, text
-function Sns_LandingPage() {
-	//처음 페이지
-	const [currentPage, setcurrentPage] = useState(1);
 
+const Sns_LandingPage = () => {
 	const [posts, setPosts] = useState([]);
+	const limit = 4;
+	let skip = 0;
 
-	const [loading, setLoading] = useState(false);
-	//페이지에 올라갈 게시물 갯수 지정
-	const [postsPerPage, setPostPerPage] = useState(12);
+	const getPosts = () => {
+		axios
+			.get(`/api/sns/getposts?skip=${skip} &limit=${limit}`)
+			.then((response) => {
+				if (response.data.success) {
+					if (response.data.posts) {
+						setPosts((prev) => [...prev].concat(response.data.posts));
+					}
+				}
+			})
+			.catch((e) => {
+				alert(e);
+			});
+	};
+	const infiniteScroll = () => {
+		let scrollHeight = Math.max(
+			document.documentElement.scrollHeight,
+			document.body.scrollHeight
+		);
 
-	const user = useSelector((state) => state.user.userData);
-	const getPosts = (data) => {
-		axios.post('/api/sns/getProduct').then((response) => {
-			if (response.data.success) {
-				setPosts(response.data.posts);
-			}
-		});
+		let scrollTop = Math.max(
+			document.documentElement.scrollTop,
+			document.body.scrollTop
+		);
+
+		let clientHeight = document.documentElement.clientHeight;
+
+		if (scrollTop + clientHeight === scrollHeight) {
+			skip = skip + limit;
+			getPosts();
+		}
 	};
 
-	const indexOfLastPost = currentPage * postsPerPage;
-	const indexOfFirstPost = indexOfLastPost - postsPerPage;
-	const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-	//Chage page
-	const pageinate = (pageNumber) => setcurrentPage(pageNumber);
-
 	useEffect(() => {
-		const fetchPosts = async () => {
-			setLoading(true);
-
-			getPosts();
-			setLoading(false);
-		};
-
-		fetchPosts();
+		window.addEventListener('scroll', infiniteScroll, true);
+		getPosts();
 	}, []);
 
 	const renderProfileImage = (post) => {
@@ -55,7 +59,7 @@ function Sns_LandingPage() {
 			return 'https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg';
 		}
 	};
-	//card actions에 댓글 불러오기
+
 	const renderPosts = (posts) =>
 		posts.map((post) => (
 			<Col key={post._id} lg={6} xs={24}>
@@ -81,15 +85,20 @@ function Sns_LandingPage() {
 			<Title level={3} style={{ marginBottom: '3rem' }}>
 				지금의 트렌드
 			</Title>
-			<Row gutter={[16, 32]}>{renderPosts(currentPosts)}</Row>
-			<Pageination
-				postsPerPage={postsPerPage}
-				totalPosts={posts.length}
-				pageinate={pageinate}
-			/>
-			<button onClick={() => scroll.scrollToTop}>위로가기</button>
+			<div id="scrollArea">
+				<Row gutter={[16, 32]}>{renderPosts(posts)}</Row>
+			</div>
+			<div id="target">
+				<button
+					onClick={() => {
+						console.log(skip);
+					}}
+				>
+					위로가기
+				</button>
+			</div>
 		</div>
 	);
-}
+};
 
 export default Sns_LandingPage;
