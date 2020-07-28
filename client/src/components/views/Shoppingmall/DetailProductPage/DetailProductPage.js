@@ -20,31 +20,30 @@ function DetailProductPage(props) {
     },[])
 
     return (
-        <div style={{ width: '100%', padding: '3rem 4rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <h1>{Product.title}</h1>
-            </div>
+        <div overflow="hidden" width="100%,80rem" className="jCusAo">
 
-            <br />
-            <div display="flex" class="Box-fzpncP Flex-qawHp Grid__Row-hAirfs kxZXxz">
-                <Row gutter={[16, 16]}>
+            <div className="frHBaV">
+                <div style={{ display: "none,block" }} className="cka-dPy">
+                    <h1 color="gray100" font-weight="bold" className="kompeH">{Product.title}</h1>
+                </div>
 
-                    <Col lg={12} sm={24}>
+                <br />
+                <div display="flex" className="kxZXxz">
+                    <div width="1,0.5833333333333334" className="feTtOu">
+                        <div overflow="hidden" className="jbpLml">
+                            <ProductImage detail={Product}/>
+                        </div>
+                    </div>
+                    <div width="1,0.4166666666666667" className="jtLMFf">
+                        <div className="iojNJW">
+                            <div display="block,none" className="jabpb">
+                            <p color="gray100" font-weight="normal" class="cxbvIt">{Product.title}</p>
+                            </div>
+                                <ProductInfo detail={Product}/>
+                        </div> 
+                    </div>
                     
-                        {/* ProductImage */}
-                        
-                        <ProductImage detail={Product}/>
-
-                    </Col>
-                    <Col lg={12} sm={24}>
-                
-                        {/* ProductInfo */}
-
-                        <ProductInfo detail={Product}/>
-                    
-                    </Col>
-
-                </Row>
+                </div> 
             </div>
 
         </div>

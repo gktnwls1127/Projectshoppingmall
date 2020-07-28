@@ -20,7 +20,6 @@ function ProductInfo(props) {
                 <Descriptions.Item label="가격">{props.detail.price}</Descriptions.Item>
                 <Descriptions.Item label="판매수량">{props.detail.sold}</Descriptions.Item>
                 <Descriptions.Item label="조회수">{props.detail.views}</Descriptions.Item>
-                <Descriptions.Item label="설명">{props.detail.description}</Descriptions.Item>
             </Descriptions>
 
             <br />

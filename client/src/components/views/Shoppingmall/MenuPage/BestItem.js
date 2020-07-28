@@ -31,7 +31,7 @@ function BestItem() {
                     if(body.loadMore) {
                         setProducts([...Products, ...response.data.productInfo])
                     } else {
-                        setProducts(response.data.productInfo)
+                        setProducts(response.data.productInfo.sort((a,b) => b.sold - a.sold))
                     }
                     setPostSize(response.data.postSize)
                 } else {
@@ -42,8 +42,7 @@ function BestItem() {
     }
 
     const renderCards = 
-    Products.sort((a,b) => b.sold - a.sold)
-        .map((product, index) => {
+    Products.map((product, index) => {
             return  <Col lg={6} md={8} xs={24}>
                         <Card 
                             style ={{width:'280px', height: '350px'}}
@@ -52,7 +51,7 @@ function BestItem() {
                         >
                             <Meta
                                 title={product.title}
-                                description={`$${product.price}`}
+                                description={`${product.price}원`}
                             />
                         </Card>
                     </Col>
@@ -61,25 +60,24 @@ function BestItem() {
     function handleChange(value) {
         switch (`${value}`) {
             case "Best":
-                
+                setProducts([...Products.sort((a,b) => b.sold - a.sold)])
                 break;
             case "New":
-                
+                setProducts([...Products.sort((a, b) => b._id - a._id)])
+                console.log(Products.createdAt);
                 break;
             case "LowPrice":
-                
+                setProducts([...Products.sort((a,b) => a.price - b.price)])            
                 break;
             case "HighPrice":
-                
+                setProducts([...Products.sort((a,b) => b.price - a.price)])
                 break;
         
             default:
+                
                 break;
         }
     }
-
-    
-
 
     return (
         <article className="store-page page">
@@ -89,7 +87,7 @@ function BestItem() {
                 </div>
                 <div className="sort-filter clearfix">
                     <div className="dropdown basic-select">
-                    <Select defaultValue="Best" style={{ width: 120 }} onChange={handleChange} bordered={false}>
+                    <Select defaultValue="Best" id="select" style={{ width: 120 }} onChange={handleChange} bordered={false}>
                         <Option value="Best">인기순</Option>
                         <Option value="New">최신순</Option>
                         <Option value="LowPrice">낮은가격순</Option>
@@ -100,7 +98,7 @@ function BestItem() {
                 <div className="goods-card-container">
                     <div className="inner-wrapper clearfix">
                         <Row gutter={[16, 16]}>
-                            {renderCards}
+                            {(`$('#fruits').val('Best')`) ? renderCards : <h1>0</h1>}
                         </Row>
                     </div>
                 </div>

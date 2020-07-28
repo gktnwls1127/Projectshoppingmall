@@ -9,6 +9,7 @@ function WeeklyIssue() {
                 <div className="Box-fzpncP kbLWSI">
                     <h2 style={{color:"#333333", fontWeight: "bold"}} className="Text-pXEYb jtrXAN">트렌드 기획전</h2>
                 </div>
+                <br></br>
                 <div display="flex" className="egJJoT">
                     <div width="1,0.5" class="Box-fzpncP Grid__Column-dAGzcc issKbk">
                         <div class="trend-issue">

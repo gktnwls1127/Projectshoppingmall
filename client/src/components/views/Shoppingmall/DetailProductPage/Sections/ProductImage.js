@@ -11,7 +11,7 @@ function ProductImage(props) {
             props.detail.images && props.detail.images.map(item => {
                 images.push({
                     original: `http://localhost:5000/${item}`,
-                    thumbnail: `http://localhost:5000/${item}`
+                    thumbnail : `http://localhost:5000/${item}`
                 })
             })
             setImages(images)
@@ -19,8 +19,8 @@ function ProductImage(props) {
     }, [props.detail])
 
     return (
-        <div>
-            <ImageGallery items={Images} />
+        <div className="hOkNKG">
+            <ImageGallery items={Images} className="ecDCYM lazy loaded"/>
         </div>
     )
 }
