@@ -150,17 +150,16 @@ router.post('/addToCart', auth, (req, res) => {
 				{ new: true },
 				(err, userInfo) => {
 					if (err) return res.status(400).json({ success: false, err });
+					userInfo.cart.forEach((item) => {
+						if (item.id == req.query.productId) {
+							duplicate = true;
+						}
+					});
 					res.status(200).send(userInfo.cart);
 				}
 			);
 		}
 	});
-});
-
-userInfo.cart.forEach((item) => {
-	if (item.id == req.query.productId) {
-		duplicate = true;
-	}
 });
 
 router.get('/removeFromCart', auth, (req, res) => {
@@ -190,9 +189,6 @@ router.get('/removeFromCart', auth, (req, res) => {
 		}
 	);
 });
-
-transactionData.data = req.body.paymentData;
-transactionData.product = history;
 
 router.post('/successBuy', auth, (req, res) => {
 	//1. User Collection 안에 History필드안에 간단한 결제 정보 넣어주기
@@ -266,38 +262,6 @@ router.post('/successBuy', auth, (req, res) => {
 
 				//first We need to know how many product were sold in this transaction for
 				// each of products
-
-				let products = [];
-				doc.product.forEach((item) => {
-					products.push({ id: item.id, quantity: item.quantity });
-				});
-
-				// first Item    quantity 2
-				// second Item  quantity 3
-
-				async.eachSeries(
-					products,
-					(item, callback) => {
-						Product.update(
-							{ _id: item.id },
-							{
-								$inc: {
-									sold: item.quantity,
-								},
-							},
-							{ new: false },
-							callback
-						);
-					},
-					(err) => {
-						if (err) return res.json({ success: false, err });
-						res.status(200).json({
-							success: true,
-							cart: user.cart,
-							cartDetail: [],
-						});
-					}
-				);
 			});
 		}
 	);
