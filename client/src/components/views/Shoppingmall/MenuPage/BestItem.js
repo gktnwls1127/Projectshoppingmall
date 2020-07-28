@@ -63,8 +63,7 @@ function BestItem() {
                 setProducts([...Products.sort((a,b) => b.sold - a.sold)])
                 break;
             case "New":
-                setProducts([...Products.sort((a, b) => b.id - a.id)])
-                console.log(Products.createdAt);
+                setProducts([...Products.sort((a, b) => b.createdAt.localeCompare(a.createdAt))])
                 break;
             case "LowPrice":
                 setProducts([...Products.sort((a,b) => a.price - b.price)])            

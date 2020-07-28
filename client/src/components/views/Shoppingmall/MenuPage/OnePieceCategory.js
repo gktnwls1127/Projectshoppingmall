@@ -66,7 +66,7 @@ function OnePieceCategory() {
                 setProducts([...Products.sort((a,b) => b.sold - a.sold)])
                 break;
             case "New":
-                setProducts([...Products.reverse()])
+                setProducts([...Products.sort((a, b) => b.createdAt.localeCompare(a.createdAt))])
                 break;
             case "LowPrice":
                 setProducts([...Products.sort((a,b) => a.price - b.price)])            
