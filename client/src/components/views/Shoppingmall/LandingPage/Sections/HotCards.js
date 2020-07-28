@@ -12,10 +12,6 @@ function HotCards() {
     const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0)
     const [PostSize, setPostSize] = useState(0)
-    const [Filters, setFilters] = useState({
-        continents: [],
-        price: []
-    })
 
     useEffect(() => {
         
@@ -45,7 +41,7 @@ function HotCards() {
 
     }
 
-    const renderCards = Products.map((product, index) => {
+    const renderCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
 
         return <Col lg={6} md={6} xs={6}>
             <Card 
@@ -55,13 +51,13 @@ function HotCards() {
             >
                 <Meta
                     title={product.title}
-                    description={`$${product.price}`}
+                    description={`${product.price}원`}
                 />
             </Card>
         </Col>
     })
 
-    const outerCards = Products.map((product, index) => {
+    const outerCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
         if(product.continents === 1) {
 
             return <Col lg={6} md={6} xs={6}>
@@ -72,14 +68,14 @@ function HotCards() {
                 >
                     <Meta
                         title={product.title}
-                        description={`$${product.price}`}
+                        description={`${product.price}원`}
                     />
                 </Card>
             </Col>
         }
     })
 
-    const shirtCards = Products.map((product, index) => {
+    const shirtCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
         if(product.continents === 2) {
             {return <Col lg={6} md={6} xs={6}>
                 <Card 
@@ -89,14 +85,14 @@ function HotCards() {
                 >
                     <Meta
                         title={product.title}
-                        description={`$${product.price}`}
+                        description={`${product.price}원`}
                     />
                 </Card>
             </Col>}
         }
     })
 
-    const pantsCards = Products.map((product, index) => {
+    const pantsCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
         if(product.continents === 3) {
             {return <Col lg={6} md={6} xs={6}>
                 <Card 
@@ -106,14 +102,14 @@ function HotCards() {
                 >
                     <Meta
                         title={product.title}
-                        description={`$${product.price}`}
+                        description={`${product.price}원`}
                     />
                 </Card>
             </Col>}
         }
     })
 
-    const onepeiceCards = Products.map((product, index) => {
+    const onepeiceCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
         if(product.continents === 4) {
             {return <Col lg={6} md={6} xs={6}>
                 <Card 
@@ -123,14 +119,14 @@ function HotCards() {
                 >
                     <Meta
                         title={product.title}
-                        description={`$${product.price}`}
+                        description={`${product.price}원`}
                     />
                 </Card>
             </Col>}
         }
     })
 
-    const skirtCards = Products.map((product, index) => {
+    const skirtCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
         if(product.continents === 5) {
             {return <Col lg={6} md={6} xs={6}>
                 <Card 
@@ -140,14 +136,14 @@ function HotCards() {
                 >
                     <Meta
                         title={product.title}
-                        description={`$${product.price}`}
+                        description={`${product.price}원`}
                     />
                 </Card>
             </Col>}
         }
     })
 
-    const shoesCards = Products.map((product, index) => {
+    const shoesCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
         if(product.continents === 6) {
             {return <Col lg={6} md={6} xs={6}>
                 <Card 
@@ -157,7 +153,7 @@ function HotCards() {
                 >
                     <Meta
                         title={product.title}
-                        description={`$${product.price}`}
+                        description={`${product.price}원`}
                     />
                 </Card>
             </Col>}
@@ -179,7 +175,7 @@ function HotCards() {
                                 </Row>
                             </div>
                         </div>
-                        <br /><br />
+                        <br/><br/>
                 
                         <div className="more_button">
                                 <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -272,7 +268,6 @@ function HotCards() {
                                             <path fill-rule="evenodd" d="M9.5 18.66c.2.002.39-.078.53-.22l6-6a.75.75 0 000-1.06l-6-6A.75.75 0 009 6.44l5.44 5.47L9 17.38a.75.75 0 00.5 1.28z"></path>
                                         </svg>
                                     </a>
-                
                                 </div>
                         </div>
                     </TabPane>

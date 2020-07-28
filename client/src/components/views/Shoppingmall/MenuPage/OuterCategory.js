@@ -12,10 +12,6 @@ function OuterCategory() {
     const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0)
     const [PostSize, setPostSize] = useState(0)
-    const [Filters, setFilters] = useState({
-        continents: [],
-        price: []
-    })
 
     useEffect(() => {
         
@@ -55,7 +51,7 @@ function OuterCategory() {
                                 >
                             <Meta
                                 title={product.title}
-                                description={`$${product.price}`}
+                                description={`${product.price}원`}
                             />
                         </Card>
                     </Col>
@@ -63,7 +59,23 @@ function OuterCategory() {
     })
 
     function handleChange(value) {
-        console.log(`selected ${value}`);
+        switch (`${value}`) {
+            case "Best":
+                setProducts([...Products.sort((a,b) => b.sold - a.sold)])
+                break;
+            case "New":
+                setProducts([...Products.reverse()])
+                break;
+            case "LowPrice":
+                setProducts([...Products.sort((a,b) => a.price - b.price)])            
+                break;
+            case "HighPrice":
+                setProducts([...Products.sort((a,b) => b.price - a.price)])
+                break;
+        
+            default:
+                break;
+        }
     }
 
     

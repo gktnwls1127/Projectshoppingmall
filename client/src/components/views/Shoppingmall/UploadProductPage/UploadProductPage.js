@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { withRouter } from 'react-router-dom';
-import {Typography, Button, Form, Input} from 'antd';
+import {Button, Form, Input} from 'antd';
 import {useSelector} from 'react-redux'
 import FileUpload from '../utils/FileUpload'
 import Axios from 'axios';
