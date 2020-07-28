@@ -1,5 +1,5 @@
 import React from 'react'
-import './UserCardBlock.css'
+import './UserCardBlock.scss'
 
 function UserCardBlock(props) {
 
@@ -14,14 +14,23 @@ function UserCardBlock(props) {
         props.products && props.products.map((product, index) => (
             <tr key={index}>
                 <td>
+                    <div className="CartGoodsDesktop__goods-info">
                     <img style={{ width: '70px' }} alt="product" 
                     src={renderCartImage(product.images)} />
+                        <div className="CartGoodsDesktop__goods-info-inner">
+                            <p className="CartGoodsDesktop__goods-info-name">
+                                {product.title}
+                            </p>
+                        </div> 
+
+                    </div>
                 </td> 
-                <td>{product.quantity} EA</td>
-                <td>$ {product.price} </td>
+                <td>{product.quantity} 개</td>
+                <td>{product.price} 원</td>
+                <td>{product.price * product.quantity} 원</td>
                 <td>
                     <button onClick={() => props.removeItem(product._id)}>
-                         Remove 
+                        삭제
                     </button> 
                 </td>
             </tr>
@@ -34,10 +43,11 @@ function UserCardBlock(props) {
             <table>
                 <thead>
                     <tr>
-                        <th>Product Image</th>
-                        <th>Product Quantity</th>
-                        <th>Product Price</th>
-                        <th>Remove from Cart</th>
+                        <th>주문상품</th>
+                        <th>수량</th>
+                        <th>상품금액</th>
+                        <th>주문금액</th>
+                        <th>주문관리</th>
                     </tr>
                 </thead>
 

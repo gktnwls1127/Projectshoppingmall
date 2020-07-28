@@ -9,7 +9,7 @@ import LogoutHandler from './sections/LogoutHandler';
 import UpdateNav from './sections/UpdateNav';
 import './NavBar.scss';
 import SellerUpload from './sections/SellerUpload';
-import SearchBar from './SearchBar/SearchBar'
+import SearchBar from './SearchBar/SearchBar';
 import CartPageIcon from './sections/CartPageIcon';
 
 function NavBar(props) {
@@ -28,28 +28,25 @@ function NavBar(props) {
 	const boardHandler = () => {
 		if (props.history.location.pathname.substring(0, 4) === '/sns') {
 			return <SNSBorder />;
-		}  else {
-			return <SellerUpload/>;
+		} else {
+			return <SellerUpload />;
 		}
 	};
 
 	return (
 		<div className="nav_container">
 			<div>
-			<LandingPageNav />
+				<LandingPageNav />
 			</div>
+			<div>{/* <SearchBar/> */}</div>
 			<div>
-			{/* <SearchBar/> */}
-			</div>
-			<div>
-			{userData && !userData.isAuth && <LoginHandler />}
-			{userData && userData.isAuth && (
-				<LogoutHandler renderLogout={logoutHandler} />
+				{userData && !userData.isAuth && <LoginHandler />}
+				{userData && userData.isAuth && (
+					<LogoutHandler renderLogout={logoutHandler} />
 				)}
-			{userData && userData.isAuth && <UpdateNav />}
-			{userData && userData.isAuth && <CartPageIcon />}
-			{userData && userData.isAuth && boardHandler()}
-				</div>
+				{userData && userData.isAuth && <UpdateNav />}
+				{userData && userData.isAuth && boardHandler()}
+			</div>
 		</div>
 	);
 }
