@@ -13,7 +13,7 @@ const { Title } = Typography;
 const Sns_LandingPage = () => {
 	const [posts, setPosts] = useState([]);
 
-	const limit = 4;
+	const limit = 8;
 	let skip = 0;
 
 	const getPosts = () => {
