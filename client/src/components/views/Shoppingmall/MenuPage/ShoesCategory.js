@@ -31,7 +31,7 @@ function ShoesCategory() {
                     if(body.loadMore) {
                         setProducts([...Products, ...response.data.productInfo])
                     } else {
-                        setProducts(response.data.productInfo)
+                        setProducts(response.data.productInfo.sort((a,b) => b.sold - a.sold))
                     }
                     setPostSize(response.data.postSize)
                 } else {
