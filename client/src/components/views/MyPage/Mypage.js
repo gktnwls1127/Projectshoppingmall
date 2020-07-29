@@ -84,6 +84,9 @@ function Mypage(props) {
 						수정하기
 					</button>
 				</div>
+				<div style={{display: 'flex'}}>
+				<a href="/shoppingmall/history">주문내역</a>
+				</div>
 			</div>
 			<div className="user_posts">
 				<h2>내 포스트</h2>

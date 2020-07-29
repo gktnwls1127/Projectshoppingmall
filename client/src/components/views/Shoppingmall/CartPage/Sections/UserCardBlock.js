@@ -7,7 +7,7 @@ function UserCardBlock(props) {
         if(images.length > 0) {
             let image = images[0]
             return `http://localhost:5000/${image}`
-        }
+        } 
     }   
 
     const renderItems = () => (

@@ -61,30 +61,6 @@ function ReviewCards() {
         </Col>
     })
 
-    const handleFilters = (filters, category) => {
-
-        const newFilters = { ...Filters }
-
-        newFilters[category] = filters
-
-        console.log(newFilters)
-
-        showFilteredResults(newFilters)
-        setFilters(newFilters)
-    }
-
-    const showFilteredResults = (filters) => {
-
-        const variables = {
-            skip: 0,
-            limit: Limit,
-            filters: filters
-
-        }
-        getProducts(variables)
-        setSkip(0)
-
-    }
 
     return (
         <div>

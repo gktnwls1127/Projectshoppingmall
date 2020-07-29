@@ -3,7 +3,8 @@ import axios from 'axios'
 import ProductImage from './Sections/ProductImage'
 import ProductInfo from './Sections/ProductInfo'
 import { Row, Col } from 'antd'
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'
+import './DetailProductPage.scss'
 
 function DetailProductPage(props) {
 
@@ -20,32 +21,20 @@ function DetailProductPage(props) {
     },[])
 
     return (
-        <div overflow="hidden" width="100%,80rem" className="jCusAo">
-
+        <div className="jCusAo" overflow="hidden" width="100%,80rem">
             <div className="frHBaV">
-                <div style={{ display: "none,block" }} className="cka-dPy">
-                    <h1 color="gray100" font-weight="bold" className="kompeH">{Product.title}</h1>
+                <div display="none,block" className="cka-dPy">
+                    <p className="kompeH">{Product.title}</p>
                 </div>
+                
 
                 <br />
                 <div display="flex" className="kxZXxz">
-                    <div width="1,0.5833333333333334" className="feTtOu">
-                        <div overflow="hidden" className="jbpLml">
-                            <ProductImage detail={Product}/>
-                        </div>
-                    </div>
-                    <div width="1,0.4166666666666667" className="jtLMFf">
-                        <div className="iojNJW">
-                            <div display="block,none" className="jabpb">
-                            <p color="gray100" font-weight="normal" class="cxbvIt">{Product.title}</p>
-                            </div>
-                                <ProductInfo detail={Product}/>
-                        </div> 
-                    </div>
+                    <ProductImage detail={Product}/>
                     
-                </div> 
+                    <ProductInfo detail={Product}/>                   
+                </div>
             </div>
-
         </div>
     )
 }

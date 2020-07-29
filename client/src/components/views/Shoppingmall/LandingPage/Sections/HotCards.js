@@ -11,12 +11,14 @@ function HotCards() {
 
     const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0)
+    const [Limit, setLimit] = useState(4)
     const [PostSize, setPostSize] = useState(0)
 
     useEffect(() => {
         
         let body = {
             skip : Skip,
+            //limit : Limit
         }
 
         getProducts(body)

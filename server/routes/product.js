@@ -46,7 +46,7 @@ router.post('/', (req, res) => {
 router.post('/products', (req, res) => {
 	//product collection에 들어 있는 모든 상품 정보를 가져오기
 
-	let limit = req.body.limit ? parseInt(req.body.limit) : 20;
+	let limit = req.body.limit ? parseInt(req.body.limit) : 1000;
 	let skip = req.body.skip ? parseInt(req.body.skip) : 0;
 	let term = req.body.searchTerm;
 

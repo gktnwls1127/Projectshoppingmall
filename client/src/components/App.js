@@ -21,6 +21,7 @@ import PantsCategory from './views/Shoppingmall/MenuPage/PantsCategory';
 import OnepieceCategory from './views/Shoppingmall/MenuPage/OnePieceCategory';
 import SkirtCategory from './views/Shoppingmall/MenuPage/SkirtCategory';
 import ShoesCategory from './views/Shoppingmall/MenuPage/ShoesCategory';
+import HistoryPage from './views/Shoppingmall/HistoryPage/HistoryPage'
 
 function App() {
 	return (
@@ -29,7 +30,7 @@ function App() {
 				<NavBar />
 				<S_NavBar />
 				<Switch>
-					<Route exact path="/" component={Auth(Shop_Landingpage, null)} />
+					<Route exact path="/shoppingmall" component={Auth(Shop_Landingpage, null)} />
 					<Route exact path="/login" component={Auth(LoginPage, false)} />
 					<Route exact path="/register" component={Auth(RegisterPage, false)} />
 					<Route exact path="/mypage" component={Auth(Mypage, true)} />
@@ -100,6 +101,8 @@ function App() {
 						path="/shoppingmall/shoes"
 						component={Auth(ShoesCategory, null)}
 					/>
+          			<Route exact path="/shoppingmall/history" component={Auth(HistoryPage, true)} />
+
 				</Switch>
 			</Router>
 		</div>
