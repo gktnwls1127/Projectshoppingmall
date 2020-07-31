@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import { Card, Avatar, Row, Col, Typography } from 'antd';
 import { UpCircleOutlined } from '@ant-design/icons';
 import axios from 'axios';
@@ -14,7 +15,7 @@ const Sns_LandingPage = () => {
 	const [posts, setPosts] = useState([]);
 
 	const limit = 8;
-	let skip = 0;
+	let skip;
 
 	const getPosts = () => {
 		axios
@@ -51,6 +52,7 @@ const Sns_LandingPage = () => {
 
 	useEffect(() => {
 		window.addEventListener('scroll', infiniteScroll, true);
+		skip = 0;
 		getPosts();
 	}, []);
 

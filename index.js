@@ -26,6 +26,7 @@ mongoose
 		console.log('MongoDB connected');
 	})
 	.catch((err) => console.log(err));
+require('./server/services/cache');
 
 app.use('/api/sns', require('./server/routes/sns'));
 app.use('/api/users', require('./server/routes/user'));
