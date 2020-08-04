@@ -65,24 +65,28 @@ const Sns_LandingPage = () => {
 	};
 
 	const renderPosts = (posts) =>
-		posts.map((post) => (
-			<Col key={post._id} lg={6} xs={24}>
-				<Card
-					style={{
-						width: 250,
-						border: '2px solid #e8ebed',
-						borderRadius: '20px',
-					}}
-					cover={<RenderImages post={post} />}
-				>
-					<Meta
-						avatar={<Avatar src={renderProfileImage(post)} />}
-						description={<RenderText post={post} />}
-					/>
-					<Comment post={post} />
-				</Card>
-			</Col>
-		));
+		posts.map((post) => {
+			if (post && post.writer) {
+				return (
+					<Col key={post._id} lg={6} xs={24}>
+						<Card
+							style={{
+								width: 250,
+								border: '2px solid #E8EBED',
+								borderRadius: '20px',
+							}}
+							cover={<RenderImages post={post} />}
+						>
+							<Meta
+								avatar={<Avatar src={renderProfileImage(post)} />}
+								description={<RenderText post={post} />}
+							/>
+							<Comment post={post} />
+						</Card>
+					</Col>
+				);
+			}
+		});
 
 	return (
 		<div className="posts">
