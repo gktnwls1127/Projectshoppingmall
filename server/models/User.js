@@ -34,6 +34,10 @@ const userSchema = mongoose.Schema({
       type: Array,
       default: []
   },
+//   uploadProduct: {
+// 	type: Array,
+// 	default: []
+// },
   image: String,
   token: {
     //token 나중에 유효성 관리.

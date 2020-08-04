@@ -101,6 +101,7 @@ router.get('/auth', auth, (req, res) => {
 		image: req.user.image,
 		cart: req.user.cart,
 		history: req.user.history,
+		//uploadProduct: req.user.uploadProduct,
 	});
 });
 
@@ -266,6 +267,7 @@ router.post('/successBuy', auth, (req, res) => {
 		}
 	);
 });
+
 
 router.post('/uploadImages', upload.single('files'), (req, res) => {
 	res.status(200).json({ success: true, filePath: req.file.path });

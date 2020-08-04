@@ -46,7 +46,8 @@ function NavBar(props) {
 				)}
 				{userData && userData.isAuth && <UpdateNav />}
 				{userData && userData.isAuth && boardHandler()}
-				<CartPageIcon />
+				{userData && userData.isAuth && <CartPageIcon />}
+				
 			</div>
 		</div>
 	);

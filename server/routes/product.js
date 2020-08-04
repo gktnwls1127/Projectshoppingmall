@@ -23,7 +23,7 @@ router.post('/image', (req, res) => {
 
 	upload(req, res, (err) => {
 		if (err) {
-			return req.json({ success: false, err });
+			return req.json({ success: false, err }); 
 		}
 		return res.json({
 			success: true,
@@ -49,7 +49,7 @@ router.post('/products', (req, res) => {
 	let limit = req.body.limit ? parseInt(req.body.limit) : 1000;
 	let skip = req.body.skip ? parseInt(req.body.skip) : 0;
 	let term = req.body.searchTerm;
-
+	
 	let findArgs = {};
 
 	for (let key in req.body.filters) {
@@ -62,7 +62,7 @@ router.post('/products', (req, res) => {
 					$lte: req.body.filters[key][1],
 				};
 			} else {
-				findArgs[key] = req.body.filters[key];
+				findArgs[key] = req.body.filters[key]; 
 			}
 		}
 	}
@@ -80,6 +80,7 @@ router.post('/products', (req, res) => {
 					.json({ success: true, productInfo, postSize: productInfo.length });
 			});
 	} else {
+		
 		Product.find(findArgs)
 			.populate('wirter')
 			.skip(skip)
@@ -93,6 +94,60 @@ router.post('/products', (req, res) => {
 	}
 });
 
+router.post('/sellerProducts', (req, res) => {
+	//product collection에 들어 있는 모든 상품 정보를 가져오기
+
+	let limit = req.body.limit ? parseInt(req.body.limit) : 1000;
+	let skip = req.body.skip ? parseInt(req.body.skip) : 0;
+	let term = req.body.searchTerm;
+	let writer = req.body.writer
+	
+	let findArgs = {};
+
+	for (let key in req.body.filters) {
+		if (req.body.filters[key].length > 0) {
+			if (key === 'price') {
+				findArgs[key] = {
+					//Greater than equal
+					$gte: req.body.filters[key][0],
+					//Less than equal
+					$lte: req.body.filters[key][1],
+				};
+			} else {
+				findArgs[key] = req.body.filters[key]; 
+			}
+		}
+	}
+
+	if (term) {
+		Product.find(findArgs)
+			.find({ $text: { $search: term } })
+			.populate('wirter')
+			.skip(skip)
+			.limit(limit)
+			.exec((err, productInfo) => {
+				if (err) return res.status(400).json({ success: false, err });
+				return res
+					.status(200)
+					.json({ success: true, productInfo, postSize: productInfo.length });
+			});
+	} else {
+		
+		Product.find({ writer: writer})
+			.populate('wirter')
+			.skip(skip)
+			.limit(limit)
+			.exec((err, productInfo) => {
+				if (err) return res.status(400).json({ success: false, err });
+				return res
+					.status(200)
+					.json({ success: true, productInfo});
+			});
+	
+	}
+
+});
+
 router.get('/products_by_id', (req, res) => {
 	let type = req.query.type;
 	let productIds = req.query.id;
@@ -103,8 +158,8 @@ router.get('/products_by_id', (req, res) => {
 		let ids = req.query.id.split(',');
 		productIds = [];
 		productIds = ids.map((item) => {
-			return item;
-		});
+			return item;  
+		}); 
 	}
 
 	//productId를 이용해서 DB에서 productId와 같은 상품의 정보를 가져온다.
