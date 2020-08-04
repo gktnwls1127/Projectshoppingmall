@@ -32,6 +32,11 @@ app.use('/api/sns', require('./server/routes/sns'));
 app.use('/api/users', require('./server/routes/user'));
 app.use('/api/product', require('./server/routes/product'));
 
+
+app.use('/api/like', require('./server/routes/like'));
+
+
+
 app.use('/uploads', express.static('uploads'));
 
 app.listen(port, () => console.log(`Example app Listening on port ${port}`));

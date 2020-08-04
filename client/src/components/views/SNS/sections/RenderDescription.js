@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 
 import axios from 'axios';
 
+// import LikeDislikes from './LikeDislikes'
+
 function RenderDescription(props) {
 	const user = useSelector((state) => state.user.userData);
 	const [comment, setComment] = useState('');
@@ -74,16 +76,21 @@ function RenderDescription(props) {
 			</div>
 		));
 	};
+	
 	return (
 		<div className="description_container">
 			<div className="post_info">
 				<div className="post_user_info">{renderPostUser()}</div>
-				<div className="post_description"></div>
+				<div className="post_description">
+
+
+				</div>
 			</div>
 			<div className="comments">
 				<div className="comments_input">
 					<form onSubmit={submitHandler}>
 						<input type="text" value={comment} onChange={commentHandler} />
+						<br/>
 						<button type="submit">댓글달기</button>
 					</form>
 				</div>

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Modal from 'react-modal';
 import ImageGallery from 'react-image-gallery';
 import RenderDescription from './RenderDescription';
+import LikeDislikes from './LikeDislikes'
 
 import './RenderModal.scss';
 
@@ -34,8 +35,11 @@ function RenderModal(props) {
 			thumbnail: `http://localhost:5000/${snapshot}`,
 		});
 	});
+	//test1
+	// const commentId = props.match.parmas.commentId
+	
 	return (
-		<div>
+		<div className ="aaa">
 			<Modal
 				okText="확인"
 				isOpen={props.visible}
@@ -49,11 +53,14 @@ function RenderModal(props) {
 							showPlayButton={false}
 							disableThumbnailScroll={true}
 						/>
-						;
 					</div>
 					<div className="modal_info">
+					
+						<LikeDislikes modal  useId={localStorage.getItem('userId')} commentId={props.post._id}/>
+						<br/>
 						<RenderDescription post={props.post} />
 					</div>
+					
 				</div>
 			</Modal>
 		</div>
