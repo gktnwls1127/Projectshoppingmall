@@ -7,7 +7,6 @@ import './Sns_LandingPage.scss';
 import RenderPosts from './utils/RenderPosts';
 
 const { Title } = Typography;
-
 const Sns_LandingPage = () => {
 	const [posts, setPosts] = useState([]);
 
