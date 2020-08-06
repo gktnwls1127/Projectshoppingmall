@@ -22,6 +22,8 @@ import OnepieceCategory from './views/Shoppingmall/MenuPage/OnePieceCategory';
 import SkirtCategory from './views/Shoppingmall/MenuPage/SkirtCategory';
 import ShoesCategory from './views/Shoppingmall/MenuPage/ShoesCategory';
 
+import SearchPage from './views/NavBar/SearchBar/SearchPage'
+
 function App() {
 	return (
 		<div>
@@ -42,7 +44,9 @@ function App() {
 					<Route exact path="/sns" component={Auth(Sns_LandingPage, null)} />
 					<Route exact path="/sns/posts" component={Auth(Sns_posts, true)} />
 
-					{/* <Route exact path="/!#" component={Auth(Sns_LandingPage/!#, true)} /> */}
+					<Route exact path="/search/:keyword" component={Auth(SearchPage,null)}/>
+
+
 
 					<Route
 						exact

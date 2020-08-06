@@ -9,15 +9,24 @@ import { EditOutlined } from '@ant-design/icons';
 import RenderImages from './sections/RenderImage';
 import RenderText from './sections/RenderText';
 import './Mypage.scss';
+import SearchFeature from './sections/SearchFeature'
+
+
 
 const { Meta } = Card;
 function Mypage(props) {
 	const user = useSelector((state) => state.user.userData);
 	const [posts, setPosts] = useState([]);
 
+	// const [SearchTerm, setSearchTerm] = useState("")
+	// const [Skip, setSkip] = useState(0)
+	// const [Limit, setLimit] = useState(8)
+
+
 	useEffect(() => {
 		if (user) {
-			axios.get(`/api/sns/getsnsposts?id=${user._id}`).then((response) => {
+			axios.get(`/api/sns/getsnsposts?id=${user._id}`)
+			.then((response) => {
 				if (response.data.success) {
 					setPosts(response.data.posts);
 				} else {
@@ -26,6 +35,19 @@ function Mypage(props) {
 			});
 		}
 	}, [user]);
+
+	// const getSearch = (body) =>{
+	// 	axios.get('/api/sns/getsnsposts',body)
+	// 	.then(response =>{
+	// 		if(response.data.success){
+				
+	// 		}else{
+	// 			alert("검색결과가 없습니다.")
+	// 		}
+	// 	})
+	// }
+
+
 
 	const renderImage = () => {
 		if (user && user.image) {
@@ -70,6 +92,20 @@ function Mypage(props) {
 			</Col>
 		));
 
+
+		// const updateSearchTerm = (newSearchTerm) => {
+
+		// 	let body = {
+		// 		searchTerm: newSearchTerm
+		// 	}
+
+		// 	setSearchTerm(newSearchTerm)
+		// 	getSearch(body)
+	
+		// }
+
+		
+
 	return (
 		<div className="container">
 			<div className="list_container">
@@ -85,6 +121,16 @@ function Mypage(props) {
 					</button>
 				</div>
 			</div>
+
+
+			 <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '1rem auto' }}>
+                {/* <SearchFeature
+					setPosts= {setPosts}
+                    refreshFunction={updateSearchTerm} /> */}
+                <SearchFeature />
+            </div> 
+
+
 			<div className="user_posts">
 				<h2>내 포스트</h2>
 				<Row gutter={[16, 32]}>{renderPosts(posts)}</Row>
