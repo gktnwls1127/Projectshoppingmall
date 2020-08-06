@@ -77,7 +77,7 @@ function Mypage(props) {
 				<div className="userInfo">
 					{user && <h1>{`${user.name}(${user.email})`}</h1>}
 				</div>
-				{/* 추후에 활동, 팔로잉 추가 */}
+
 				<div className="update_info">
 					<button onClick={loadUpdatePage}>
 						<EditOutlined />
