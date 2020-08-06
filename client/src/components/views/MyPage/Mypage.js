@@ -4,10 +4,9 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 import { withRouter } from 'react-router-dom';
-import { Card, Avatar, Row, Col } from 'antd';
+import { Card} from 'antd';
 import { EditOutlined } from '@ant-design/icons';
-import RenderImages from './sections/RenderImage';
-import RenderText from './sections/RenderText';
+import RenderPosts from '../SNS/utils/RenderPosts'
 import './Mypage.scss';
 import SearchFeature from './sections/SearchFeature'
 
@@ -17,11 +16,6 @@ const { Meta } = Card;
 function Mypage(props) {
 	const user = useSelector((state) => state.user.userData);
 	const [posts, setPosts] = useState([]);
-
-	// const [SearchTerm, setSearchTerm] = useState("")
-	// const [Skip, setSkip] = useState(0)
-	// const [Limit, setLimit] = useState(8)
-
 
 	useEffect(() => {
 		if (user) {
@@ -35,19 +29,6 @@ function Mypage(props) {
 			});
 		}
 	}, [user]);
-
-	// const getSearch = (body) =>{
-	// 	axios.get('/api/sns/getsnsposts',body)
-	// 	.then(response =>{
-	// 		if(response.data.success){
-				
-	// 		}else{
-	// 			alert("검색결과가 없습니다.")
-	// 		}
-	// 	})
-	// }
-
-
 
 	const renderImage = () => {
 		if (user && user.image) {
@@ -73,39 +54,6 @@ function Mypage(props) {
 		}
 	};
 
-	const renderPosts = () =>
-		posts.map((post) => (
-			<Col key={post._id} lg={6} xs={24}>
-				<Card
-					style={{
-						width: 250,
-						border: '2px solid #e8ebed',
-						borderRadius: '20px',
-					}}
-					cover={<RenderImages post={post} />}
-				>
-					<Meta
-						avatar={<Avatar src={renderProfileImage(post)} />}
-						description={<RenderText post={post} />}
-					/>
-				</Card>
-			</Col>
-		));
-
-
-		// const updateSearchTerm = (newSearchTerm) => {
-
-		// 	let body = {
-		// 		searchTerm: newSearchTerm
-		// 	}
-
-		// 	setSearchTerm(newSearchTerm)
-		// 	getSearch(body)
-	
-		// }
-
-		
-
 	return (
 		<div className="container">
 			<div className="list_container">
@@ -113,7 +61,7 @@ function Mypage(props) {
 				<div className="userInfo">
 					{user && <h1>{`${user.name}(${user.email})`}</h1>}
 				</div>
-				{/* 추후에 활동, 팔로잉 추가 */}
+
 				<div className="update_info">
 					<button onClick={loadUpdatePage}>
 						<EditOutlined />
@@ -124,16 +72,16 @@ function Mypage(props) {
 
 
 			 <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '1rem auto' }}>
-                {/* <SearchFeature
-					setPosts= {setPosts}
-                    refreshFunction={updateSearchTerm} /> */}
-                <SearchFeature />
+   
             </div> 
+		<div>
 
+                <SearchFeature />
+		</div>
 
 			<div className="user_posts">
 				<h2>내 포스트</h2>
-				<Row gutter={[16, 32]}>{renderPosts(posts)}</Row>
+				<RenderPosts posts={posts} />
 			</div>
 		</div>
 	);
