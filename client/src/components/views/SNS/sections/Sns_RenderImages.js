@@ -14,7 +14,7 @@ function Sns_RenderImages(props) {
 		};
 		axios.post('/api/sns/upviews', data).then((response) => {
 			if (response.data.success) {
-			} else {
+			} else { 
 				alert('조회수가 올라가지 않았습니다.');
 			}
 		});

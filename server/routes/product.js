@@ -52,20 +52,6 @@ router.post('/products', (req, res) => {
 	
 	let findArgs = {};
 
-	for (let key in req.body.filters) {
-		if (req.body.filters[key].length > 0) {
-			if (key === 'price') {
-				findArgs[key] = {
-					//Greater than equal
-					$gte: req.body.filters[key][0],
-					//Less than equal
-					$lte: req.body.filters[key][1],
-				};
-			} else {
-				findArgs[key] = req.body.filters[key]; 
-			}
-		}
-	}
 
 	if (term) {
 		Product.find(findArgs)
@@ -80,7 +66,6 @@ router.post('/products', (req, res) => {
 					.json({ success: true, productInfo, postSize: productInfo.length });
 			});
 	} else {
-		
 		Product.find(findArgs)
 			.populate('wirter')
 			.skip(skip)
@@ -101,26 +86,10 @@ router.post('/sellerProducts', (req, res) => {
 	let skip = req.body.skip ? parseInt(req.body.skip) : 0;
 	let term = req.body.searchTerm;
 	let writer = req.body.writer
-	
-	let findArgs = {};
-
-	for (let key in req.body.filters) {
-		if (req.body.filters[key].length > 0) {
-			if (key === 'price') {
-				findArgs[key] = {
-					//Greater than equal
-					$gte: req.body.filters[key][0],
-					//Less than equal
-					$lte: req.body.filters[key][1],
-				};
-			} else {
-				findArgs[key] = req.body.filters[key]; 
-			}
-		}
-	}
+	 
 
 	if (term) {
-		Product.find(findArgs)
+		Product.find({ writer: writer})
 			.find({ $text: { $search: term } })
 			.populate('wirter')
 			.skip(skip)
@@ -168,7 +137,16 @@ router.get('/products_by_id', (req, res) => {
 		.exec((err, product) => {
 			if (err) return res.status(400).send(err);
 			return res.status(200).send(product);
-		});
+	});
+	
+});
+
+router.post('/removeProduct', (req, res) => {
+	
+	Product.findOneAndDelete({ _id: req.body.id }, (err) => {
+		if (err) res.json({ success: false, err });
+		res.status(200).json({ success: true });
+	});
 });
 
 module.exports = router;

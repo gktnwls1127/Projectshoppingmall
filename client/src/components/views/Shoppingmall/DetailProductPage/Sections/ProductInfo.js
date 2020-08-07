@@ -20,9 +20,9 @@ function ProductInfo(props) {
             <div className="iojNJW">
                 <div className="cBrSlq">
                     <Descriptions title="상세정보" bordered>
-                        <Descriptions.Item label="가격">{props.detail.price}</Descriptions.Item>
-                        <Descriptions.Item label="판매수량" span={2}>{props.detail.sold}</Descriptions.Item>
+                        <Descriptions.Item label="구매량" span={2}>{props.detail.sold}</Descriptions.Item>
                         <Descriptions.Item label="조회수">{props.detail.views}</Descriptions.Item>
+                        <Descriptions.Item label="가격">{props.detail.price}</Descriptions.Item>
                     </Descriptions>
                 </div>
                 <br />

@@ -266,6 +266,14 @@ router.post('/successBuy', auth, (req, res) => {
 			});
 		}
 	);
+}); 
+
+router.get('/admin', (req, res) => {
+	
+    User.find( {}, (err, users) => {
+        if (err) return res.status(400).send("User 전체 조회 실패.");
+        res.status(200).json({ success : true, users});
+    });
 });
 
 
@@ -301,7 +309,7 @@ router.post('/updatePassword', (req, res) => {
 					$set: {
 						password: req.body.newPassword,
 					},
-				},
+				}, 
 				(err, user) => {
 					if (err) return res.json({ success: false, err });
 					res.status(200).json({ success: true, user });

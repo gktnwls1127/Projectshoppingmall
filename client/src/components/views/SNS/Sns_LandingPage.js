@@ -61,7 +61,7 @@ const Sns_LandingPage = () => {
 			return 'https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg';
 		}
 	};
-
+ 
 	const renderPosts = (posts) =>
 		posts.map((post) => (
 			<Col key={post._id} lg={6} xs={24}>

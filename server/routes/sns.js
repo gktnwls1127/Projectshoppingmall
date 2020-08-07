@@ -45,7 +45,7 @@ router.post('/upviews', (req, res) => {
 	SNSPost.findOneAndUpdate(
 		{ _id: req.body.id },
 		{
-			$inc: {
+			$inc: { 
 				views: 1,
 			},
 		},
