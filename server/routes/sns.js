@@ -24,6 +24,7 @@ router.post('/post', clearCache, (req, res) => {
 		res.status(200).json({ success: true, post });
 	});
 });
+
 router.get('/getposts', auth, async (req, res) => {
 	let skip = parseInt(req.query.skip);
 	let limit = parseInt(req.query.limit);
@@ -36,6 +37,7 @@ router.get('/getposts', auth, async (req, res) => {
 		});
 	res.status(200).json({ success: true, posts });
 });
+
 router.post('/upviews', (req, res) => {
 	SNSPost.findOneAndUpdate(
 		{ _id: req.body.id },
@@ -50,14 +52,20 @@ router.post('/upviews', (req, res) => {
 		}
 	);
 });
+
+
 router.get('/getsnsposts', (req, res) => {
-	SNSPost.find({ writer: req.query.id })
-		.populate('writer')
-		.exec((err, posts) => {
-			if (err) res.json({ success: false, err });
-			res.status(200).json({ success: true, posts });
-		});
+
+
+    SNSPost.find({ writer: req.query.id })
+        .populate('writer')
+        .exec((err, posts) => {
+            if (err) res.json({ success: false, err });
+            res.status(200).json({ success: true, posts });
+        });
 });
+
+
 router.post('/addcomment', (req, res) => {
 	const snsComent = new SNSComment(req.body);
 	snsComent.save((err, comment) => {
@@ -73,4 +81,36 @@ router.get('/getcomments', (req, res) => {
 			else res.status(200).json({ success: true, comments });
 		});
 });
+
+
+// SNSPost.find({ post: req.query.id })
+// .populate('writer')
+// .exec((err, comments) => {
+//     if (err) res.json({ success: false, err });
+//     else res.status(200).json({ success: true, comments });
+// });
+
+router.post('/getsearch', (req, res) => {
+
+    let term = req.body.searchTerm
+
+    if(term){
+        SNSPost.find({ post: req.body._id })
+        .find({$text: {$search:term}})
+        .populate('writer')
+        .exec((err, posts) => {
+            if (err) res.status(400).json({ success: false, err });
+            else res.status(200).json({ success: true, posts });
+        });
+    }else{
+        SNSPost.find({post: req.body._id })
+        .populate('writer')
+        .exec((err, posts) => {
+            if (err) res.status(400).json({ success: false, err });
+            else res.status(200).json({ success: true, posts });
+        });
+    }
+});
+
+
 module.exports = router;
