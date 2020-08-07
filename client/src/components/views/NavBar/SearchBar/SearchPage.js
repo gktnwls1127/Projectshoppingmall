@@ -1,24 +1,43 @@
-import React,{useState , useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
+import axios from 'axios'
 import RenderPosts from '../../SNS/utils/RenderPosts'
 
 
 function SearchPage(props) {
 
 
-    const [state, setstate] = useState("")
+    const [SearchTerm, setSearchTerm] = useState("")
 
+    const [SearchWord, setSearchWord] = useState([])
 
     let keyword = props.match.params.keyword
 
+
+    const getSearch = (body) => {
+        axios.post('/api/sns/getsearch', body)
+            .then(response => {
+                if (response.data.success) {
+                    setSearchWord(response.data.posts)
+                } else {
+                    alert("검색결과가 없습니다.")
+                }
+            })
+    }
+
+
     useEffect(() => {
-      console.log(123);
-      console.log(keyword);
-    }, [])
+
+        let body = {
+            searchTerm: keyword
+        }
+        setSearchTerm(keyword)
+        getSearch(body)
+    }, [props.match.params])
 
     return (
         <div>
-            검색 결과
+            <RenderPosts posts={SearchWord} />
         </div>
     )
 }

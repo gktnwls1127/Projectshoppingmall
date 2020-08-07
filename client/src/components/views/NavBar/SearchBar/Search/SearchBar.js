@@ -12,8 +12,6 @@ function SearchBar(props) {
     const SearchNav = (searchingword) => {
        
         setWord(searchingword)
-        
-        console.log(Word);
 
         props.history.push(`/search/${searchingword}`) //지정된 경로로 이동
         // getSearch(body)
