@@ -19,7 +19,6 @@ function RenderDescription(props) {
 			}
 		});
 	}, [update]);
-
 	const renderProfileImage = () => {
 		if (props.post && props.post.writer.image) {
 			return `http://localhost:5000/${props.post.writer.image}`;
@@ -40,9 +39,27 @@ function RenderDescription(props) {
 			<div className="post_user_name">
 				<h4>{props.post.writer.name}</h4>
 			</div>
-			<div className="post_text">{props.post.text}</div>
+			<div
+				className="post_text"
+				dangerouslySetInnerHTML={renderText(props.post.text)}
+			></div>
 		</div>
 	);
+	const renderText = (text) => {
+		let preText = text.split(' ');
+		let postingText = '';
+
+		preText.forEach((content) => {
+			if (typeof content !== 'undefined') {
+				if (content.charAt(0) === '#') {
+					postingText += `<a>${content} </a>`;
+				} else {
+					postingText += content + ' ';
+				}
+			}
+		});
+		return { __html: postingText };
+	};
 	const commentHandler = (e) => {
 		setComment(e.target.value);
 	};
@@ -76,21 +93,18 @@ function RenderDescription(props) {
 			</div>
 		));
 	};
-	
+
 	return (
 		<div className="description_container">
 			<div className="post_info">
 				<div className="post_user_info">{renderPostUser()}</div>
-				<div className="post_description">
-
-
-				</div>
+				<div className="post_description"></div>
 			</div>
 			<div className="comments">
 				<div className="comments_input">
 					<form onSubmit={submitHandler}>
 						<input type="text" value={comment} onChange={commentHandler} />
-						<br/>
+						<br />
 						<button type="submit">댓글달기</button>
 					</form>
 				</div>
