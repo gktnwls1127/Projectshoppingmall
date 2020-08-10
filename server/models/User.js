@@ -34,10 +34,6 @@ const userSchema = mongoose.Schema({
       type: Array,
       default: []
   },
-//   uploadProduct: {
-// 	type: Array,
-// 	default: []
-// },
   image: String,
   token: {
     //token 나중에 유효성 관리.
@@ -48,6 +44,17 @@ const userSchema = mongoose.Schema({
     type: Number,
   }
 });
+
+userSchema.index({
+    name: 'text',
+    email : 'text'
+},{
+    weights: {
+        name : 5,
+        email : 1
+    }
+})
+
 //Schema를 Model로 감싸줌
 //user스키마를 저장하기 이전에 함수를 실행하는 것 -비밀번호 암호화를 하는데 사용.- 몽구스 내장함수
 userSchema.pre('save', function (next) {

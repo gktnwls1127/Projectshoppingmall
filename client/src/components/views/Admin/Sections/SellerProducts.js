@@ -1,28 +1,33 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import swal from 'sweetalert';
+import SearchFeature from './SearchFeature'
 
 function SellerProducts(props) {
 
     const [Products, setProducts] = useState([])
+    const [SearchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
 
         let body ={
 
         }
+        
+        getProduct(body)
 
-            axios.post('/api/product/products', body)
+    }, [])
+
+    const getProduct = (body) => {
+        axios.post('/api/product/products', body)
             .then(response => {
                 if(response.data.success) {
-                        setProducts(response.data.productInfo)
+                    setProducts(response.data.productInfo)
                 } else {
                     alert("상품들을 가져오는데 실패했습니다.")
                 }
             })
-        
-
-    }, [])
+    }
 
     const renderProductImage = (images) => {
         if(images.length > 0) {
@@ -31,9 +36,19 @@ function SellerProducts(props) {
         } 
     }   
 
+    const updateSearchTerm = (newSearchTerm) => {
+        
+        let body ={
+            searchTerm : newSearchTerm
+        }
+
+        setSearchTerm(newSearchTerm) 
+        getProduct(body)
+    }
+
     const removeItem = (productId) => {
         const data = {
-			productId,
+			id : productId,
 		};
 
 		swal({
@@ -64,7 +79,7 @@ function SellerProducts(props) {
                 <td>
                     <div className="CartGoodsDesktop__goods-info">
                     <img style={{ width: '50px', height: '50px' }} alt="product" 
-                    src={renderProductImage(product.images)} />
+                    src={renderProductImage(product.images)}/>
                         <div className="CartGoodsDesktop__goods-info-inner">
                             <p className="CartGoodsDesktop__goods-info-name">
                                 {product.title}
@@ -90,6 +105,12 @@ function SellerProducts(props) {
 
     return (
         <div>
+
+            <div style={{display: 'flex', justifyContent: 'flex-end', margin: '1rem auto'}}>
+                <SearchFeature 
+                    refreshFunction={updateSearchTerm}
+                />
+            </div>
             <table>
                 <thead>
                     <tr>

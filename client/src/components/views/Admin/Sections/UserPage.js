@@ -1,14 +1,23 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import swal from 'sweetalert';
+import SearchFeature from './SearchFeature'
 
 function UserPage(props) {
 
     const [User, setUser] = useState([])
+    const [SearchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
+        
+        let body = {}
 
-        axios.get('/api/users/admin')
+        getUsers(body)
+        
+    }, [])
+
+    const getUsers = (body) => {
+        axios.post('/api/users/admin', body)
             .then(response => {
                 if(response.data.success) {
                     setUser(response.data.users)
@@ -16,8 +25,17 @@ function UserPage(props) {
                     alert("유저들을 가져오는데 실패했습니다.")
                 }
             })
+    }
+
+    const updateSearchTerm = (newSearchTerm) => {
         
-    }, [])
+        let body = {
+            searchTerm : newSearchTerm
+        }
+
+        setSearchTerm(newSearchTerm)
+        getUsers(body)
+    }
 
     const removeItem = (id) => {
         
@@ -86,6 +104,13 @@ function UserPage(props) {
 
     return (
         <div>
+            <div style={{display: 'flex', justifyContent: 'flex-end', margin: '1rem auto'}}>
+
+            <SearchFeature 
+                refreshFunction={updateSearchTerm}
+            />
+
+            </div>
             <table>
                 <thead>
                     <tr>

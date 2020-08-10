@@ -64,13 +64,13 @@ function ImageBanner() {
                             </div>
         
                 </Carousel>
-                <a className="ban_icon_left">
+                {/* <a className="ban_icon_left">
                     <LeftOutlined fill= "currentcolor"/>
                 </a>
                     <div width="100%" className="ban_box_div"></div>
                 <a className="ban_icon_right" href="#carousel-img" role="button" dataSlide="next">
                     <RightOutlined fill= "currentcolor"/>
-                </a>
+                </a> */}
                     <button className="ban_button" onClick={()=>window.scrollTo(0,1080)}>
                         <span className="ban_scroll_text" color="#1B1D1F" font-weight="normal">SCORLL</span>
                             <div className="ban_scroll_circle" height="64px" width="64px" display="flex">

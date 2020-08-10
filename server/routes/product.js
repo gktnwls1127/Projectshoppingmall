@@ -52,7 +52,6 @@ router.post('/products', (req, res) => {
 	
 	let findArgs = {};
 
-
 	if (term) {
 		Product.find(findArgs)
 			.find({ $text: { $search: term } })
@@ -142,7 +141,6 @@ router.get('/products_by_id', (req, res) => {
 });
 
 router.post('/removeProduct', (req, res) => {
-	
 	Product.findOneAndDelete({ _id: req.body.id }, (err) => {
 		if (err) res.json({ success: false, err });
 		res.status(200).json({ success: true });

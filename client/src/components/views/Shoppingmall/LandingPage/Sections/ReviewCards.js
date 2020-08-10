@@ -1,65 +1,69 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import ImageSlider from '../../utils/ImageSlider';
-import { Col, Card, Row } from 'antd';
-import './Cards.scss'
+import React, { useState, useEffect } from 'react';
+import { Card, Avatar, Row, Col } from 'antd';
+import axios from 'axios';
+import RenderImages from '../../../SNS/sections/Sns_RenderImages';
+import RenderText from '../../../SNS/sections/RenderText';
+import Comment from '../../../SNS/sections/Comment';
+import './Cards.scss';
 
 const { Meta } = Card;
 
 function ReviewCards() {
-    const [Products, setProducts] = useState([])
-    const [Skip, setSkip] = useState(0)
-    const [Limit, setLimit] = useState(4)
-    const [PostSize, setPostSize] = useState(0)
-    const [Filters, setFilters] = useState({
-        continents: [],
-        price: []
-    })
+    const [posts, setPosts] = useState([]);
+
+    const limit = 4;
+	let skip = 0;
 
     useEffect(() => {
-        
-        let body = {
-            skip : Skip,
-            limit : Limit
-        }
 
-        getProducts(body)
+        getPosts();
+
 
     }, [])
 
-    const getProducts = (body) => {
+    const getPosts = () => {
+		axios
+            .get(`/api/sns/getposts?skip=${skip} &limit=${limit}`)
+			.then((response) => {
+				if (response.data.success) {
+					if (response.data.posts) {
+						setPosts((prev) => [...prev].concat(response.data.posts));
+					}
+				}
+			})
+			.catch((e) => {
+				alert(e);
+			});
+    };
+    
+    const renderProfileImage = (post) => {
+		if (post && post.writer.image) {
+			return `http://localhost:5000/${post.writer.image}`;
+		} else {
+			return 'https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg';
+		}
+	};
+ 
 
-        axios.post('/api/product/products', body)
-            .then(response => {
-                if(response.data.success) {
-                    if(body.loadMore) {
-                        setProducts([...Products, ...response.data.productInfo])
-                    } else {
-                        setProducts(response.data.productInfo)
-                    }
-                    setPostSize(response.data.postSize)
-                } else {
-                    alert("상품들을 가져오는데 실패했습니다.")
-                }
-            })
-
-    }
-
-    const renderCards = Products.map((product, index) => {
-
-        return <Col lg={6} md={6} xs={6}>
-            <Card 
-                style ={{width:'320px', height: '435px'}}
-                hoverable={true}
-                cover={<a href={`/product/${product._id}`} > <ImageSlider images={product.images} /></a>}
-            >
-                <Meta
-                    title={product.title}
-                    description={`${product.price}원`}
-                />
-            </Card>
-        </Col>
-    })
+    const renderPosts = (posts) =>
+		posts.map((post) => (
+			<Col key={post._id} lg={6} xs={24}>
+				<Card
+					style={{
+						width: 250,
+						border: '2px solid #e8ebed',
+						borderRadius: '20px',
+					}}
+					cover={<RenderImages post={post} />}
+				>
+					<Meta
+						avatar={<Avatar src={renderProfileImage(post)} />}
+						description={<RenderText post={post} />}
+					/>
+					<Comment post={post} />
+				</Card>
+			</Col>
+		));
 
 
     return (
@@ -71,9 +75,7 @@ function ReviewCards() {
                 <br/> <br/>
                 <div style={{display : 'flex', justifyContent: 'center'}}>
                     <div width="0.5, 0.25">
-                        <Row gutter={[16, 16]}>
-                            {renderCards}
-                        </Row>
+                    <Row gutter={[16, 32]}>{renderPosts(posts)}</Row>
                     </div>
                 </div>
                 <br /><br />

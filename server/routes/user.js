@@ -268,12 +268,23 @@ router.post('/successBuy', auth, (req, res) => {
 	);
 }); 
 
-router.get('/admin', (req, res) => {
+router.post('/admin', (req, res) => {
+	let term = req.body.searchTerm;
 	
-    User.find( {}, (err, users) => {
-        if (err) return res.status(400).send("User 전체 조회 실패.");
-        res.status(200).json({ success : true, users});
-    });
+	if (term) {
+		User.find({})
+			.find({ $text: { $search: term }}) 
+			.exec((err, users) => {
+				if (err) return res.status(400).send("User 전체 조회 실패.");
+				res.status(200).json({ success : true, users});
+			})
+	} else {
+		User.find({}) 
+		.exec((err, users) => {
+			if (err) return res.status(400).send("User 전체 조회 실패.");
+			res.status(200).json({ success : true, users});
+		})
+	}
 });
 
 
