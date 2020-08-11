@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-
+import sanitize from 'sanitize-html';
 import axios from 'axios';
 
 // import LikeDislikes from './LikeDislikes'
@@ -58,7 +58,7 @@ function RenderDescription(props) {
 				}
 			}
 		});
-		return { __html: postingText };
+		return { __html: sanitize(postingText) };
 	};
 	const commentHandler = (e) => {
 		setComment(e.target.value);
