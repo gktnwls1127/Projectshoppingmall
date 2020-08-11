@@ -3,10 +3,11 @@ import {
 	REGISTER_USER,
 	AUTH_USER,
 	UPDATE_USER,
+	SELLER_USER,
 	ADD_TO_CART,
     GET_CART_ITEMS,
     REMOVE_CART_ITEM,
-    ON_SUCCESS_BUY
+    ON_SUCCESS_BUY 
 } from '../_actions/types';
 
 export default function (state = {}, action) {
@@ -22,7 +23,9 @@ export default function (state = {}, action) {
 
 		case UPDATE_USER:
 			return { ...state, userData: action.payload };
-
+	
+		case SELLER_USER:
+			return { ...state, userData: action.payload };
 
 		case ADD_TO_CART:
 			return {...state, 

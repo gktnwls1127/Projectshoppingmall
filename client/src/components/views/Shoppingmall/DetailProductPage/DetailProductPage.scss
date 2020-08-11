@@ -17,6 +17,12 @@
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
+    @media screen and (min-width: 64em) {
+        margin-bottom: 6.25rem;
+        margin-top: 10.5rem;
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+    }
 }
 
 .cka-dPy {
@@ -24,6 +30,9 @@
     display: none;
     max-width: 45.625rem;
     margin-bottom: 1.25rem;
+    @media screen and (min-width: 64em) {
+        display: block;
+    }
 }
 
 .kompeH {
@@ -46,6 +55,14 @@
     @media screen and (min-width: 64em) {
         max-height: 3.99rem;
     }
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 }
 
 .kxZXxz {

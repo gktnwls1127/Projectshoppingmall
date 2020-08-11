@@ -42,7 +42,7 @@ router.post('/upviews', (req, res) => {
 	SNSPost.findOneAndUpdate(
 		{ _id: req.body.id },
 		{
-			$inc: {
+			$inc: { 
 				views: 1,
 			},
 		},
@@ -120,7 +120,34 @@ router.get('/getcomments', (req, res) => {
 		});
 });
 
+router.post('/adminSNS', (req, res) => {
 
+	let term = req.body.searchTerm;
+
+	if (term) {
+		SNSPost.find({})
+			.find({ $text: { $search: term } })
+			.populate('wirter')
+			.exec((err, posts) => {
+				if (err) return res.status(400).json({ success: false, err });
+				res.status(200).json({ success: true, posts });
+			});
+	} else {
+		SNSPost.find({})
+			.populate('wirter')
+			.exec((err, posts) => {
+				if (err) return res.status(400).json({ success: false, err });
+				res.status(200).json({ success: true, posts });
+			});
+	}
+});
+
+router.post('/removeSNS', (req, res) => {
+	SNSPost.findOneAndDelete({_id: req.body.id}, (err) => {
+		if(err) res.json({success: false, err});
+		res.status(200).json({success: true});
+	});
+})
 router.post('/getsearch', (req, res) => {
 
     let term = req.body.searchTerm

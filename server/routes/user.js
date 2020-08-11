@@ -99,6 +99,7 @@ router.get('/auth', auth, (req, res) => {
 		image: req.user.image,
 		cart: req.user.cart,
 		history: req.user.history,
+		//uploadProduct: req.user.uploadProduct,
 	});
 });
 
@@ -263,7 +264,27 @@ router.post('/successBuy', auth, (req, res) => {
 			});
 		}
 	);
+}); 
+
+router.post('/admin', (req, res) => {
+	let term = req.body.searchTerm;
+	
+	if (term) {
+		User.find({})
+			.find({ $text: { $search: term }}) 
+			.exec((err, users) => {
+				if (err) return res.status(400).send("User 전체 조회 실패.");
+				res.status(200).json({ success : true, users});
+			})
+	} else {
+		User.find({}) 
+		.exec((err, users) => {
+			if (err) return res.status(400).send("User 전체 조회 실패.");
+			res.status(200).json({ success : true, users});
+		})
+	}
 });
+
 
 router.post('/uploadImages', upload.single('files'), (req, res) => {
 	res.status(200).json({ success: true, filePath: req.file.path });
@@ -297,7 +318,7 @@ router.post('/updatePassword', (req, res) => {
 					$set: {
 						password: req.body.newPassword,
 					},
-				},
+				}, 
 				(err, user) => {
 					if (err) return res.json({ success: false, err });
 					res.status(200).json({ success: true, user });

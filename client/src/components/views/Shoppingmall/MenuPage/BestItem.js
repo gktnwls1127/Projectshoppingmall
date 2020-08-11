@@ -12,6 +12,7 @@ function BestItem() {
     const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0)
     const [PostSize, setPostSize] = useState(0)
+    
 
     useEffect(() => {
         
@@ -42,20 +43,20 @@ function BestItem() {
     }
 
     const renderCards = 
-    Products.map((product, index) => {
-            return  <Col lg={6} md={8} xs={24}>
-                        <Card 
-                            style ={{width:'280px', height: '350px'}}
-                            hoverable={true}
-                            cover={<a href={`/product/${product._id}`}><MenuCardImage images={product.images} /></a>}
-                        >
-                            <Meta
-                                title={product.title}
-                                description={`${product.price}원`}
-                            />
-                        </Card>
-                    </Col>
-    })
+        Products.map((product, index) => {
+                return  <Col lg={6} md={8} xs={24}>
+                            <Card 
+                                style ={{width:'280px', height: '350px'}}
+                                hoverable={true}
+                                cover={<a href={`/product/${product._id}`}><MenuCardImage images={product.images} /></a>}
+                            >
+                                <Meta
+                                    title={product.title}
+                                    description={`${product.price}원`}
+                                />
+                            </Card>
+                        </Col>
+        })
 
     function handleChange(value) {
         switch (`${value}`) {
@@ -63,8 +64,7 @@ function BestItem() {
                 setProducts([...Products.sort((a,b) => b.sold - a.sold)])
                 break;
             case "New":
-                setProducts([...Products.sort((a, b) => b._id - a._id)])
-                console.log(Products.createdAt);
+                setProducts([...Products.sort((a, b) => b.createdAt.localeCompare(a.createdAt))])
                 break;
             case "LowPrice":
                 setProducts([...Products.sort((a,b) => a.price - b.price)])            

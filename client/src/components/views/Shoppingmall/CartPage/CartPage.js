@@ -4,10 +4,9 @@ import { getCartItems, removeCartItem, onSuccessBuy } from '../../../../_actions
 import UserCardBlock from './Sections/UserCardBlock';
 import { Empty, Result } from 'antd';
 import Paypal from '../utils/Paypal'
-import { withRouter } from 'react-router-dom'
+
 
 function CartPage(props) {
-    const userData = useSelector((state) => state.user.userData);
     const user = useSelector((state) => state.user)
 
     const dispatch = useDispatch();
@@ -20,13 +19,13 @@ function CartPage(props) {
         let cartItems = []
 
         //리덕스 User state안에 cart안에 상품이 들어있는지 확인
-        if(userData && userData.cart) {
-            if(userData.cart.length > 0) {
-                userData.cart.forEach(item => {
+        if(user.userData && user.userData.cart) {
+            if(user.userData.cart.length > 0) {
+                user.userData.cart.forEach(item => {
                     cartItems.push(item.id)
                 })
 
-                dispatch(getCartItems(cartItems, userData.cart))
+                dispatch(getCartItems(cartItems, user.userData.cart))
                 .then((response) => {
                     if (response.payload.length > 0) {
                         calculateTotal(response.payload)
@@ -36,7 +35,7 @@ function CartPage(props) {
             }
             
         }
-    }, [])
+    }, [user.userData])
 
     const calculateTotal = (cartDetail) => {
         let total = 0;
@@ -120,4 +119,4 @@ function CartPage(props) {
     )
 }
 
-export default withRouter(CartPage)
+export default CartPage

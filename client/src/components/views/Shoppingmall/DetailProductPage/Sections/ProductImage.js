@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import ImageGallery from 'react-image-gallery';
+import './ProductImage.scss'
 
 function ProductImage(props) {
     const [Images, setImages] = useState([])
 
     useEffect(() => {
         if (props.detail.images && props.detail.images.length > 0) {
-            let images = [];
+            let images = []; 
 
             props.detail.images && props.detail.images.map(item => {
                 images.push({
@@ -19,8 +20,12 @@ function ProductImage(props) {
     }, [props.detail])
 
     return (
-        <div className="hOkNKG">
-            <ImageGallery items={Images} className="ecDCYM lazy loaded"/>
+        <div width="1,0.5833333333333334" className="feTtOu">
+            <div overflow="hidden" className="jbpLml">
+                <picture className ="hOkNKG">
+                    <ImageGallery items={Images} className="ecDCYM lazy loaded"/>
+                </picture>
+            </div>
         </div>
     )
 }

@@ -23,7 +23,7 @@ router.post('/image', (req, res) => {
 
 	upload(req, res, (err) => {
 		if (err) {
-			return res.json({ success: false, err });
+			return req.json({ success: false, err });
 		}
 		return res.json({
 			success: true,
@@ -46,26 +46,11 @@ router.post('/', (req, res) => {
 router.post('/products', (req, res) => {
 	//product collection에 들어 있는 모든 상품 정보를 가져오기
 
-	let limit = req.body.limit ? parseInt(req.body.limit) : 20;
+	let limit = req.body.limit ? parseInt(req.body.limit) : 1000;
 	let skip = req.body.skip ? parseInt(req.body.skip) : 0;
 	let term = req.body.searchTerm;
 
 	let findArgs = {};
-
-	for (let key in req.body.filters) {
-		if (req.body.filters[key].length > 0) {
-			if (key === 'price') {
-				findArgs[key] = {
-					//Greater than equal
-					$gte: req.body.filters[key][0],
-					//Less than equal
-					$lte: req.body.filters[key][1],
-				};
-			} else {
-				findArgs[key] = req.body.filters[key];
-			}
-		}
-	}
 
 	if (term) {
 		Product.find(findArgs)
@@ -93,6 +78,38 @@ router.post('/products', (req, res) => {
 	}
 });
 
+router.post('/sellerProducts', (req, res) => {
+	//product collection에 들어 있는 모든 상품 정보를 가져오기
+
+	let limit = req.body.limit ? parseInt(req.body.limit) : 1000;
+	let skip = req.body.skip ? parseInt(req.body.skip) : 0;
+	let term = req.body.searchTerm;
+	let writer = req.body.writer;
+
+	if (term) {
+		Product.find({ writer: writer })
+			.find({ $text: { $search: term } })
+			.populate('wirter')
+			.skip(skip)
+			.limit(limit)
+			.exec((err, productInfo) => {
+				if (err) return res.status(400).json({ success: false, err });
+				return res
+					.status(200)
+					.json({ success: true, productInfo, postSize: productInfo.length });
+			});
+	} else {
+		Product.find({ writer: writer })
+			.populate('wirter')
+			.skip(skip)
+			.limit(limit)
+			.exec((err, productInfo) => {
+				if (err) return res.status(400).json({ success: false, err });
+				return res.status(200).json({ success: true, productInfo });
+			});
+	}
+});
+
 router.get('/products_by_id', (req, res) => {
 	let type = req.query.type;
 	let productIds = req.query.id;
@@ -114,6 +131,13 @@ router.get('/products_by_id', (req, res) => {
 			if (err) return res.status(400).send(err);
 			return res.status(200).send(product);
 		});
+});
+
+router.post('/removeProduct', (req, res) => {
+	Product.findOneAndDelete({ _id: req.body.id }, (err) => {
+		if (err) res.json({ success: false, err });
+		res.status(200).json({ success: true });
+	});
 });
 
 module.exports = router;

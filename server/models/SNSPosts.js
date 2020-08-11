@@ -35,6 +35,16 @@ SNSPostsSchema.index({
     }
 })
 
+SNSPostsSchema.index({
+    text: 'text',
+    views : 'text'
+},{
+    weights: {
+        text : 5,
+        views : 1
+    }
+})
+
 const SNSPost = mongoose.model('SNSPost', SNSPostsSchema);
 
 module.exports = { SNSPost };
