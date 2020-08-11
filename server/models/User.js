@@ -45,7 +45,7 @@ const userSchema = mongoose.Schema({
   }
 });
 
-userSchema.index({
+userSchema.index({ 
     name: 'text',
     email : 'text'
 },{

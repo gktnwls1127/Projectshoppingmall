@@ -6,7 +6,7 @@ import SearchFeature from './SearchFeature'
 function UserPage(props) {
 
     const [User, setUser] = useState([])
-    const [SearchTerm, setSearchTerm] = useState("")
+    const [UserSearchTerm, setUserSearchTerm] = useState("")
 
     useEffect(() => {
         
@@ -30,10 +30,10 @@ function UserPage(props) {
     const updateSearchTerm = (newSearchTerm) => {
         
         let body = {
-            searchTerm : newSearchTerm
+            userSearchTerm : newSearchTerm
         }
 
-        setSearchTerm(newSearchTerm)
+        setUserSearchTerm(newSearchTerm)
         getUsers(body)
     }
 

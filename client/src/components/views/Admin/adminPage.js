@@ -1,10 +1,11 @@
 import React from 'react'
 import { Layout, Menu } from 'antd';
-import { DollarOutlined, UserOutlined, ShopOutlined, SolutionOutlined } from '@ant-design/icons';
+import { DollarOutlined, UserOutlined, ShopOutlined, SolutionOutlined, ContainerOutlined } from '@ant-design/icons';
 import SellerProducts from './Sections/SellerProducts';
 import UserPage from './Sections/UserPage'
 import SNSList from './Sections/SNSList';
 import SalesChart from './Sections/SalesChart'
+import SNSComments from './Sections/SNSComments'
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -33,6 +34,9 @@ function adminPage() {
                     <Menu.Item key="3" icon={<SolutionOutlined />} id="sns">
                     SNS 게시물
                     </Menu.Item>
+                    <Menu.Item key="4" icon={<ContainerOutlined />} id="graph">
+                    댓글관리
+                    </Menu.Item>
                     <Menu.Item key="4" icon={<DollarOutlined />} id="graph">
                     매출
                     </Menu.Item>
@@ -49,6 +53,9 @@ function adminPage() {
                     </div>
                     <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }} id="sns">
                     <SNSList />
+                    </div>
+                    <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }} id="sns">
+                    <SNSComments />
                     </div>
                     <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }} id="graph">
                     <SalesChart />

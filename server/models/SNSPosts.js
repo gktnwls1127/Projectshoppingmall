@@ -19,16 +19,14 @@ const SNSPostsSchema = mongoose.Schema({
 	views: {
 		type: Number,
 		default: 0,
-	},
+	}, 
 });
 
 SNSPostsSchema.index({
-    text: 'text',
-    views : 'text'
+    text: 'text'
 },{
     weights: {
-        text : 5,
-        views : 1
+        text : 5
     }
 })
 

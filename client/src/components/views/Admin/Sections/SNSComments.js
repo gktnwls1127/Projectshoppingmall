@@ -5,7 +5,7 @@ import SearchFeature from './SearchFeature'
 
 function SNSList(props) {
 
-    const [Posts, setPosts] = useState([]);
+    const [Comments, setComments] = useState([]);
     const [SearchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
@@ -14,15 +14,15 @@ function SNSList(props) {
 
         }
 
-        getSNS(body)
+        getSNS()
 
     }, [])
 
-    const getSNS = (body) => {
-        axios.post('/api/sns/adminSNS', body)
+    const getSNS = () => {
+        axios.get('/api/sns/getcomments')
         .then((response) => {
             if (response.data.success) {
-                setPosts(response.data.posts)
+                setComments(response.data.comments)
             }
         })
         .catch((e) => {
@@ -30,14 +30,14 @@ function SNSList(props) {
         });
     }
 
-    const updateSearchTerm = (newSearchTerm) => {
+    const updateSearchTerm = (newsnsSearchTerm) => {
         
         let body = {
-            nsearchTerm : newSearchTerm
+            SNSsearchTerm : newsnsSearchTerm
         }
 
-        setSearchTerm(newSearchTerm)
-        getSNS(body)
+        setSearchTerm(newsnsSearchTerm)
+        getSNS()
     }
 
     const removeItem = (snsId) => {
@@ -68,34 +68,21 @@ function SNSList(props) {
     
 }
 
-    const renderPostImage = (snapshots) => {
-        if(snapshots.length > 0) {
-            let image = snapshots[0]
-            return `http://localhost:5000/${image}`
-        } 
-    }   
-
-    const renderPosts = () => (
-        Posts && Posts.map((post, index) => (
+    const renderComments = () => (
+        Comments && Comments.map((comment, index) => (
             <tr key={index}>
-                <td>{post._id}</td>
-                <td>{post.writer}</td>
+                <td>{comment._id}</td>
+                <td>{comment.writer}</td>
                 <td>
-                    <div className="CartGoodsDesktop__goods-info">
-                    <img style={{ width: '50px', height: '50px' }} alt="sns" 
-                    src={renderPostImage(post.snapshots)} />
-                        <div className="CartGoodsDesktop__goods-info-inner">
-                            <p className="CartGoodsDesktop__goods-info-name">
-                                {post.text}
-                            </p>
-                        </div> 
-
-                    </div>
+                    <div className="CartGoodsDesktop__goods-info-inner">
+                        <p className="CartGoodsDesktop__goods-info-name">
+                            {comment.post}
+                        </p>
+                    </div> 
                 </td> 
-                <td>{post.likes}</td> 
-                <td>{post.views}</td>
+                <td>{comment.comment}</td>
                 <td>
-                    <button onClick={() => removeItem(post._id)}>
+                    <button onClick={() => removeItem(comment._id)}>
                         삭제
                     </button> 
                 </td> 
@@ -114,17 +101,15 @@ function SNSList(props) {
             <table>
                 <thead>
                     <tr>
-                    <th>게시물ID</th>
                         <th>작성자</th>
-                        <th>글</th>
-                        <th>좋아요</th>
-                        <th>조회수</th>
+                        <th>작성한 글</th>
+                        <th>댓글</th>
                         <th>삭제</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    {renderPosts()}
+                    {renderComments()}
                 </tbody>
                 
             </table>

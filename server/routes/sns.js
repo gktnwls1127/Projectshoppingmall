@@ -85,11 +85,11 @@ router.get('/getcomments', (req, res) => {
 
 router.post('/adminSNS', (req, res) => {
 
-	let term = req.body.searchTerm;
+	let sterm = req.body.nsearchTerm;
 
-	if (term) {
+	if (sterm) {
 		SNSPost.find({})
-			.find({ $text: { $search: term } })
+			.find({ $text: { $search: sterm } })
 			.populate('wirter')
 			.exec((err, posts) => {
 				if (err) return res.status(400).json({ success: false, err });
