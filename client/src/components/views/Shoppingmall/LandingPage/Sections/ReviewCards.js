@@ -3,7 +3,6 @@ import { Card, Avatar, Row, Col } from 'antd';
 import axios from 'axios';
 import RenderImages from '../../../SNS/sections/Sns_RenderImages';
 import RenderText from '../../../SNS/sections/RenderText';
-import Comment from '../../../SNS/sections/Comment';
 import './Cards.scss';
 
 const { Meta } = Card;
@@ -60,7 +59,6 @@ function ReviewCards() {
 						avatar={<Avatar src={renderProfileImage(post)} />}
 						description={<RenderText post={post} />}
 					/>
-					<Comment post={post} />
 				</Card>
 			</Col>
 		));
