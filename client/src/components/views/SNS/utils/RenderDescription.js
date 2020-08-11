@@ -84,7 +84,23 @@ function RenderDescription(props) {
 			}
 		});
 	};
+	const filterComment = (text) => {
+		let preText = text.split(' ');
+		let postingText = '';
 
+		preText.forEach((content) => {
+			if (typeof content !== 'undefined') {
+				if (content.charAt(0) === '#') {
+					postingText += `<a href="/search/${content.substr(
+						1
+					)}">${content} </a>`;
+				} else {
+					postingText += content + ' ';
+				}
+			}
+		});
+		return { __html: sanitize(postingText) };
+	};
 	const commentsRender = () => {
 		return comments.map((comment) => (
 			<div key={comment._id}>
@@ -96,7 +112,7 @@ function RenderDescription(props) {
 					/>
 					<h3>&nbsp;&nbsp;{comment.writer.name}</h3>
 				</div>
-				<p>{comment.comment}</p>
+				<p dangerouslySetInnerHTML={filterComment(comment.comment)}></p>
 				<br />
 			</div>
 		));
