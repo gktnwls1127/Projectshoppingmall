@@ -102,6 +102,7 @@ function Mypage(props) {
 				<h2>내 포스트</h2>
 				<RenderPosts posts={posts} />
 			</div>
+
 		</div>
 	);
 }

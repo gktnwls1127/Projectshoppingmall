@@ -36,8 +36,14 @@ function SearchPage(props) {
     }, [props.match.params])
 
     return (
+        <div>
+
         <div className ='Search_posts'>
+            <h2>검색 : SNS</h2>
             <RenderPosts posts={SearchWord} />
+        </div>
+     
+        
         </div>
     )
 }
