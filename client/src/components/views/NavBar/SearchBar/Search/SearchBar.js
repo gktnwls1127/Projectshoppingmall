@@ -18,8 +18,6 @@ function SearchBar(props) {
 
     }
 
-
-
     return (
         <div>
             <Search

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 import RenderPosts from '../../SNS/utils/RenderPosts'
-
+import './SearchPage.scss'
 
 function SearchPage(props) {
 
@@ -36,7 +36,7 @@ function SearchPage(props) {
     }, [props.match.params])
 
     return (
-        <div>
+        <div className ='Search_posts'>
             <RenderPosts posts={SearchWord} />
         </div>
     )

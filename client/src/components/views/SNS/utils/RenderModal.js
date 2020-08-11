@@ -9,6 +9,7 @@ import './RenderModal.scss';
 const customStyles = {
 	overlay: {
 		opacity: 1,
+		position : "fixed"
 	},
 	content: {
 		margin: 'auto',
@@ -17,6 +18,7 @@ const customStyles = {
 		overflow: 'hidden',
 		background: '#FFFFFF',
 	},
+
 };
 
 //image galary - thumbnail, original props.snapshots
@@ -37,9 +39,9 @@ function RenderModal(props) {
 	});
 	//test1
 	// const commentId = props.match.parmas.commentId
-	
+
 	return (
-		<div className ="aaa">
+		<div className="aaa">
 			<Modal
 				okText="확인"
 				isOpen={props.visible}
@@ -54,13 +56,17 @@ function RenderModal(props) {
 							disableThumbnailScroll={true}
 						/>
 					</div>
+					<hr/>
 					<div className="modal_info">
-					
-						<LikeDislikes modal  useId={localStorage.getItem('userId')} commentId={props.post._id}/>
-						<br/>
-						<RenderDescription post={props.post} />
+						<div>
+							<RenderDescription post={props.post} />
+						</div>
+
+						<br />
+						<LikeDislikes modal useId={localStorage.getItem('userId')} commentId={props.post._id} />
+						
 					</div>
-					
+
 				</div>
 			</Modal>
 		</div>
