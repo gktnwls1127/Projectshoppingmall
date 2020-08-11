@@ -25,6 +25,8 @@ import HistoryPage from './views/Shoppingmall/HistoryPage/HistoryPage'
 import SellerPage from './views/SellerPage/SellerPage';
 import Admin from './views/Admin/adminPage'
 
+import SearchPage from './views/NavBar/SearchBar/SearchPage'
+
 function App() {
 	return (
 		<div>
@@ -45,7 +47,9 @@ function App() {
 					<Route exact path="/sns" component={Auth(Sns_LandingPage, null)} />
 					<Route exact path="/sns/posts" component={Auth(Sns_posts, true)} />
 
-					{/* <Route exact path="/!#" component={Auth(Sns_LandingPage/!#, true)} /> */}
+					<Route exact path="/search/:keyword" component={Auth(SearchPage,null)}/>
+
+
 
 					<Route
 						exact

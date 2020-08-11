@@ -20,7 +20,20 @@ const SNSPostsSchema = mongoose.Schema({
 		type: Number,
 		default: 0,
 	},
-});
+// });
+
+
+},{ timestamps : true });
+
+SNSPostsSchema.index({
+    writer : 'text',
+    text : 'text'
+},{
+    weights : {
+        writer : 5,
+        text : 1
+    }
+})
 
 SNSPostsSchema.index({
     text: 'text',

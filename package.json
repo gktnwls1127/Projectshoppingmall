@@ -23,7 +23,8 @@
 		"react-image-gallery": "^1.0.7",
 		"react-paypal-express-checkout": "^1.0.5",
 		"react-scroll": "^1.8.0",
-		"recharts": "^1.8.5"
+		"recharts": "^1.8.5",
+		"redis": "^3.0.2"
 	},
 	"devDependencies": {
 		"concurrently": "^5.2.0",

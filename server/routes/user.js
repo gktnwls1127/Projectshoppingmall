@@ -37,7 +37,7 @@ router.post('/login', (req, res) => {
 			if (user) {
 				user.generateToken((err, user) => {
 					if (err) return res.status(400).send(err);
-					//토큰을 저장한다. 어디에? 쿠키 or 로컬스토리지
+
 					res
 						.cookie('x_auth', user.token)
 						.status(200)
@@ -49,7 +49,7 @@ router.post('/login', (req, res) => {
 					if (err) return res.json({ success: false, err });
 					user.generateToken((err, user) => {
 						if (err) return res.status(400).send(err);
-						//토큰을 저장한다. 어디에? 쿠키 or 로컬스토리지
+
 						res
 							.cookie('x_auth', user.token)
 							.status(200)
@@ -66,18 +66,17 @@ router.post('/login', (req, res) => {
 					message: '제공된 이메일에 해당되는 유저가 없습니다.',
 				});
 			}
-			//유저가 존재하는 경우, 비밀번호가 맞는 비밀번호인지 확인.
-			//method는 user model에서 만들어 주면 된다.
+
 			user.comparePassword(req.body.password, (err, isMatch) => {
 				if (!isMatch)
 					return res.json({
 						loginSuccess: false,
 						message: '비밀번호가 틀렸습니다.',
 					});
-				//비밀번호가 일치하는 경우 Token 생성
+
 				user.generateToken((err, user) => {
 					if (err) return res.status(400).send(err);
-					//토큰을 저장한다. 어디에? 쿠키 or 로컬스토리지
+
 					res
 						.cookie('x_auth', user.token)
 						.status(200)
@@ -89,7 +88,6 @@ router.post('/login', (req, res) => {
 });
 
 router.get('/auth', auth, (req, res) => {
-	//여기 까지 미들웨어를 통과했다는 것은 Authentication 이 true라는 말.
 	res.status(200).json({
 		_id: req.user._id,
 		isAdmin: req.user.role === 0 ? false : true,
