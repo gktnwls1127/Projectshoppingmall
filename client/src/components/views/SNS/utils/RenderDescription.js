@@ -55,7 +55,9 @@ function RenderDescription(props) {
 		preText.forEach((content) => {
 			if (typeof content !== 'undefined') {
 				if (content.charAt(0) === '#') {
-					postingText += `<a>${content} </a>`;
+					postingText += `<a href="/search/${content.substr(
+						1
+					)}">${content} </a>`;
 				} else {
 					postingText += content + ' ';
 				}
