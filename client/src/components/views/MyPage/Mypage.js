@@ -72,6 +72,8 @@ function Mypage(props) {
 
 	return (
 		<div className="container">
+
+			
 			<div className="list_container">
 				<div className="profile_image">{renderImage()}</div>
 				<div className="userInfo">
@@ -85,6 +87,7 @@ function Mypage(props) {
 					</button>
 				</div>
 			</div>
+
 
 			<div className = "input_search">
                 <SearchWord
