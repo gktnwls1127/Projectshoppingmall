@@ -55,15 +55,53 @@ router.post('/upviews', (req, res) => {
 
 
 router.get('/getsnsposts', (req, res) => {
+	
+	let term = req.query.word
+
+	if(term){
+		SNSPost.find({ writer: req.query.id })
+		.find({$text: {$search:term}})
+			.populate('writer')
+			.exec((err, posts) => {
+				if (err) res.json({ success: false, err });
+				res.status(200).json({ success: true, posts });
+			});
+		
+	}else{
+		SNSPost.find({ writer: req.query.id })
+			.populate('writer')
+			.exec((err, posts) => {
+				if (err) res.json({ success: false, err });
+				res.status(200).json({ success: true, posts });
+			});
+	}
 
 
-    SNSPost.find({ writer: req.query.id })
-        .populate('writer')
-        .exec((err, posts) => {
-            if (err) res.json({ success: false, err });
-            res.status(200).json({ success: true, posts });
-        });
+
+
 });
+
+
+
+
+
+
+
+// 원래 잘 돌아 가던  루트 실패시 이거 살리기
+// router.get('/getsnsposts', (req, res) => {
+//     SNSPost.find({ writer: req.query.id })
+//         .populate('writer')
+//         .exec((err, posts) => {
+//             if (err) res.json({ success: false, err });
+//             res.status(200).json({ success: true, posts });
+//         });
+// });
+
+
+
+
+
+
 
 
 router.post('/addcomment', (req, res) => {
@@ -82,13 +120,6 @@ router.get('/getcomments', (req, res) => {
 		});
 });
 
-
-// SNSPost.find({ post: req.query.id })
-// .populate('writer')
-// .exec((err, comments) => {
-//     if (err) res.json({ success: false, err });
-//     else res.status(200).json({ success: true, comments });
-// });
 
 router.post('/getsearch', (req, res) => {
 

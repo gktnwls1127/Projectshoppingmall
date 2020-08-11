@@ -5,13 +5,14 @@ import { withRouter } from 'react-router-dom';
 import { EditOutlined } from '@ant-design/icons';
 import RenderPosts from '../SNS/utils/RenderPosts'
 import './Mypage.scss';
-
+import SearchWord from './SearchWord/SearchWord'
 
 function Mypage(props) {
 	const user = useSelector((state) => state.user.userData);
 	const [posts, setPosts] = useState([]);
 
-	const [SearchTerm, setSearchTerm] = useState("")
+	const [Word, setWord] = useState("")
+
 
 	useEffect(() => {
 		if (user) {
@@ -25,6 +26,32 @@ function Mypage(props) {
 				});
 		}
 	}, [user]);
+
+
+	const getWord =(body)=>{
+		
+		if (user) {
+			axios.get(`/api/sns/getsnsposts?id=${user._id}&word=${body.word}`)
+				.then((response) => {
+					if (response.data.success) {
+						setPosts(response.data.posts);
+					} else {
+						alert('포스트 불러오기에 실패했습니다.');
+					}
+				});
+		}
+
+	}
+
+
+
+	const retrievePosts = (newSearchTerm)=>{
+		let body = {
+			word : newSearchTerm,
+		}
+		setWord(newSearchTerm)
+		getWord(body)		
+	}
 
 	const renderImage = () => {
 		if (user && user.image) {
@@ -58,6 +85,12 @@ function Mypage(props) {
 					</button>
 				</div>
 			</div>
+
+			<div className = "input_search">
+                <SearchWord
+                    refreshFunction={retrievePosts} />
+            </div>
+
 
 			<div className="user_posts">
 				<h2>내 포스트</h2>

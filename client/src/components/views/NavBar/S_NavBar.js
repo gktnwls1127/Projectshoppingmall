@@ -24,7 +24,7 @@ function S_NavBar(props) {
 	return (
 		<div className="s_nav_container">
 			<div className="s_nav_1">{NavBarS()}</div>
-			<div>{NavBarSS()}</div>
+			<div className="s_nav_2">{NavBarSS()}</div>
 		</div>
 	);
 }
