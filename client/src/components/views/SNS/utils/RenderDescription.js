@@ -117,15 +117,11 @@ function RenderDescription(props) {
 			
 					<hr/>
 					<form onSubmit={submitHandler}>
-<<<<<<< HEAD
 						<Input 
 						className="comments_input"
 						type="text" 
 						value={comment} 
 						onChange={commentHandler} />
-=======
-						<input type="text" value={comment} onChange={commentHandler} />
->>>>>>> 570d3a40529e4352b86c449308c581799ef3c7e4
 						<br />
 						<button type="submit">댓글달기</button>
 					</form>
