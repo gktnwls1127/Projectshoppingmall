@@ -59,7 +59,7 @@ function ReviewCards() {
 			</Col>
 		));
 
-	return (
+	return ( 
 		<div>
 			<section className="hot_section" style={{ backgroundColor: 'black' }}>
 				<div className="hot_div_h2" style={{ marginTop: '3rem' }}>

@@ -26,6 +26,7 @@ import SellerPage from './views/SellerPage/SellerPage';
 import SellerProducts from './views/Admin/Sections/SellerProducts';
 import UserPage from './views/Admin/Sections/UserPage';
 import SNSList from './views/Admin/Sections/SNSList';
+import DashBoard from './views/Admin/Sections/DashBoard';
 
 function App() {
 	return (
@@ -107,7 +108,8 @@ function App() {
 					/>
           			<Route exact path="/shoppingmall/history" component={Auth(HistoryPage, true)} />
           			<Route exact path="/seller" component={Auth(SellerPage, true)} />
-          			<Route exact path="/admin" component={Auth(UserPage, true)} />
+          			<Route exact path="/admin" component={Auth(DashBoard, true)} />
+          			<Route exact path="/admin/user" component={Auth(UserPage, true)} />
           			<Route exact path="/admin/product" component={Auth(SellerProducts, true)} />
           			<Route exact path="/admin/sns" component={Auth(SNSList, true)} />
 				</Switch>

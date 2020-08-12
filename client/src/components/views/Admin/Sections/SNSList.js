@@ -3,9 +3,9 @@ import axios from 'axios'
 import swal from 'sweetalert';
 import SearchFeature from './Sections/SearchFeature'
 import { Layout, Menu } from 'antd';
-import { DollarOutlined, UserOutlined, ShopOutlined, SolutionOutlined, ContainerOutlined } from '@ant-design/icons';
+import { DashboardOutlined, UserOutlined, ShopOutlined, SolutionOutlined } from '@ant-design/icons';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 function SNSList(props) {
 
@@ -122,18 +122,18 @@ function SNSList(props) {
                 }}
                 >
                 <div className="logo" />
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['3']}>
-                    <Menu.Item key="1" icon={<UserOutlined />}>
-                    <a href='/admin'>사용자</a>
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
+                <Menu.Item key="1" icon={<DashboardOutlined />}>
+                    <a href='/admin'>대시보드</a>
                     </Menu.Item>
-                    <Menu.Item key="2" icon={<ShopOutlined />}>
+                    <Menu.Item key="2" icon={<UserOutlined />}>
+                    <a href='/admin/user'>사용자</a>
+                    </Menu.Item>
+                    <Menu.Item key="3" icon={<ShopOutlined />}>
                     <a href='/admin/product'>상품</a>
                     </Menu.Item>
-                    <Menu.Item key="3" icon={<SolutionOutlined />}>
+                    <Menu.Item key="4" icon={<SolutionOutlined />}>
                     <a href='/admin/sns'>SNS 게시물</a>
-                    </Menu.Item>
-                    <Menu.Item key="4" icon={<DollarOutlined />}>
-                    <a href='/admin/sales'>매출</a>
                     </Menu.Item>
                 </Menu>
                 </Sider>
