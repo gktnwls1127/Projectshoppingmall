@@ -106,7 +106,7 @@ router.post('/adminSNS', (req, res) => {
 
 	if (term) {
 		SNSPost.find({})
-			.find({ $text: { $search: sterm } })
+			.find({ $text: { $search: term } })
 			.populate('wirter')
 			.exec((err, posts) => {
 				if (err) return res.status(400).json({ success: false, err });

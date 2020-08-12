@@ -29,7 +29,7 @@ import SNSList from './views/Admin/Sections/SNSList';
 import DashBoard from './views/Admin/Sections/DashBoard';
 import SearchPage from './views/NavBar/SearchBar/SearchPage';
 
-import UserPage from './views/UserPage/UserPage';
+import UserPage_SNS from './views/UserPage/UserPage';
 
 function App() {
 	return (
@@ -57,7 +57,7 @@ function App() {
 						component={Auth(SearchPage, null)}
 					/>
 
-					<Route exact path="/user/:userId" component={Auth(UserPage, null)} />
+					<Route exact path="/user/:userId" component={Auth(UserPage_SNS, null)} />
 
 					<Route
 						exact
