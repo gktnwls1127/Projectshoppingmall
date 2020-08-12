@@ -85,7 +85,7 @@ router.post('/login', (req, res) => {
 			});
 		});
 	}
-});
+}); 
 
 router.get('/auth', auth, (req, res) => {
 	res.status(200).json({
@@ -267,11 +267,11 @@ router.post('/successBuy', auth, (req, res) => {
 }); 
 
 router.post('/admin', (req, res) => {
-	let term = req.body.searchTerm;
+	let uterm = req.body.userSearchTerm;
 	
-	if (term) {
+	if (uterm) {
 		User.find({})
-			.find({ $text: { $search: term }}) 
+			.find({ $text: { $search: uterm }}) 
 			.exec((err, users) => {
 				if (err) return res.status(400).send("User 전체 조회 실패.");
 				res.status(200).json({ success : true, users});

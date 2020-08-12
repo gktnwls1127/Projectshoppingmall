@@ -75,7 +75,7 @@ function CartPage(props) {
         })
     }
 
-    return (
+    return ( 
         <div style={{ width : '85%', margin: '3rem auto'}}>
             <h1>장바구니</h1>
 

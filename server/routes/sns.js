@@ -25,8 +25,6 @@ router.post('/post', clearCache, (req, res) => {
 	});
 });
 
-
-
 router.get('/getposts', auth, async (req, res) => {
 	let skip = parseInt(req.query.skip);
 	let limit = parseInt(req.query.limit);
@@ -40,8 +38,6 @@ router.get('/getposts', auth, async (req, res) => {
 		});
 	res.status(200).json({ success: true, posts });
 });
-
-
 
 router.post('/upviews', (req, res) => {
 	SNSPost.findOneAndUpdate(
@@ -79,6 +75,15 @@ router.get('/getsnsposts', (req, res) => {
 	}
 });
 
+// 원래 잘 돌아 가던  루트 실패시 이거 살리기
+// router.get('/getsnsposts', (req, res) => {
+//     SNSPost.find({ writer: req.query.id })
+//         .populate('writer')
+//         .exec((err, posts) => {
+//             if (err) res.json({ success: false, err });
+//             res.status(200).json({ success: true, posts });
+//         });
+// });
 
 router.post('/addcomment', (req, res) => {
 	const snsComent = new SNSComment(req.body);
@@ -101,7 +106,7 @@ router.post('/adminSNS', (req, res) => {
 
 	if (term) {
 		SNSPost.find({})
-			.find({ $text: { $search: term } })
+			.find({ $text: { $search: sterm } })
 			.populate('wirter')
 			.exec((err, posts) => {
 				if (err) return res.status(400).json({ success: false, err });
