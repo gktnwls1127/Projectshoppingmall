@@ -19,7 +19,7 @@ function RenderPosts(props) {
 				{props.posts.map((post) => {
 					if (post && post.writer) {
 						return (
-							<Col key={post._id} lg={6} md={12}  xs={24}>
+							<Col key={post._id} lg={6} md={8} xs={24}>
 								<Card
 									style={{
 										width: 250,
