@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 import swal from 'sweetalert';
-import SearchFeature from '../../Admin/Sections/Sections/SearchFeature'
+import SearchFeature from '../../Admin/Sections/SearchFeature'
 
 function ProductCardBlock(props) {
     

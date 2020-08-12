@@ -23,10 +23,10 @@ import SkirtCategory from './views/Shoppingmall/MenuPage/SkirtCategory';
 import ShoesCategory from './views/Shoppingmall/MenuPage/ShoesCategory';
 import HistoryPage from './views/Shoppingmall/HistoryPage/HistoryPage';
 import SellerPage from './views/SellerPage/SellerPage';
-import SellerProducts from './views/Admin/Sections/SellerProducts';
-import UserPage from './views/Admin/Sections/UserPage';
-import SNSList from './views/Admin/Sections/SNSList';
-import DashBoard from './views/Admin/Sections/DashBoard';
+import SellerProducts from './views/Admin/SellerProducts';
+import adUserPage from './views/Admin/UserPage';
+import SNSList from './views/Admin/SNSList';
+import DashBoard from './views/Admin/DashBoard';
 import SearchPage from './views/NavBar/SearchBar/SearchPage';
 
 import UserPage from './views/UserPage/UserPage';
@@ -122,7 +122,7 @@ function App() {
 					/>
 					<Route exact path="/seller" component={Auth(SellerPage, true)} />
 					<Route exact path="/admin" component={Auth(DashBoard, true)} />
-					<Route exact path="/admin/user" component={Auth(UserPage, true)} />
+					<Route exact path="/admin/user" component={Auth(adUserPage, true)} />
 					<Route
 						exact
 						path="/admin/product"
