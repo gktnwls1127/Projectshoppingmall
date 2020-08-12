@@ -113,9 +113,25 @@ function RenderDescription(props) {
 					<h3>&nbsp;&nbsp;{comment.writer.name}</h3>
 				</div>
 				<p dangerouslySetInnerHTML={filterComment(comment.comment)}></p>
+				{user && user._id == comment.writer._id && (
+					<button onClick={() => deleteComment(comment._id)}>x</button>
+				)}
 				<br />
 			</div>
 		));
+	};
+
+	const deleteComment = (commentId) => {
+		let variable = {
+			id: commentId,
+		};
+		axios.post('/api/sns/deletecomment', variable).then((response) => {
+			if (response.data.success) {
+				setUpdate(!update);
+			} else {
+				alert('댓글 삭제에 실패했습니다.');
+			}
+		});
 	};
 
 	return (
