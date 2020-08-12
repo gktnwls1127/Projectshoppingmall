@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 import Modal from 'react-modal';
 import ImageGallery from 'react-image-gallery';
 import RenderDescription from './RenderDescription';
+import LikeDislikes from './LikeDislikes'
 
 import './RenderModal.scss';
 
 const customStyles = {
 	overlay: {
 		opacity: 1,
+		position : "fixed"
 	},
 	content: {
 		margin: 'auto',
@@ -16,6 +18,7 @@ const customStyles = {
 		overflow: 'hidden',
 		background: '#FFFFFF',
 	},
+
 };
 
 //image galary - thumbnail, original props.snapshots
@@ -34,8 +37,11 @@ function RenderModal(props) {
 			thumbnail: `http://localhost:5000/${snapshot}`,
 		});
 	});
+	//test1
+	// const commentId = props.match.parmas.commentId
+
 	return (
-		<div>
+		<div className="aaa">
 			<Modal
 				okText="확인"
 				isOpen={props.visible}
@@ -49,11 +55,18 @@ function RenderModal(props) {
 							showPlayButton={false}
 							disableThumbnailScroll={true}
 						/>
-						;
 					</div>
+					<hr/>
 					<div className="modal_info">
-						<RenderDescription post={props.post} />
+						<div>
+							<RenderDescription post={props.post} />
+						</div>
+
+						<br />
+						<LikeDislikes modal useId={localStorage.getItem('userId')} commentId={props.post._id} />
+						
 					</div>
+
 				</div>
 			</Modal>
 		</div>

@@ -19,16 +19,21 @@ const SNSPostsSchema = mongoose.Schema({
 	views: {
 		type: Number,
 		default: 0,
-	}, 
-});
+	},
+// });
+
+
+},{ timestamps : true });
 
 SNSPostsSchema.index({
-    text: 'text'
+    writer : 'text',
+    text : 'text'
 },{
-    weights: {
+    weights : {
+        writer : 3,
         text : 5
     }
-})
+}) 
 
 const SNSPost = mongoose.model('SNSPost', SNSPostsSchema);
 

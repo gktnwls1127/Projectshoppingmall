@@ -1,7 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import swal from 'sweetalert';
-import SearchFeature from './SearchFeature'
+import SearchFeature from './Sections/SearchFeature'
+import { Layout, Menu } from 'antd';
+import { DollarOutlined, UserOutlined, ShopOutlined, SolutionOutlined, ContainerOutlined } from '@ant-design/icons';
+
+const { Header, Content, Footer, Sider } = Layout;
 
 function UserPage(props) {
 
@@ -104,30 +108,68 @@ function UserPage(props) {
 
     return (
         <div>
-            <div style={{display: 'flex', justifyContent: 'flex-end', margin: '1rem auto'}}>
+            <Layout style={{ minHeight: '100vh' }}>
+                <Sider
+                breakpoint="lg"
+                collapsedWidth="0"
+                onBreakpoi nt={broken => {
+                    console.log(broken);
+                }}
+                onCollapse={(collapsed, type) => {
+                    console.log(collapsed, type);
+                }}
+                >
+                <div className="logo" />
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                    <Menu.Item key="1" icon={<UserOutlined />}>
+                    <a href='/admin'>사용자</a>
+                    </Menu.Item>
+                    <Menu.Item key="2" icon={<ShopOutlined />}>
+                    <a href='/admin/product'>상품</a>
+                    </Menu.Item>
+                    <Menu.Item key="3" icon={<SolutionOutlined />}>
+                    <a href='/admin/sns'>SNS 게시물</a>
+                    </Menu.Item>
+                    <Menu.Item key="4" icon={<DollarOutlined />}>
+                    <a href='/admin/sales'>매출</a>
+                    </Menu.Item>
+                </Menu>
+                </Sider>
+                <Layout className="site-layout">
+                <Header className="site-layout-background" style={{ padding: 0 }} />
+                <Content style={{ margin: '0 16px' }}>
+                    <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+                            <h1>USER LIST</h1>
+                    <div style={{display: 'flex', justifyContent: 'flex-end', margin: '1rem auto'}}>
 
-            <SearchFeature 
-                refreshFunction={updateSearchTerm}
-            />
+                    <SearchFeature 
+                        refreshFunction={updateSearchTerm}
+                    />
 
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                    <th>UserID</th>
-                        <th>name</th>
-                        <th>email</th>
-                        <th>role</th>
-                        <th>remove</th>
-                    </tr>
-                </thead>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>UserID</th>
+                                <th>name</th>
+                                <th>email</th>
+                                <th>role</th>
+                                <th>remove</th>
+                            </tr>
+                        </thead>
 
-                <tbody>
-                    {renderItems()}
-                </tbody>
-                
-            </table>
+                        <tbody>
+                            {renderItems()}
+                        </tbody>
+                        
+                    </table>
+                </div>
+                   
+                </Content>
+                </Layout>
+            </Layout>
         </div>
+            
     )
 }
 

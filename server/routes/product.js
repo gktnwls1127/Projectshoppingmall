@@ -23,7 +23,7 @@ router.post('/image', (req, res) => {
 
 	upload(req, res, (err) => {
 		if (err) {
-			return req.json({ success: false, err }); 
+			return req.json({ success: false, err });
 		}
 		return res.json({
 			success: true,
@@ -49,7 +49,7 @@ router.post('/products', (req, res) => {
 	let limit = req.body.limit ? parseInt(req.body.limit) : 1000;
 	let skip = req.body.skip ? parseInt(req.body.skip) : 0;
 	let term = req.body.searchTerm;
-	
+
 	let findArgs = {};
 
 	if (term) {
@@ -84,11 +84,10 @@ router.post('/sellerProducts', (req, res) => {
 	let limit = req.body.limit ? parseInt(req.body.limit) : 1000;
 	let skip = req.body.skip ? parseInt(req.body.skip) : 0;
 	let term = req.body.searchTerm;
-	let writer = req.body.writer
-	 
+	let writer = req.body.writer;
 
 	if (term) {
-		Product.find({ writer: writer})
+		Product.find({ writer: writer })
 			.find({ $text: { $search: term } })
 			.populate('wirter')
 			.skip(skip)
@@ -100,20 +99,15 @@ router.post('/sellerProducts', (req, res) => {
 					.json({ success: true, productInfo, postSize: productInfo.length });
 			});
 	} else {
-		
-		Product.find({ writer: writer})
+		Product.find({ writer: writer })
 			.populate('wirter')
 			.skip(skip)
 			.limit(limit)
 			.exec((err, productInfo) => {
 				if (err) return res.status(400).json({ success: false, err });
-				return res
-					.status(200)
-					.json({ success: true, productInfo});
+				return res.status(200).json({ success: true, productInfo });
 			});
-	
 	}
-
 });
 
 router.get('/products_by_id', (req, res) => {
@@ -126,8 +120,8 @@ router.get('/products_by_id', (req, res) => {
 		let ids = req.query.id.split(',');
 		productIds = [];
 		productIds = ids.map((item) => {
-			return item;  
-		}); 
+			return item;
+		});
 	}
 
 	//productId를 이용해서 DB에서 productId와 같은 상품의 정보를 가져온다.
@@ -136,8 +130,7 @@ router.get('/products_by_id', (req, res) => {
 		.exec((err, product) => {
 			if (err) return res.status(400).send(err);
 			return res.status(200).send(product);
-	});
-	
+		});
 });
 
 router.post('/removeProduct', (req, res) => {

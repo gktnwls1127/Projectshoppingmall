@@ -1,7 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import swal from 'sweetalert';
-import SearchFeature from './SearchFeature'
+import SearchFeature from './Sections/SearchFeature'
+import { Layout, Menu } from 'antd';
+import { DollarOutlined, UserOutlined, ShopOutlined, SolutionOutlined, ContainerOutlined } from '@ant-design/icons';
+
+const { Header, Content, Footer, Sider } = Layout;
 
 function SellerProducts(props) {
 
@@ -105,31 +109,67 @@ function SellerProducts(props) {
 
     return (
         <div>
+            <Layout style={{ minHeight: '100vh' }}>
+                <Sider
+                breakpoint="lg"
+                collapsedWidth="0"
+                onBreakpoi nt={broken => {
+                    console.log(broken);
+                }}
+                onCollapse={(collapsed, type) => {
+                    console.log(collapsed, type);
+                }}
+                >
+                <div className="logo" />
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']}>
+                    <Menu.Item key="1" icon={<UserOutlined />}>
+                    <a href='/admin'>사용자</a>
+                    </Menu.Item>
+                    <Menu.Item key="2" icon={<ShopOutlined />}>
+                    <a href='/admin/product'>상품</a>
+                    </Menu.Item>
+                    <Menu.Item key="3" icon={<SolutionOutlined />}>
+                    <a href='/admin/sns'>SNS 게시물</a>
+                    </Menu.Item>
+                    <Menu.Item key="4" icon={<DollarOutlined />}>
+                    <a href='/admin/sales'>매출</a>
+                    </Menu.Item>
+                </Menu>
+                </Sider>
+                <Layout className="site-layout">
+                <Header className="site-layout-background" style={{ padding: 0 }} />
+                <Content style={{ margin: '0 16px' }}>
+                    <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+                        <h1>PRODUCT LIST</h1>
+                            <div style={{display: 'flex', justifyContent: 'flex-end', margin: '1rem auto'}}>
+                                <SearchFeature 
+                                    refreshFunction={updateSearchTerm}
+                                />
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                    <th>상품아이디</th>
+                                        <th>상품명</th>
+                                        <th>가격</th>
+                                        <th>카테고리</th>
+                                        <th style={{color : 'blue' , fontStyle: 'bodered'}}>판매개수</th>
+                                        <th style={{color : 'red' , fontStyle: 'bodered'}}>판매실적</th>
+                                        <th>설명</th>
+                                        <th>삭제</th>
+                                    </tr>
+                                </thead>
 
-            <div style={{display: 'flex', justifyContent: 'flex-end', margin: '1rem auto'}}>
-                <SearchFeature 
-                    refreshFunction={updateSearchTerm}
-                />
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                    <th>상품아이디</th>
-                        <th>상품명</th>
-                        <th>가격</th>
-                        <th>카테고리</th>
-                        <th style={{color : 'blue' , fontStyle: 'bodered'}}>판매개수</th>
-                        <th style={{color : 'red' , fontStyle: 'bodered'}}>판매실적</th>
-                        <th>설명</th>
-                        <th>삭제</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {renderItems()}
-                </tbody>
-                
-            </table>
+                                <tbody>
+                                    {renderItems()}
+                                </tbody>
+                                
+                            </table>
+                    </div>
+                </Content>
+                </Layout>
+            </Layout>
+            
         </div>
     )
 }

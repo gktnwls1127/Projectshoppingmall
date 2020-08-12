@@ -1,6 +1,6 @@
 .modal_container {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	width: 955px;
 	height: 851px;
 	.modal_image {
@@ -18,5 +18,8 @@
 			width: 20%;
 			height: 10%;
 		}
+	}
+	.modal_info{
+		width: 400px;
 	}
 }
