@@ -24,8 +24,11 @@ import ShoesCategory from './views/Shoppingmall/MenuPage/ShoesCategory';
 import HistoryPage from './views/Shoppingmall/HistoryPage/HistoryPage'
 import SellerPage from './views/SellerPage/SellerPage';
 import Admin from './views/Admin/adminPage'
-
 import SearchPage from './views/NavBar/SearchBar/SearchPage'
+
+
+import UserPage from './views/UserPage/UserPage'
+
 
 function App() {
 	return (
@@ -48,6 +51,9 @@ function App() {
 					<Route exact path="/sns/posts" component={Auth(Sns_posts, true)} />
 
 					<Route exact path="/search/:keyword" component={Auth(SearchPage,null)}/>
+
+					
+					<Route exact path="/user/:userId" component={Auth(UserPage,null)}/>
 
 
 

@@ -36,7 +36,7 @@ function RenderText(props) {
 	return (
 		<div className="text_container">
 			<div className="text_user_name">
-				<h4>{props.post.writer.name}</h4>
+				<a style={{color : "black"}} alt="유저페이지" rel="noopener noreferer" href={`/user/${props.post.writer._id}`}>{props.post.writer.name} </a>
 			</div>
 			<div className="text_main" dangerouslySetInnerHTML={renderText()}></div>
 			<div className="text_views">{props.post.views} views</div>
