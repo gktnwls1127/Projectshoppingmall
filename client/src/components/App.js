@@ -21,12 +21,15 @@ import PantsCategory from './views/Shoppingmall/MenuPage/PantsCategory';
 import OnepieceCategory from './views/Shoppingmall/MenuPage/OnePieceCategory';
 import SkirtCategory from './views/Shoppingmall/MenuPage/SkirtCategory';
 import ShoesCategory from './views/Shoppingmall/MenuPage/ShoesCategory';
-import HistoryPage from './views/Shoppingmall/HistoryPage/HistoryPage'
+import HistoryPage from './views/Shoppingmall/HistoryPage/HistoryPage';
 import SellerPage from './views/SellerPage/SellerPage';
 import SellerProducts from './views/Admin/Sections/SellerProducts';
 import UserPage from './views/Admin/Sections/UserPage';
 import SNSList from './views/Admin/Sections/SNSList';
 import DashBoard from './views/Admin/Sections/DashBoard';
+import SearchPage from './views/NavBar/SearchBar/SearchPage';
+
+import UserPage from './views/UserPage/UserPage';
 
 function App() {
 	return (
@@ -48,7 +51,13 @@ function App() {
 					<Route exact path="/sns" component={Auth(Sns_LandingPage, null)} />
 					<Route exact path="/sns/posts" component={Auth(Sns_posts, true)} />
 
-					{/* <Route exact path="/!#" component={Auth(Sns_LandingPage/!#, true)} /> */}
+					<Route
+						exact
+						path="/search/:keyword"
+						component={Auth(SearchPage, null)}
+					/>
+
+					<Route exact path="/user/:userId" component={Auth(UserPage, null)} />
 
 					<Route
 						exact
@@ -106,12 +115,20 @@ function App() {
 						path="/shoppingmall/shoes"
 						component={Auth(ShoesCategory, null)}
 					/>
-          			<Route exact path="/shoppingmall/history" component={Auth(HistoryPage, true)} />
-          			<Route exact path="/seller" component={Auth(SellerPage, true)} />
-          			<Route exact path="/admin" component={Auth(DashBoard, true)} />
-          			<Route exact path="/admin/user" component={Auth(UserPage, true)} />
-          			<Route exact path="/admin/product" component={Auth(SellerProducts, true)} />
-          			<Route exact path="/admin/sns" component={Auth(SNSList, true)} />
+					<Route
+						exact
+						path="/shoppingmall/history"
+						component={Auth(HistoryPage, true)}
+					/>
+					<Route exact path="/seller" component={Auth(SellerPage, true)} />
+					<Route exact path="/admin" component={Auth(DashBoard, true)} />
+					<Route exact path="/admin/user" component={Auth(UserPage, true)} />
+					<Route
+						exact
+						path="/admin/product"
+						component={Auth(SellerProducts, true)}
+					/>
+					<Route exact path="/admin/sns" component={Auth(SNSList, true)} />
 				</Switch>
 			</Router>
 		</div>

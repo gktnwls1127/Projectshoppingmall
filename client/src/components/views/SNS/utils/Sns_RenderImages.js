@@ -25,6 +25,7 @@ function Sns_RenderImages(props) {
 		snapshots.map((snapshot, index) => (
 			<div key={index}>
 				<img
+					
 					id={props.post._id}
 					style={{ borderRadius: '16px' }}
 					onClick={onImageClick}
