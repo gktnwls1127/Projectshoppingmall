@@ -10,23 +10,22 @@ import SearchWord from './SearchWord/SearchWord'
 function Mypage(props) {
 	const user = useSelector((state) => state.user.userData);
 	const [posts, setPosts] = useState([]);
-
 	const [Word, setWord] = useState("")
-
-
+	
 	useEffect(() => {
 		if (user) {
 			axios.get(`/api/sns/getsnsposts?id=${user._id}`)
-				.then((response) => {
-					if (response.data.success) {
-						setPosts(response.data.posts);
-					} else {
-						alert('포스트 불러오기에 실패했습니다.');
-					}
-				});
+			.then((response) => {
+				if (response.data.success) {
+					setPosts(response.data.posts);
+				} else {
+					alert('포스트 불러오기에 실패했습니다.');
+				}
+			});
 		}
+		
 	}, [user]);
-
+	
 
 	const getWord =(body)=>{
 		

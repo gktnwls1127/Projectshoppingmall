@@ -29,7 +29,6 @@ function RenderPosts(props) {
 									cover={<RenderImages post={post} />}
 								>
 									<Meta
-										
 										avatar={<Avatar src={renderProfileImage(post)} />}
 										description={<RenderText post={post} />}
 									/>
