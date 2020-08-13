@@ -57,7 +57,11 @@ function App() {
 						component={Auth(SearchPage, null)}
 					/>
 
-					<Route exact path="/user/:userId" component={Auth(UserPage_SNS, null)} />
+					<Route
+						exact
+						path="/user/:userId"
+						component={Auth(UserPage_SNS, null)}
+					/>
 
 					<Route
 						exact
@@ -121,14 +125,22 @@ function App() {
 						component={Auth(HistoryPage, true)}
 					/>
 					<Route exact path="/seller" component={Auth(SellerPage, true)} />
-					<Route exact path="/admin" component={Auth(DashBoard, true)} />
-					<Route exact path="/admin/user" component={Auth(UserPage, true)} />
+					<Route exact path="/admin" component={Auth(DashBoard, true, true)} />
+					<Route
+						exact
+						path="/admin/user"
+						component={Auth(UserPage, true, true)}
+					/>
 					<Route
 						exact
 						path="/admin/product"
-						component={Auth(SellerProducts, true)}
+						component={Auth(SellerProducts, true, true)}
 					/>
-					<Route exact path="/admin/sns" component={Auth(SNSList, true)} />
+					<Route
+						exact
+						path="/admin/sns"
+						component={Auth(SNSList, true, true)}
+					/>
 				</Switch>
 			</Router>
 		</div>

@@ -24,9 +24,8 @@ function RegisterPage(props) {
 		setConfirmPassword(event.currentTarget.value);
 	};
 	const onSubmitHandler = (event) => {
-		event.preventDefault(); //page가 refresh 되는 것을 막아줌
+		event.preventDefault();
 		if (Password !== ConfirmPassword) {
-			//return을 시켜주므로, 밑에 확인과정으로 진입하지 못함.
 			return alert('비밀번호와 비밀번호 확인은 같아야 합니다.');
 		}
 		let body = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import axios from 'axios';
 import LandingPageNav from './sections/LandingPageNav';
 import LoginHandler from './sections/LoginHandler';
@@ -9,7 +9,7 @@ import LogoutHandler from './sections/LogoutHandler';
 import UpdateNav from './sections/UpdateNav';
 import './NavBar.scss';
 import SellerUpload from './sections/SellerUpload';
-import SearchBar from './SearchBar/Search/SearchBar'
+import SearchBar from './SearchBar/Search/SearchBar';
 import CartPageIcon from './sections/CartPageIcon';
 
 function NavBar(props) {
@@ -33,17 +33,11 @@ function NavBar(props) {
 		}
 	};
 
-
-	const Goadmin = ()=>{
-		if(userData.role === 1){
-			props.history.push(`/admin`) //지정된 경로로 이동
-		}else{
-			console.log(456);
-		}
-	}
-
-
-
+	const adminRouter = () => (
+		<div>
+			<Link to="/admin">관리자페이지</Link>
+		</div>
+	);
 
 	return (
 		<div className="nav_container">
@@ -51,8 +45,7 @@ function NavBar(props) {
 				<LandingPageNav />
 			</div>
 			<div>
-
-				<SearchBar/>
+				<SearchBar />
 			</div>
 			<div>
 				{userData && userData.isAuth && <CartPageIcon />}
@@ -62,7 +55,7 @@ function NavBar(props) {
 				)}
 				{userData && userData.isAuth && <UpdateNav />}
 				{userData && userData.isAuth && boardHandler()}
-				<button onClick={Goadmin}>관리자 모드</button>
+				{userData && userData.role == 1 && adminRouter()}
 			</div>
 		</div>
 	);

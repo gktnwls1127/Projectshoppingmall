@@ -75,16 +75,6 @@ router.get('/getsnsposts', (req, res) => {
 	}
 });
 
-// 원래 잘 돌아 가던  루트 실패시 이거 살리기
-// router.get('/getsnsposts', (req, res) => {
-//     SNSPost.find({ writer: req.query.id })
-//         .populate('writer')
-//         .exec((err, posts) => {
-//             if (err) res.json({ success: false, err });
-//             res.status(200).json({ success: true, posts });
-//         });
-// });
-
 router.post('/addcomment', (req, res) => {
 	const snsComent = new SNSComment(req.body);
 	snsComent.save((err, comment) => {

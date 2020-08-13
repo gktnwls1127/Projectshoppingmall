@@ -15,7 +15,7 @@ function LoginPage(props) {
 		setPassword(event.currentTarget.value);
 	};
 	const onSubmitHandler = (event) => {
-		event.preventDefault(); //page가 refresh 되는 것을 막아줌
+		event.preventDefault();
 		let body = {
 			email: Email,
 			password: Password,
