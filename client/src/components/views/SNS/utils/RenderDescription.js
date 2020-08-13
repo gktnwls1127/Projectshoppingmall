@@ -134,11 +134,18 @@ function RenderDescription(props) {
 		});
 	};
 
+
+
+
+
+
 	return (
 		<div className="description_container">
 			<div className="post_info">
 				<div className="post_user_info">{renderPostUser()}</div>
-				<div className="post_description"></div>
+				
+
+				{/* <div className="post_description"></div> */}
 			</div>
 			<hr />
 			<div className="comments">

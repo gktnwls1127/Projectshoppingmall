@@ -9,7 +9,7 @@ const { Meta } = Card;
 
 function ReviewCards() {
 	const [posts, setPosts] = useState([]);
-
+	
 	const limit = 4;
 	let skip = 0;
 
@@ -19,7 +19,7 @@ function ReviewCards() {
 
 	const getPosts = () => {
 		axios
-			.get(`/api/sns/getposts?skip=${skip} &limit=${limit}`)
+			.get(`/api/sns/getposts?skip=${skip}&limit=${limit}`)
 			.then((response) => {
 				if (response.data.success) {
 					if (response.data.posts) {
@@ -41,8 +41,9 @@ function ReviewCards() {
 	};
 
 	const renderPosts = (posts) =>
-		posts.map((post) => (
-			<Col key={post._id} lg={6} xs={24}>
+		posts.map((post) => { // (
+			if (post && post.writer) {  // 수정한 내용 원래는 없음
+			return <Col key={post._id} lg={6} xs={24}>
 				<Card
 					style={{
 						width: 250,
@@ -57,8 +58,8 @@ function ReviewCards() {
 					/>
 				</Card>
 			</Col>
-		));
-
+				}// 수정한 내용
+		}); // ))
 	return ( 
 		<div>
 			<section className="hot_section" style={{ backgroundColor: 'black' }}>

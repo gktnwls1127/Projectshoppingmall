@@ -36,6 +36,7 @@ router.get('/getposts', auth, async (req, res) => {
 		.cache({
 			key: req.user._id,
 		});
+	
 	res.status(200).json({ success: true, posts });
 });
 
@@ -91,7 +92,7 @@ router.get('/getcomments', (req, res) => {
 		});
 });
 router.post('/deletecomment', (req, res) => {
-	console.log(req.body);
+	
 	SNSComment.findOneAndDelete({ _id: req.body.id }, (err) => {
 		if (err) res.status(400).json({ success: false, err });
 		res.status(200).json({ success: true });
@@ -119,12 +120,13 @@ router.post('/adminSNS', (req, res) => {
 	}
 });
 
-router.post('/removeSNS', (req, res) => {
+router.post('/removeSNS', auth, clearCache, (req, res) => {
 	SNSPost.findOneAndDelete({ _id: req.body.id }, (err) => {
 		if (err) res.json({ success: false, err });
 		res.status(200).json({ success: true });
 	});
 });
+
 router.post('/getsearch', (req, res) => {
 	let term = req.body.searchTerm;
 

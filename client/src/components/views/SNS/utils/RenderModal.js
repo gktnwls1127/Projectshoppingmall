@@ -3,13 +3,19 @@ import Modal from 'react-modal';
 import ImageGallery from 'react-image-gallery';
 import RenderDescription from './RenderDescription';
 import LikeDislikes from './LikeDislikes'
-
+import axios from 'axios'
+import swal from 'sweetalert';
 import './RenderModal.scss';
+
+
+import { useSelector } from 'react-redux';
+
+
 
 const customStyles = {
 	overlay: {
 		opacity: 1,
-		position : "fixed"
+		position: "fixed"
 	},
 	content: {
 		margin: 'auto',
@@ -21,9 +27,20 @@ const customStyles = {
 
 };
 
-//image galary - thumbnail, original props.snapshots
 
 function RenderModal(props) {
+
+
+
+
+
+	const user = useSelector((state) => state.user.userData);
+
+
+
+
+
+
 	useEffect(() => {
 		Modal.setAppElement('#root');
 	}, []);
@@ -37,8 +54,36 @@ function RenderModal(props) {
 			thumbnail: `http://localhost:5000/${snapshot}`,
 		});
 	});
-	//test1
-	// const commentId = props.match.parmas.commentId
+
+
+
+	const removeItem = (snsId) => {
+
+		const data = {
+			id: snsId,
+		};
+
+		swal({
+			title: '정말 삭제하시겠습니까?',
+			text: '확인을 누르면 해당 포스트정보가 사라지며, 복구 할 수 없습니다.',
+			icon: 'warning',
+			buttons: true,
+			dangerMode: true,
+		}).then((willDelete) => {
+			if (willDelete) {
+				axios.post('/api/sns/removeSNS', data).then((response) => {
+					if (response.data.success) {
+						swal('게시물 삭제에 성공했습니다.');
+					} else {
+						swal('게시물 삭제에 실패했습니다.');
+					}
+				});
+			} else {
+				swal('취소하셨습니다.');
+			}
+		});
+
+	}
 
 	return (
 		<div className="aaa">
@@ -56,7 +101,7 @@ function RenderModal(props) {
 							disableThumbnailScroll={true}
 						/>
 					</div>
-					<hr/>
+					<hr />
 					<div className="modal_info">
 						<div>
 							<RenderDescription post={props.post} />
@@ -64,7 +109,20 @@ function RenderModal(props) {
 
 						<br />
 						<LikeDislikes modal useId={localStorage.getItem('userId')} commentId={props.post._id} />
-						
+
+
+
+						{user && user._id === props.post.writer._id && (
+							<button onClick={() => removeItem(props.post._id)}>삭제</button>
+						)}
+
+
+						{/* {props && props.post._id == props.post._id && (
+				<button onClick={() => deleteComment(comment._id)}>x</button>
+				)} */}
+
+
+
 					</div>
 
 				</div>

@@ -31,6 +31,7 @@ function RenderPosts(props) {
 									<Meta
 										avatar={<Avatar src={renderProfileImage(post)} />}
 										description={<RenderText post={post} />}
+										
 									/>
 									<Comment post={post} />
 								</Card>
