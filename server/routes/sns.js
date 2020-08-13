@@ -100,6 +100,13 @@ router.get('/getcomments', (req, res) => {
 			else res.status(200).json({ success: true, comments });
 		});
 });
+router.post('/deletecomment', (req, res) => {
+	console.log(req.body);
+	SNSComment.findOneAndDelete({ _id: req.body.id }, (err) => {
+		if (err) res.status(400).json({ success: false, err });
+		res.status(200).json({ success: true });
+	});
+});
 
 router.post('/adminSNS', (req, res) => {
 	let term = req.body.searchTerm;
