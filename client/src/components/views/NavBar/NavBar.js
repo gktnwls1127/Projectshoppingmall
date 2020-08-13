@@ -33,12 +33,25 @@ function NavBar(props) {
 		}
 	};
 
+
+	const Goadmin = ()=>{
+		if(userData.role === 1){
+			props.history.push(`/admin`) //지정된 경로로 이동
+		}else{
+			console.log(456);
+		}
+	}
+
+
+
+
 	return (
 		<div className="nav_container">
 			<div>
 				<LandingPageNav />
 			</div>
 			<div>
+
 				<SearchBar/>
 			</div>
 			<div>
@@ -49,7 +62,7 @@ function NavBar(props) {
 				)}
 				{userData && userData.isAuth && <UpdateNav />}
 				{userData && userData.isAuth && boardHandler()}
-				
+				<button onClick={Goadmin}>관리자 모드</button>
 			</div>
 		</div>
 	);
