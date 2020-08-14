@@ -26,7 +26,7 @@ function ProductCardBlock(props) {
     }, [userInfo])
 
     const getProduct = (body) => {
-        axios.post('/api/product/products', body)
+        axios.post('/api/product/sellerProducts', body)
             .then(response => {
                 if(response.data.success) {
                     setProducts(response.data.productInfo)

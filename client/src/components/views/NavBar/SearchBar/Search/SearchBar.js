@@ -23,7 +23,7 @@ function SearchBar(props) {
             <Search
              placeholder="검색어를 입력하세요"
              onSearch={SearchNav}
-             style={{ width: 200 }}
+             style={{ width: 800 }}
             />
         </div>
     )

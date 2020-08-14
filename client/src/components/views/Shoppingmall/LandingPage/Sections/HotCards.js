@@ -39,7 +39,7 @@ function HotCards() {
 
     const renderCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
 
-        return <Col lg={6} md={6} xs={6}>
+        return <Col lg={6} md={8} xs={12}>
             <Card 
                 style ={{width:'320px', height: '435px'}}
                 hoverable={true}
@@ -56,7 +56,7 @@ function HotCards() {
     const outerCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
         if(product.continents === 1) {
 
-            return <Col lg={6} md={6} xs={6}>
+            return <Col lg={6} md={8} xs={12}>
                 <Card 
                     style ={{width:'320px', height: '435px'}}
                     hoverable={true}
@@ -73,7 +73,7 @@ function HotCards() {
 
     const shirtCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
         if(product.continents === 2) {
-            return <Col lg={6} md={6} xs={6}>
+            return <Col lg={6} md={8} xs={12}>
                 <Card 
                     style ={{width:'320px', height: '435px'}}
                     hoverable={true}
@@ -90,7 +90,7 @@ function HotCards() {
 
     const pantsCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
         if(product.continents === 3) {
-            return <Col lg={6} md={6} xs={6}>
+            return <Col lg={6} md={8} xs={12}>
                 <Card 
                     style ={{width:'320px', height: '435px'}}
                     hoverable={true}
@@ -107,7 +107,7 @@ function HotCards() {
 
     const onepeiceCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
         if(product.continents === 4) {
-            return <Col lg={6} md={6} xs={6}>
+            return <Col lg={6} md={8} xs={12}>
                 <Card 
                     style ={{width:'320px', height: '435px'}}
                     hoverable={true}
@@ -124,7 +124,7 @@ function HotCards() {
 
     const skirtCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
         if(product.continents === 5) {
-            return <Col lg={6} md={6} xs={6}>
+            return <Col lg={6} md={8} xs={12}>
                 <Card 
                     style ={{width:'320px', height: '435px'}}
                     hoverable={true}
@@ -141,7 +141,7 @@ function HotCards() {
 
     const shoesCards = Products.sort((a,b) => b.sold - a.sold).map((product, index) => {
         if(product.continents === 6) {
-            return <Col lg={6} md={6} xs={6}>
+            return <Col lg={6} md={8} xs={12}>
                 <Card 
                     style ={{width:'320px', height: '435px'}}
                     hoverable={true}
