@@ -28,8 +28,11 @@ import UserPage from './views/Admin/Sections/UserPage';
 import SNSList from './views/Admin/Sections/SNSList';
 import DashBoard from './views/Admin/Sections/DashBoard';
 import SearchPage from './views/NavBar/SearchBar/SearchPage';
-
 import UserPage_SNS from './views/UserPage/UserPage';
+
+
+import EditPostPage from './views/EditPostPage/EditPostPage'
+
 
 function App() {
 	return (
@@ -43,6 +46,15 @@ function App() {
 					<Route exact path="/register" component={Auth(RegisterPage, false)} />
 					<Route exact path="/mypage" component={Auth(Mypage, true)} />
 					<Route exact path="/update" component={Auth(UpdateProfile, true)} />
+					
+					
+					
+					<Route exact path="/edit/:info" component={Auth(EditPostPage, true)} />
+					
+					
+					
+					
+					
 					<Route
 						exact
 						path="/change_password"

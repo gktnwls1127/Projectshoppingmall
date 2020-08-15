@@ -52,6 +52,7 @@ const onRoleAdminHandler = (_id) => {
         swal("관리자 변경완료");
         
         getUsers();
+        console.log(response.data);
       } else {
         swal("실패");
       }
@@ -68,11 +69,27 @@ const onRoleAdminHandler = (_id) => {
       if (response.data.success) {
         swal("회원등급 변경완료");
         getUsers();
-      } else {
+        console.log(response.data);
+    } else {
         swal("실패");
-      }
+    }
+});
+};
+//판매자
+const onRoleSellerHandler = (_id) => {
+    const variables = {
+        _id,
+    };
+    axios.post("/api/users/roleSeller",variables).then((response) => {
+        if (response.data.success) {
+            swal("회원등급 변경완료");
+            getUsers();
+            console.log(response.data);
+        } else {
+            swal("실패");
+        }
     });
-  };
+};
 
 
 
@@ -145,8 +162,13 @@ const onRoleAdminHandler = (_id) => {
                   >
                     관리자
                   </Button>
+                 
                   <Button type="primary" onClick={() => onRoleUserHandler(user._id)}>
                     일반회원
+                  </Button>
+                 
+                  <Button type="primary" onClick={() => onRoleSellerHandler(user._id)}>
+                    판매자
                   </Button>
                 </td>
                 <td>

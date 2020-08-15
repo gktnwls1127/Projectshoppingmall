@@ -7,7 +7,7 @@ import axios from 'axios'
 import swal from 'sweetalert';
 import './RenderModal.scss';
 
-
+import { withRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 
@@ -30,23 +30,18 @@ const customStyles = {
 
 function RenderModal(props) {
 
-
-
-
-
 	const user = useSelector((state) => state.user.userData);
-
-
-
-
-
 
 	useEffect(() => {
 		Modal.setAppElement('#root');
 	}, []);
+
+
 	const handleCancel = () => {
 		props.setVisible(false);
 	};
+
+	
 	let snapshots = [];
 	props.post.snapshots.map((snapshot) => {
 		snapshots.push({
@@ -85,6 +80,13 @@ function RenderModal(props) {
 
 	}
 
+
+	const editPage = (info)=>{
+		props.history.push(`/edit/${info._id}`);
+	}
+	
+
+
 	return (
 		<div className="aaa">
 			<Modal
@@ -115,12 +117,10 @@ function RenderModal(props) {
 						{user && user._id === props.post.writer._id && (
 							<button onClick={() => removeItem(props.post._id)}>삭제</button>
 						)}
-
-
-						{/* {props && props.post._id == props.post._id && (
-				<button onClick={() => deleteComment(comment._id)}>x</button>
-				)} */}
-
+						
+						{user && user._id === props.post.writer._id && (
+							<button onClick={() => editPage(props.post)}>수정</button>
+						)}
 
 
 					</div>
@@ -131,4 +131,4 @@ function RenderModal(props) {
 	);
 }
 
-export default RenderModal;
+export default withRouter(RenderModal);

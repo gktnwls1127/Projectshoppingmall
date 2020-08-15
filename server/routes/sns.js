@@ -148,4 +148,34 @@ router.post('/getsearch', (req, res) => {
 	}
 });
 
+
+router.post('/edit', (req, res) => {
+		SNSPost.find({ _id : req.body.edit })
+			.populate('writer')
+			.exec((err, posts) => {
+				if (err) res.json({ success: false, err });
+				res.status(200).json({ success: true, posts });
+			});
+});
+
+
+router.post("/editText",(req, res) => {
+
+	let prevText = req.body.previous;
+	let newText = req.body.newest;
+
+
+	SNSPost.findOneAndUpdate(
+      { text:  prevText },   	
+	  { $set: { text: newText } },
+	  { new: true })
+	  .populate('writer')
+	  .exec((err, posts) => {
+	  if (err) return res.status(400).json({ success: false, posts });
+	  return res.status(200).json({ success: true, posts });
+	});
+  });
+
+
+
 module.exports = router;
