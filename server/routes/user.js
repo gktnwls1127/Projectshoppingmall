@@ -283,7 +283,7 @@ router.post('/admin', (req, res) => {
 			res.status(200).json({ success : true, users});
 		})
 	}
-});
+}); 
 
 
 router.post('/uploadImages', upload.single('files'), (req, res) => {
