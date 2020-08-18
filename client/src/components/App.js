@@ -95,7 +95,7 @@ function App() {
 						path="/product/:productId"
 						component={Auth(DetailPage, null)}
 					/>
-					<Route exact path="/user/cart" component={Auth(CartPage, true)} />
+					<Route exact path="/user/cart/cartpage" component={Auth(CartPage, true)} />
 					<Route
 						exact
 						path="/shoppingmall/best_item"

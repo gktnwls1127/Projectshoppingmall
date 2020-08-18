@@ -12,7 +12,7 @@ function CartPageIcon() {
         <div className="cartNav_container">
             <button>
             <Badge count={user.userData && user.userData.cart.length}> 
-				<Link to="/user/cart" style={{  color:'#667777'}}>
+				<Link to="/user/cart/cartpage" style={{  color:'#667777'}}>
                     <ShoppingCartOutlined style={{ fontSize: 30, }} />
 				</Link>
 	
