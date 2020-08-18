@@ -21,11 +21,15 @@ import PantsCategory from './views/Shoppingmall/MenuPage/PantsCategory';
 import OnepieceCategory from './views/Shoppingmall/MenuPage/OnePieceCategory';
 import SkirtCategory from './views/Shoppingmall/MenuPage/SkirtCategory';
 import ShoesCategory from './views/Shoppingmall/MenuPage/ShoesCategory';
-import HistoryPage from './views/Shoppingmall/HistoryPage/HistoryPage'
+import HistoryPage from './views/Shoppingmall/HistoryPage/HistoryPage';
 import SellerPage from './views/SellerPage/SellerPage';
-import Admin from './views/Admin/adminPage'
-import Footer from './views/Footer/Footer';
-import SearchPage from './views/NavBar/SearchBar/SearchPage'
+import SellerProducts from './views/Admin/SellerProducts';
+import adUserPage from './views/Admin/UserPage';
+import SNSList from './views/Admin/SNSList';
+import DashBoard from './views/Admin/DashBoard';
+import SearchPage from './views/NavBar/SearchBar/SearchPage';
+import Footer from './views/Footer/Footer'
+import UserPage from './views/UserPage/UserPage';
 
 function App() {
 	return (
@@ -107,13 +111,23 @@ function App() {
 						path="/shoppingmall/shoes"
 						component={Auth(ShoesCategory, null)}
 					/>
-          			<Route exact path="/shoppingmall/history" component={Auth(HistoryPage, true)} />
-          			<Route exact path="/seller" component={Auth(SellerPage, true)} />
-          			<Route exact path="/admin" component={Auth(Admin, true)} />
-					 
+					<Route
+						exact
+						path="/shoppingmall/history"
+						component={Auth(HistoryPage, true)}
+					/>
+					<Route exact path="/seller" component={Auth(SellerPage, true)} />
+					<Route exact path="/admin" component={Auth(DashBoard, true)} />
+					<Route exact path="/admin/user" component={Auth(adUserPage, true)} />
+					<Route
+						exact
+						path="/admin/product"
+						component={Auth(SellerProducts, true)}
+					/>
+					<Route exact path="/admin/sns" component={Auth(SNSList, true)} />
 				</Switch>
-				</Router>
-				<Footer />
+				<Footer/>
+			</Router>
 		</div>
 	);
 }

@@ -19,7 +19,7 @@ function RenderPosts(props) {
 				{props.posts.map((post) => {
 					if (post && post.writer) {
 						return (
-							<Col key={post._id} lg={6} xs={24}>
+							<Col key={post._id} lg={6} md={12}  xs={24}>
 								<Card
 									style={{
 										width: 250,
@@ -29,7 +29,6 @@ function RenderPosts(props) {
 									cover={<RenderImages post={post} />}
 								>
 									<Meta
-										
 										avatar={<Avatar src={renderProfileImage(post)} />}
 										description={<RenderText post={post} />}
 									/>

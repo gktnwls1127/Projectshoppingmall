@@ -43,17 +43,17 @@ const userSchema = mongoose.Schema({
     //token의 expiration date
     type: Number,
   }
-});
+},{ timestamps : true });
 
-userSchema.index({
+userSchema.index({ 
     name: 'text',
     email : 'text'
 },{
     weights: {
         name : 5,
-        email : 1
+        email : 3
     }
-})
+}) 
 
 //Schema를 Model로 감싸줌
 //user스키마를 저장하기 이전에 함수를 실행하는 것 -비밀번호 암호화를 하는데 사용.- 몽구스 내장함수

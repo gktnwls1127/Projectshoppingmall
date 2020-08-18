@@ -7,9 +7,14 @@ import "./RegisterLeft.scss";
 function RegisterLeft(props) {
 	const dispatch = useDispatch();
 
+	const [Name, setName] = useState('');
 	const [Email, setEmail] = useState('');
 	const [Password, setPassword] = useState('');
 	const [ConfirmPassword, setConfirmPassword] = useState('');
+	
+	const onNameHandler = (event) => {
+		setName(event.currentTarget.value);
+	};
 
 	const onEmailHandler = (event) => {
 		setEmail(event.currentTarget.value);
@@ -27,6 +32,7 @@ function RegisterLeft(props) {
 			return alert('비밀번호가 일치하지 않습니다.');
 		}
 		let body = {
+			name: Name,
 			email: Email,
 			password: Password,
 
@@ -46,13 +52,24 @@ function RegisterLeft(props) {
 		<div className="register_main_left">
 
 			<form onSubmit={onSubmitHandler}>
+		
+			<label htmlFor="name" className="input_wrapper" >
+					<input
+						type="name"
+						value={Name}
+						placeholder="Name"
+						onChange={onNameHandler}
+						className="info_input"
+						maxLength="32"
+					/>
+					</label>
 				<label htmlFor="id" className="input_wrapper" >
 					<input
 						type="email"
 						value={Email}
 						placeholder="Email"
 						onChange={onEmailHandler}
-						className="info_input"
+						className="info_input1"
 						maxLength="32"
 					/>
 
@@ -61,7 +78,7 @@ function RegisterLeft(props) {
 					<input
 						type="password"
 						value={Password}
-						placeholder="비밀번호 (최소 6자)"
+						placeholder="Password (최소 6자)"
 						onChange={onPasswordHandler}
 						className="info_input1"
 						maxLength="18"
@@ -71,7 +88,7 @@ function RegisterLeft(props) {
 					<input
 						type="password"
 						value={ConfirmPassword}
-						placeholder="비밀번호 확인"
+						placeholder="Confirm Password"
 						onChange={onConfirmPasswordHandler}
 						className="info_input"
 						maxLength="18"

@@ -9,7 +9,9 @@ function RenderText(props) {
 		preText.forEach((content) => {
 			if (typeof content !== 'undefined') {
 				if (content.charAt(0) === '#') {
-					postingText += `<a>${content} </a>`;
+					postingText += `<a href="/search/${content.substr(
+						1
+					)}">${content} </a>`;
 				} else {
 					postingText += content + ' ';
 				}
@@ -34,7 +36,7 @@ function RenderText(props) {
 	return (
 		<div className="text_container">
 			<div className="text_user_name">
-				<h4>{props.post.writer.name}</h4>
+				<a style={{color : "black"}} alt="유저페이지" rel="noopener noreferer" href={`/user/${props.post.writer._id}`}>{props.post.writer.name} </a>
 			</div>
 			<div className="text_main" dangerouslySetInnerHTML={renderText()}></div>
 			<div className="text_views">{props.post.views} views</div>

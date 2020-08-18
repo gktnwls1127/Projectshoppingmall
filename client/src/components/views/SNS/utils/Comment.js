@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
+import sanitize from 'sanitize-html';
 function Comment(props) {
+	const user = useSelector((state) => state.user.userData);
+
 	const [comments, setComments] = useState([]);
 
 	useEffect(() => {
@@ -12,7 +16,23 @@ function Comment(props) {
 			}
 		});
 	}, []);
+	const filterComment = (text) => {
+		let preText = text.split(' ');
+		let postingText = '';
 
+		preText.forEach((content) => {
+			if (typeof content !== 'undefined') {
+				if (content.charAt(0) === '#') {
+					postingText += `<a href="/search/${content.substr(
+						1
+					)}">${content} </a>`;
+				} else {
+					postingText += content + ' ';
+				}
+			}
+		});
+		return { __html: sanitize(postingText) };
+	};
 	const renderComments = () => {
 		if (comments.length >= 2) {
 			let slicedComments = comments.slice(0, 2);
@@ -24,7 +44,8 @@ function Comment(props) {
 						alt="유저이미지"
 					/>
 					<h3>{comment.writer.name}</h3>
-					<p>{comment.comment}</p>
+					<p dangerouslySetInnerHTML={filterComment(comment.comment)}></p>
+					{user && user._id == comment.writer._id && <button>x</button>}
 				</div>
 			));
 		} else if (comments.length == 1) {
@@ -36,7 +57,8 @@ function Comment(props) {
 						alt="유저이미지"
 					/>
 					<h3>{comment.writer.name}</h3>
-					<p>{comment.comment}</p>
+					<p dangerouslySetInnerHTML={filterComment(comment.comment)}></p>
+					{user && user._id == comment.writer._id && <button>x</button>}
 				</div>
 			));
 		} else {
