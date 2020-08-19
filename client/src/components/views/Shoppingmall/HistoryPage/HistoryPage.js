@@ -12,7 +12,7 @@ function HistoryPage() {
             </div>
             <br />
 
-            <table>
+            <table> 
                 <thead>
                     <tr>
                         <th>주문상품명</th>

@@ -323,7 +323,7 @@ router.post('/updatePassword', (req, res) => {
 					if (err) return res.json({ success: false, err });
 					res.status(200).json({ success: true, user });
 				}
-			);
+			); 
 		});
 	});
 });
