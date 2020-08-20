@@ -20,7 +20,7 @@ function HotCards() {
         }
 
         getProducts(body)
-
+  
     }, [])
 
     const getProducts = (body) => {

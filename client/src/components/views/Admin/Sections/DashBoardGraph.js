@@ -60,9 +60,7 @@ function DashBoardGraph() {
           .then(response => {
               if(response.data.success) {
                   const userBuy = response.data.users.map((user) => {
-                    user.history.map((history) => {
-                      return history
-                    })
+                    return user.history
                   })
                   userBuy.forEach(element => {
                     switch (element) {
@@ -118,21 +116,14 @@ function DashBoardGraph() {
             })
     }
 
-    const data1 = [
-        {
-          name: Date, sold: Sold
-        },
-        
-      ];
-
     return (
         <div>
             <Row justify="space-around">                
             <div>
                 <h1 style={{marginLeft: '50px'}}>판매량</h1><br/>
-                <LineChart width={750} height={500} data={data1}>
+                <LineChart width={750} height={500} data={Sold}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" padding={{ left: 30, right: 30 }} />
+                    <XAxis dataKey={Date} padding={{ left: 30, right: 30 }} />
                     <YAxis />
                     <Tooltip />
                     <Legend />

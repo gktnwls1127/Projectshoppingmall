@@ -9,7 +9,7 @@ const { Header, Content, Sider } = Layout;
 
 function SellerProducts(props) {
 
-    const [Products, setProducts] = useState([])
+    const [Products, setProducts] = useState([])  
     const [SearchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
