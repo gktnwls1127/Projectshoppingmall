@@ -41,7 +41,7 @@ function HotCards() {
 
         return (
             <Card 
-                style ={{width:'320px', height: '435px' , marginRight: '10px'}}
+                style ={{width:'280px', height: '400px' , marginRight: '10px', marginBottom : '20px'}}
                 hoverable={true}
                 cover={<a href={`/product/${product._id}`} > <ImageSlider images={product.images} /></a>}
             >
@@ -58,7 +58,7 @@ function HotCards() {
 
             return (
                 <Card 
-                    style ={{width:'320px', height: '435px', marginRight: '10px'}}
+                    style ={{width:'280px', height: '400px', marginRight: '10px', marginBottom : '20px'}}
                     hoverable={true}
                     cover={<a href={`/product/${product._id}`} > <ImageSlider images={product.images} /></a>}
                 >
@@ -75,7 +75,7 @@ function HotCards() {
         if(product.continents === 2) {
             return (
                 <Card 
-                    style ={{width:'320px', height: '435px', marginRight: '10px'}}
+                    style ={{width:'280px', height: '400px', marginRight: '10px', marginBottom : '20px'}}
                     hoverable={true}
                     cover={<a href={`/product/${product._id}`} > <ImageSlider images={product.images} /></a>}
                 >
@@ -92,7 +92,7 @@ function HotCards() {
         if(product.continents === 3) {
             return (
                 <Card 
-                    style ={{width:'320px', height: '435px', marginRight: '10px'}}
+                    style ={{width:'280px', height: '400px', marginRight: '10px', marginBottom : '20px'}}
                     hoverable={true}
                     cover={<a href={`/product/${product._id}`} > <ImageSlider images={product.images} /></a>}
                 >
@@ -109,7 +109,7 @@ function HotCards() {
         if(product.continents === 4) {
             return (
                 <Card 
-                    style ={{width:'320px', height: '435px', marginRight: '10px'}}
+                    style ={{width:'280px', height: '400px', marginRight: '10px', marginBottom : '20px'}}
                     hoverable={true}
                     cover={<a href={`/product/${product._id}`} > <ImageSlider images={product.images} /></a>}
                 >
@@ -126,7 +126,7 @@ function HotCards() {
         if(product.continents === 5) {
             return (
                 <Card 
-                    style ={{width:'320px', height: '435px', marginRight: '10px'}}
+                    style ={{width:'280px', height: '400px', marginRight: '10px', marginBottom : '20px'}}
                     hoverable={true}
                     cover={<a href={`/product/${product._id}`} > <ImageSlider images={product.images} /></a>}
                 >
@@ -144,7 +144,7 @@ function HotCards() {
         if(product.continents === 6) {
             return (
                 <Card 
-                    style ={{width:'320px', height: '435px', marginRight: '10px'}}
+                    style ={{width:'280px', height: '400px', marginRight: '10px', marginBottom : '20px'}}
                     hoverable={true}
                     cover={<a href={`/product/${product._id}`} > <ImageSlider images={product.images} /></a>}
                 >
@@ -166,7 +166,7 @@ function HotCards() {
                 <div>
                     <Tabs defaultActiveKey="1" centered style={{ width: '75%', margin : '5rem auto'}}>
                         <TabPane tab="전체" key="1">
-                            <div style={{ display : 'flex', justifyContent: 'start' , overflowX : 'auto'}}>
+                            <div style={{ display : 'flex', justifyContent: 'start' , overflowX : 'auto', overflowY: 'hidden'}}>
                                 <div width="0.5, 0.25" style={{display : 'flex', justifyContent: 'center'}} >
                                     {renderCards}                                    
                                 </div>
@@ -183,7 +183,7 @@ function HotCards() {
                             </div>
                         </TabPane>
                         <TabPane tab="아우터" key="2">
-                            <div style={{ display : 'flex', justifyContent: 'start' , overflowX : 'auto'}}>
+                            <div style={{ display : 'flex', justifyContent: 'start' , overflowX : 'auto', overflowY: 'hidden'}}>
                                 <div width="0.5, 0.25" style={{display : 'flex', justifyContent: 'center'}} >
                                         {outerCards}
                                 </div>
@@ -201,7 +201,7 @@ function HotCards() {
                             </div>
                         </TabPane>
                         <TabPane tab="상의" key="3">
-                            <div style={{ display : 'flex', justifyContent: 'start' , overflowX : 'auto'}}>
+                            <div style={{ display : 'flex', justifyContent: 'start' , overflowX : 'auto', overflowY: 'hidden'}}>
                                 <div width="0.5, 0.25" style={{display : 'flex', justifyContent: 'center'}} >
                                     {shirtCards}
                                 </div>
@@ -220,7 +220,7 @@ function HotCards() {
                             </div>
                         </TabPane>
                         <TabPane tab="바지" key="4">
-                            <div style={{ display : 'flex', justifyContent: 'start' , overflowX : 'auto'}}>
+                            <div style={{ display : 'flex', justifyContent: 'start' , overflowX : 'auto', overflowY: 'hidden'}}>
                                 <div width="0.5, 0.25" style={{display : 'flex', justifyContent: 'center'}} >
                                     {pantsCards}
                                 </div>
@@ -239,7 +239,7 @@ function HotCards() {
                             </div>
                         </TabPane>
                         <TabPane tab="원피스" key="5">
-                            <div style={{ display : 'flex', justifyContent: 'start' , overflowX : 'auto'}}>
+                            <div style={{ display : 'flex', justifyContent: 'start' , overflowX : 'auto', overflowY: 'hidden'}}>
                                 <div width="0.5, 0.25" style={{display : 'flex', justifyContent: 'center'}} >
                                     {onepeiceCards}
                                 </div>
@@ -257,7 +257,7 @@ function HotCards() {
                             </div>
                         </TabPane>
                         <TabPane tab="치마" key="6">
-                            <div style={{ display : 'flex', justifyContent: 'start' , overflowX : 'auto'}}>
+                            <div style={{ display : 'flex', justifyContent: 'start' , overflowX : 'auto', overflowY: 'hidden'}}>
                                 <div width="0.5, 0.25" style={{display : 'flex', justifyContent: 'center'}} >
                                         {skirtCards}
                                 </div>
@@ -276,7 +276,7 @@ function HotCards() {
                             </div>
                         </TabPane>
                         <TabPane tab="신발" key="7">
-                            <div style={{ display : 'flex', justifyContent: 'start' , overflowX : 'auto'}}>
+                            <div style={{ display : 'flex', justifyContent: 'start' , overflowX : 'auto', overflowY: 'hidden'}}>
                                 <div width="0.5, 0.25" style={{display : 'flex', justifyContent: 'center'}} >
                                         {shoesCards}
                                 </div>
