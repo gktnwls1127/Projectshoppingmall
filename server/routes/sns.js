@@ -36,6 +36,7 @@ router.get('/getposts', auth, async (req, res) => {
 		.cache({
 			key: req.user._id,
 		});
+	
 	res.status(200).json({ success: true, posts });
 });
 
@@ -75,16 +76,6 @@ router.get('/getsnsposts', (req, res) => {
 	}
 });
 
-// 원래 잘 돌아 가던  루트 실패시 이거 살리기
-// router.get('/getsnsposts', (req, res) => {
-//     SNSPost.find({ writer: req.query.id })
-//         .populate('writer')
-//         .exec((err, posts) => {
-//             if (err) res.json({ success: false, err });
-//             res.status(200).json({ success: true, posts });
-//         });
-// });
-
 router.post('/addcomment', (req, res) => {
 	const snsComent = new SNSComment(req.body);
 	snsComent.save((err, comment) => {
@@ -100,13 +91,20 @@ router.get('/getcomments', (req, res) => {
 			else res.status(200).json({ success: true, comments });
 		});
 });
+router.post('/deletecomment', (req, res) => {
+	
+	SNSComment.findOneAndDelete({ _id: req.body.id }, (err) => {
+		if (err) res.status(400).json({ success: false, err });
+		res.status(200).json({ success: true });
+	});
+});
 
 router.post('/adminSNS', (req, res) => {
 	let term = req.body.searchTerm;
 
 	if (term) {
 		SNSPost.find({})
-			.find({ $text: { $search: sterm } })
+			.find({ $text: { $search: term } })
 			.populate('wirter')
 			.exec((err, posts) => {
 				if (err) return res.status(400).json({ success: false, err });
@@ -122,12 +120,13 @@ router.post('/adminSNS', (req, res) => {
 	}
 });
 
-router.post('/removeSNS', (req, res) => {
+router.post('/removeSNS', auth, clearCache, (req, res) => {
 	SNSPost.findOneAndDelete({ _id: req.body.id }, (err) => {
 		if (err) res.json({ success: false, err });
 		res.status(200).json({ success: true });
 	});
 });
+
 router.post('/getsearch', (req, res) => {
 	let term = req.body.searchTerm;
 

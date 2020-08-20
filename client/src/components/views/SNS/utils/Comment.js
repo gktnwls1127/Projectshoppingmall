@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import sanitize from 'sanitize-html';
 function Comment(props) {
+	const user = useSelector((state) => state.user.userData);
+
 	const [comments, setComments] = useState([]);
 
 	useEffect(() => {
@@ -42,6 +45,7 @@ function Comment(props) {
 					/>
 					<h3>{comment.writer.name}</h3>
 					<p dangerouslySetInnerHTML={filterComment(comment.comment)}></p>
+					{user && user._id == comment.writer._id && <button>x</button>}
 				</div>
 			));
 		} else if (comments.length == 1) {
@@ -54,6 +58,7 @@ function Comment(props) {
 					/>
 					<h3>{comment.writer.name}</h3>
 					<p dangerouslySetInnerHTML={filterComment(comment.comment)}></p>
+					{user && user._id == comment.writer._id && <button>x</button>}
 				</div>
 			));
 		} else {

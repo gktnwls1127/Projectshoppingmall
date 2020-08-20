@@ -3,6 +3,7 @@ import { Card, Avatar, Row, Col } from 'antd';
 import axios from 'axios';
 import RenderImages from '../../../SNS/utils/Sns_RenderImages';
 import RenderText from '../../../SNS/utils/RenderText';
+import Comment from '../../../SNS/utils/Comment';
 import './Cards.scss';
 
 const { Meta } = Card;
@@ -55,11 +56,12 @@ function ReviewCards() {
 						avatar={<Avatar src={renderProfileImage(post)} />}
 						description={<RenderText post={post} />}
 					/>
+					<Comment post={post} />
 				</Card>
 			</Col>
 		));
 
-	return ( 
+	return (
 		<div>
 			<section className="hot_section" style={{ backgroundColor: 'black' }}>
 				<div className="hot_div_h2" style={{ marginTop: '3rem' }}>

@@ -30,10 +30,20 @@ SNSPostsSchema.index({
     text : 'text'
 },{
     weights : {
-        writer : 3,
-        text : 5
+        writer : 5,
+        text : 1
     }
-}) 
+})
+
+SNSPostsSchema.index({
+    text: 'text',
+    views : 'text'
+},{
+    weights: {
+        text : 5,
+        views : 1
+    }
+})
 
 const SNSPost = mongoose.model('SNSPost', SNSPostsSchema);
 

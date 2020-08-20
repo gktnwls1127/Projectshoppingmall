@@ -42,13 +42,13 @@ function NavBar(props) {
 				<SearchBar/>
 			</div>
 			<div>
-				{userData && userData.isAuth && <CartPageIcon />}
 				{userData && !userData.isAuth && <LoginHandler />}
 				{userData && userData.isAuth && (
 					<LogoutHandler renderLogout={logoutHandler} />
 				)}
 				{userData && userData.isAuth && <UpdateNav />}
 				{userData && userData.isAuth && boardHandler()}
+				{userData && userData.isAuth && <CartPageIcon />}
 				
 			</div>
 		</div>

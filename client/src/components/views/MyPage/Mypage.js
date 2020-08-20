@@ -10,22 +10,23 @@ import SearchWord from './SearchWord/SearchWord'
 function Mypage(props) {
 	const user = useSelector((state) => state.user.userData);
 	const [posts, setPosts] = useState([]);
+
 	const [Word, setWord] = useState("")
-	
+
+
 	useEffect(() => {
 		if (user) {
 			axios.get(`/api/sns/getsnsposts?id=${user._id}`)
-			.then((response) => {
-				if (response.data.success) {
-					setPosts(response.data.posts);
-				} else {
-					alert('포스트 불러오기에 실패했습니다.');
-				}
-			});
+				.then((response) => {
+					if (response.data.success) {
+						setPosts(response.data.posts);
+					} else {
+						alert('포스트 불러오기에 실패했습니다.');
+					}
+				});
 		}
-		
 	}, [user]);
-	
+
 
 	const getWord =(body)=>{
 		
@@ -71,8 +72,6 @@ function Mypage(props) {
 
 	return (
 		<div className="container">
-
-			
 			<div className="list_container">
 				<div className="profile_image">{renderImage()}</div>
 				<div className="userInfo">
@@ -90,7 +89,6 @@ function Mypage(props) {
 				</div>
 			</div>
 
-
 			<div className = "input_search">
                 <SearchWord
                     refreshFunction={retrievePosts} />
@@ -101,7 +99,6 @@ function Mypage(props) {
 				<h2>내 포스트</h2>
 				<RenderPosts posts={posts} />
 			</div>
-
 		</div>
 	);
 }

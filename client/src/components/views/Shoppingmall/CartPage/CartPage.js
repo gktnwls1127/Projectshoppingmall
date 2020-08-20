@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react'
-import { useDispatch , useSelector} from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { getCartItems, removeCartItem, onSuccessBuy } from '../../../../_actions/user_action'
 import UserCardBlock from './Sections/UserCardBlock';
 import { Empty, Result } from 'antd';
 import Paypal from '../utils/Paypal'
+import RequestPay from '../utils/Payment/RequestPay'
 
 
 function CartPage(props) {
@@ -13,27 +14,27 @@ function CartPage(props) {
     const [Total, setTotal] = useState(0)
     const [ShowTotal, setShowTotal] = useState(false)
     const [ShowSuccess, setShowSuccess] = useState(false)
-    
+
     useEffect(() => {
-          
+
         let cartItems = []
 
         //리덕스 User state안에 cart안에 상품이 들어있는지 확인
-        if(user.userData && user.userData.cart) {
-            if(user.userData.cart.length > 0) {
+        if (user.userData && user.userData.cart) {
+            if (user.userData.cart.length > 0) {
                 user.userData.cart.forEach(item => {
                     cartItems.push(item.id)
                 })
 
                 dispatch(getCartItems(cartItems, user.userData.cart))
-                .then((response) => {
-                    if (response.payload.length > 0) {
-                        calculateTotal(response.payload)
-                    }
-                })
-                
+                    .then((response) => {
+                        if (response.payload.length > 0) {
+                            calculateTotal(response.payload)
+                        }
+                    })
+
             }
-            
+
         }
     }, [user.userData])
 
@@ -47,13 +48,13 @@ function CartPage(props) {
         setTotal(total)
         setShowTotal(true)
 
-    } 
+    }
 
     const removeFromCart = (productId) => {
 
         dispatch(removeCartItem(productId))
             .then(response => {
-                if(response.payload.productInfo.length <= 0){
+                if (response.payload.productInfo.length <= 0) {
                     setShowTotal(false)
                 } else {
                     calculateTotal(response.payload.productInfo)
@@ -64,33 +65,37 @@ function CartPage(props) {
     const transactionSuccess = (data) => {
 
         dispatch(onSuccessBuy({
-            paymentData : data,
-            cartDetail : user.cartDetail
+            paymentData: data,
+            cartDetail: user.cartDetail
         }))
-        .then(response => {
-            if(response.payload.success) {
-                setShowTotal(false)
-                setShowSuccess(true)
-            }
-        })
+            .then(response => {
+                if (response.payload.success) {
+                    setShowTotal(false)
+                    setShowSuccess(true)
+                }
+            })
+
+
     }
 
-    return ( 
-        <div style={{ width : '85%', margin: '3rem auto'}}>
+
+
+    return (
+        <div style={{ width: '85%', margin: '3rem auto' }}>
             <h1>장바구니</h1>
 
             <div>
-                <UserCardBlock 
+                <UserCardBlock
                     products={user.cartDetail}
-                    removeItem={removeFromCart}            
+                    removeItem={removeFromCart}
                 />
             </div>
 
-            {ShowTotal ? 
-                <div style={{marginTop : '3rem'}}>
+            {ShowTotal ?
+                <div style={{ marginTop: '3rem' }}>
                     <h2>총 결제금액 {Total}원</h2>
                 </div>
-                : ShowSuccess ? 
+                : ShowSuccess ?
                     <Result
                         status="success"
                         title="Successfully Purchased Item"
@@ -107,12 +112,28 @@ function CartPage(props) {
                     </div>
             }
 
-            { ShowTotal &&
-                <Paypal 
-                    total = {Total}
-                    onSuccess ={transactionSuccess}
+
+            {ShowTotal &&
+                <Paypal
+                    total={Total}
+                    onSuccess={transactionSuccess}
                 />
+
             }
+
+            {ShowTotal &&
+                <RequestPay
+
+                    total={Total}
+                    onSuccess={transactionSuccess} />}
+
+
+
+
+
+
+
+
 
 
         </div>

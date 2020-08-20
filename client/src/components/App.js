@@ -28,7 +28,7 @@ import adUserPage from './views/Admin/UserPage';
 import SNSList from './views/Admin/SNSList';
 import DashBoard from './views/Admin/DashBoard';
 import SearchPage from './views/NavBar/SearchBar/SearchPage';
-
+import Footer from './views/Footer/Footer'
 import UserPage from './views/UserPage/UserPage';
 
 function App() {
@@ -51,13 +51,9 @@ function App() {
 					<Route exact path="/sns" component={Auth(Sns_LandingPage, null)} />
 					<Route exact path="/sns/posts" component={Auth(Sns_posts, true)} />
 
-					<Route
-						exact
-						path="/search/:keyword"
-						component={Auth(SearchPage, null)}
-					/>
+					<Route exact path="/search/:keyword" component={Auth(SearchPage,null)}/>
 
-					<Route exact path="/user/:userId" component={Auth(UserPage, null)} />
+
 
 					<Route
 						exact
@@ -130,6 +126,7 @@ function App() {
 					/>
 					<Route exact path="/admin/sns" component={Auth(SNSList, true)} />
 				</Switch>
+				<Footer/>
 			</Router>
 		</div>
 	);
