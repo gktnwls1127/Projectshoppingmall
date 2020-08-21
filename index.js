@@ -3,12 +3,13 @@ const app = express();
 
 const port = 5000;
 
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 const config = require('./server/config/key');
 
-//www url을 분석해서 가져올 수 있게 해주는 것
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -32,10 +33,7 @@ app.use('/api/sns', require('./server/routes/sns'));
 app.use('/api/users', require('./server/routes/user'));
 app.use('/api/product', require('./server/routes/product'));
 
-
 app.use('/api/like', require('./server/routes/like'));
-
-
 
 app.use('/uploads', express.static('uploads'));
 
