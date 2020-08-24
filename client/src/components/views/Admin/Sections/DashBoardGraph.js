@@ -8,8 +8,8 @@ import { Row } from 'antd';
 
 function DashBoardGraph() {
 
-    const [Sold, setSold] = useState([])
-    const [Date, setDate] = useState([])
+    const [Sold, setSold] = useState(0)
+    const [Date, setDate] = useState(0)
     const [Outer, setOuter] = useState(0)
     const [Top, setTop] = useState(0)
     const [Pants, setPants] = useState(0)
@@ -59,25 +59,24 @@ function DashBoardGraph() {
       axios.post('/api/users/admin', body)
           .then(response => {
               if(response.data.success) {
-                  const userBuy = response.data.users.map((user) => {
-                    return user.history
-                  })
-                  userBuy.forEach(element => {
-                    switch (element) {
-                      case 'quantity':
-                        setSold(element.quantity * element.price)
-                        break;
-                      case 'dateOfPurchase' : 
-                        setDate(element.dateOfPurchase)
-                      default:
-                        break;
-                    }
-                  })
+                const userHistory = response.data.users.map((h) => {
+                  h.history.map((u) => {return u})
+                })
+                userHistory.forEach(element => {
+                  switch(element) {
+                    case 'quantity' :
+                      setSold(element.quantity * element.price )
+                    
+                  }
+                })
+                  
               } else {
                   alert("유저들을 가져오는데 실패했습니다.")
               }
           })
     }
+
+    console.log(Sold);
 
     const getProduct = (body) => {
         axios.post('/api/product/products', body)

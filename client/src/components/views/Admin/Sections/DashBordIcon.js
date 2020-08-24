@@ -64,7 +64,6 @@ function DashBordIcon() {
     product.map(item => {
       total += parseInt(item.price) * item.sold
     });
-
     setTotal(total)
   }   
 
@@ -77,7 +76,7 @@ function DashBordIcon() {
                           avatar={
                             <DollarOutlined style={{fontSize: '50px', color: '#5bffb0'}} />
                           }
-                          title={<h1 style={{fontSize: '30px'}}>₩{Total}</h1>}
+                          title={<h1 style={{fontSize: '30px'}}>₩ {Total}</h1>}
                         />
                       </Card>
                       <Card style={{ width: 300, marginTop: 16 }} hoverable='true'>

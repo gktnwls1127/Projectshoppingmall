@@ -285,7 +285,6 @@ router.post('/admin', (req, res) => {
 	}
 }); 
 
-
 router.post('/uploadImages', upload.single('files'), (req, res) => {
 	res.status(200).json({ success: true, filePath: req.file.path });
 });

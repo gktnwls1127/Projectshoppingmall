@@ -26,7 +26,7 @@ function FileUpload(props) {
                     alert('파일을 저장하는데 실패했습니다.')
                 }
             })
-    }
+    } 
 
     const deleteHandler = (image) => {
         const currentIndex = Images.indexOf(image)
