@@ -164,7 +164,7 @@ function HotCards() {
                     <h2 className="hot_h2" style={{color: 'gray20', fontWeight: 'bold' }}>인기상품</h2>
                 </div>
                 <div>
-                    <Tabs defaultActiveKey="1" centered style={{ width: '75%', margin : '5rem auto'}}>
+                    <Tabs defaultActiveKey="1" centered size={"large"} style={{ width: '75%', margin : '5rem auto'}}>
                         <TabPane tab="전체" key="1">
                             <div style={{ display : 'flex', justifyContent: 'start' , overflowX : 'auto', overflowY: 'hidden'}}>
                                 <div width="0.5, 0.25" style={{display : 'flex', justifyContent: 'center'}} >

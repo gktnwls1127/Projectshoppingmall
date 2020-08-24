@@ -88,7 +88,7 @@ router.post('/sellerProducts', (req, res) => {
 
 	if (term) {
 		Product.find({ writer: writer })
-			.find({ $text: { $search: term } }) 
+			.find({ $text: { $search: term } })
 			.populate('wirter')
 			.skip(skip)
 			.limit(limit)

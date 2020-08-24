@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import ProductImage from './Sections/ProductImage'
 import ProductInfo from './Sections/ProductInfo'
+import ProductDescribe from './Sections/ProductDescribe'
 import { withRouter } from 'react-router-dom'
 import './DetailProductPage.scss'
 
@@ -32,6 +33,9 @@ function DetailProductPage(props) {
                     <ProductImage detail={Product}/>
                     
                     <ProductInfo detail={Product}/>                   
+                </div>
+                <div>
+                    <ProductDescribe detail={Product}/>
                 </div>
             </div>
         </div>
