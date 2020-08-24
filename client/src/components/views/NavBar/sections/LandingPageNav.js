@@ -6,12 +6,12 @@ function LandingPageNav() {
 		<div className="landingPage_nav">
 			<h1>
 				<Link to="/sns" style={{ color: 'inherit' }}>
-					#OOTD
+					#SNS
 				</Link>
 			</h1>
 			<h1>
 				<Link to="/shoppingmall" style={{ color: 'inherit' }}>
-					#쇼핑몰
+					#STORE
 				</Link>
 			</h1>
 		</div>

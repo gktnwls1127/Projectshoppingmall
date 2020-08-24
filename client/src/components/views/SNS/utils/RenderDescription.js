@@ -29,25 +29,7 @@ function RenderDescription(props) {
 		}
 	};
 
-	const renderPostUser = () => (
-		<div className="post_user_container">
-			<div className="post_user_image">
-				<img
-					style={{ width: '40px', height: '40px' }}
-					src={renderProfileImage()}
-					alt="게시자 프로필사진"
-				/>
-			</div>
 
-			<div className="post_user_name">
-				<h4>{props.post.writer.name}</h4>
-			</div>
-			<div
-				className="post_text"
-				dangerouslySetInnerHTML={renderText(props.post.text)}
-			></div>
-		</div>
-	);
 	const renderText = (text) => {
 		let preText = text.split(' ');
 		let postingText = '';
@@ -101,9 +83,12 @@ function RenderDescription(props) {
 		});
 		return { __html: sanitize(postingText) };
 	};
+
 	const commentsRender = () => {
 		return comments.map((comment) => (
 			<div key={comment._id}>
+
+
 				<div style={{ display: 'flex' }}>
 					<img
 						style={{ width: '35px', height: '35px', borderRadius: '16px' }}
@@ -111,11 +96,17 @@ function RenderDescription(props) {
 						alt="유저이미지"
 					/>
 					<h3>&nbsp;&nbsp;{comment.writer.name}</h3>
+					{user && user._id == comment.writer._id && (
+						<button onClick={() => deleteComment(comment._id)}>x</button>
+					)}
+
 				</div>
+
+
 				<p dangerouslySetInnerHTML={filterComment(comment.comment)}></p>
-				{user && user._id == comment.writer._id && (
-					<button onClick={() => deleteComment(comment._id)}>x</button>
-				)}
+
+
+
 				<br />
 			</div>
 		));
@@ -134,26 +125,45 @@ function RenderDescription(props) {
 		});
 	};
 
-
-
-
-
-
 	return (
 		<div className="description_container">
 			<div className="post_info">
-				<div className="post_user_info">{renderPostUser()}</div>
-				
+				<div className="post_user_container">
 
-				{/* <div className="post_description"></div> */}
+					<div className="post_user_image">
+						<img
+							// style={{ width: '40px', height: '40px' }}
+							src={renderProfileImage()}
+							alt="게시자 프로필사진"
+						/>
+					</div>
+
+					<div className="post_user_name">
+						<h4>{props.post.writer.name}</h4>
+					</div>
+
+				</div>
+
+
+				<div
+					className="post_text"
+					dangerouslySetInnerHTML={renderText(props.post.text)}
+				>
+				</div>
+				{/* <div className="post_user_info">{renderPostUser()}</div> */}
 			</div>
+
+
+
 			<hr />
+
+
+
 			<div className="comments">
 				<div className="comments_input">
 					<div className="comments_from_user">{commentsRender()}</div>
 				</div>
 				<br />
-
 				<hr />
 				<form onSubmit={submitHandler}>
 					<Input
@@ -163,9 +173,13 @@ function RenderDescription(props) {
 						onChange={commentHandler}
 					/>
 					<br />
-					<button type="submit">댓글달기</button>
+					<button type="submit"></button>
 				</form>
 			</div>
+
+
+
+
 		</div>
 	);
 }

@@ -37,15 +37,19 @@ function Comment(props) {
 		if (comments.length >= 2) {
 			let slicedComments = comments.slice(0, 2);
 			return slicedComments.map((comment) => (
-				<div key={comment._id}>
-					<img
-						style={{ width: '50px', height: '50px' }}
-						src={`http://localhost:5000/${comment.writer.image}`}
-						alt="유저이미지"
-					/>
-					<h3>{comment.writer.name}</h3>
+				<div>
+
+					<div style={{ display: 'flex' }} key={comment._id}>
+						<img
+							style={{ width: '30px', height: '30px' }}
+							src={`http://localhost:5000/${comment.writer.image}`}
+							alt="유저이미지"
+
+						/>
+						<h3>{comment.writer.name}</h3>
+						{/* {user && user._id == comment.writer._id && <button>x</button>} */}
+					</div>
 					<p dangerouslySetInnerHTML={filterComment(comment.comment)}></p>
-					{user && user._id == comment.writer._id && <button>x</button>}
 				</div>
 			));
 		} else if (comments.length == 1) {

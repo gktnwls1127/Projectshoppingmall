@@ -7,6 +7,7 @@ import LoginHandler from './sections/LoginHandler';
 import SNSBorder from './sections/SNS_Border';
 import LogoutHandler from './sections/LogoutHandler';
 import UpdateNav from './sections/UpdateNav';
+import AdminButton from './sections/AdminButton'
 import './NavBar.scss';
 import SellerUpload from './sections/SellerUpload';
 import SearchBar from './SearchBar/Search/SearchBar';
@@ -29,15 +30,11 @@ function NavBar(props) {
 		if (props.history.location.pathname.substring(0, 4) === '/sns') {
 			return <SNSBorder />;
 		} else {
-			return <SellerUpload />;
+			if(userData && userData.role == 2){
+				return <SellerUpload />;
+			}
 		}
 	};
-
-	const adminRouter = () => (
-		<div>
-			<Link to="/admin">관리자페이지</Link>
-		</div>
-	);
 
 	return (
 		<div className="nav_container">
@@ -55,7 +52,7 @@ function NavBar(props) {
 				)}
 				{userData && userData.isAuth && <UpdateNav />}
 				{userData && userData.isAuth && boardHandler()}
-				{userData && userData.role == 1 && adminRouter()}
+				{userData && userData.role == 1 && <AdminButton/>}
 			</div>
 		</div>
 	);

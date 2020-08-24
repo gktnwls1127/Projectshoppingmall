@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import { Typography } from 'antd';
 import { UpCircleOutlined } from '@ant-design/icons';
 import axios from 'axios';
