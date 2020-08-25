@@ -45,36 +45,54 @@ function Change_Password() {
 	};
 	return (
 		<div className="change_password_container">
-			<div className="current_password">
-				<label htmlFor="current">현재 비밀번호</label>
-				<input
-					type="password"
-					name="current"
-					value={currentPassword}
-					onChange={currentPasswordHandler}
-				/>
-			</div>
-			<div className="new_password">
-				<label htmlFor="new">변경할 비밀번호</label>
-				<input
-					type="password"
-					name="new"
-					value={newPassword}
-					onChange={newPasswordHandler}
-				/>
-			</div>
-			<div className="new_password_confirmation">
-				<label htmlFor="confirm">확인</label>
-				<input
-					type="password"
-					name="confirm"
-					value={confirmPassword}
-					onChange={confirmPasswordHandler}
-				/>
-			</div>
-			<div className="submit_password">
-				<button onClick={submitPassword}>변경하기</button>
-			</div>
+			<form>
+
+				<div className="title">
+					<h2>비밀번호 변경</h2>
+				</div>
+				<div className="input_label">
+					<label htmlFor="current"className="input-text" >현재 비밀번호</label>
+					<input
+					className="label1"
+						type="password"
+						name="current"
+						placeholder="현재 비밀번호"
+						value={currentPassword}
+						onChange={currentPasswordHandler}
+					/>
+					<br/>
+					<br/>
+				
+				</div>
+				<div className="input_label">
+					<label htmlFor="new" className="input-text" >변경할 비밀번호</label>
+					<input
+					className="label1"
+						type="password"
+						name="new"
+						placeholder="변경할 비밀번호"
+						value={newPassword}
+						onChange={newPasswordHandler}
+					/>
+					<br/>
+					<br/>
+					
+				</div>
+				<div className="input_label">
+					<label htmlFor="confirm" className="input-text" >확인</label>
+					<input
+					className="label1"
+						type="password"
+						name="confirm"
+						placeholder="비밀번호 확인"
+						value={confirmPassword}
+						onChange={confirmPasswordHandler}
+					/>
+				</div>
+				<div className="submit_password">
+					<button onClick={submitPassword}>변경하기</button>
+				</div>
+			</form>
 		</div>
 	);
 }

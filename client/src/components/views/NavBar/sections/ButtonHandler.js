@@ -11,7 +11,7 @@ import AdminButton from './AdminButton'
 import SellerUpload from './SellerUpload'
 import CartPageIcon from './CartPageIcon'
 import './ButtonHandler.scss'
-
+import SellerButton from './SellerButton'
 
 function ButtonHandler(props) {
 
@@ -37,6 +37,9 @@ function ButtonHandler(props) {
         }
     };
 
+
+
+
     return (
         <div className="Buttons">
             <div className="mobile-button">
@@ -49,6 +52,7 @@ function ButtonHandler(props) {
 
                 <div>
                     {userData && userData.isAuth && <UpdateNav />}
+                    {userData && userData.role == 2 && <SellerButton />}
                 </div>
 
                 <div>

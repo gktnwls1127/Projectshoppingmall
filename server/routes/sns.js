@@ -72,7 +72,7 @@ router.get('/getsnsposts', (req, res) => {
 			.populate('writer')
 			.exec((err, posts) => {
 				if (err) res.json({ success: false, err });
-				res.json({ success: true, posts });
+				res.status(200).json({ success: true, posts });
 			});
 	}
 });
