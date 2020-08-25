@@ -9,6 +9,7 @@ import { Col, Card, Row, Tabs } from 'antd';
 import ImageSlider from '../../Shoppingmall/utils/ImageSlider'
 const { Meta } = Card;
 
+
 function SearchPage(props) {
 
 

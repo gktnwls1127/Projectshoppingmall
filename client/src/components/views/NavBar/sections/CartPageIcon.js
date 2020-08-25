@@ -3,6 +3,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { ShoppingCartOutlined } from '@ant-design/icons'
 import {Badge} from 'antd'
 import { useSelector } from "react-redux";
+import './CartPageIcon.scss'
 
 function CartPageIcon() {
     const user = useSelector((state) => state.user)

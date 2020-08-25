@@ -3,6 +3,8 @@ import { Card, Avatar, Row, Col } from 'antd';
 import RenderImages from './Sns_RenderImages';
 import RenderText from './RenderText';
 import Comment from './Comment';
+import LikeDislikes from './LikeDislikes'
+
 const { Meta } = Card;
 function RenderPosts(props) {
 	const renderProfileImage = (post) => {
@@ -19,7 +21,7 @@ function RenderPosts(props) {
 				{props.posts.map((post) => {
 					if (post && post.writer) {
 						return (
-							<Col key={post._id} lg={6} md={12}  xs={24}>
+							<Col key={post._id} lg={6} md={8} xs={24}>
 								<Card
 									style={{
 										width: 250,
@@ -31,8 +33,13 @@ function RenderPosts(props) {
 									<Meta
 										avatar={<Avatar src={renderProfileImage(post)} />}
 										description={<RenderText post={post} />}
+										
 									/>
+									<div style={{display : 'flex' , justifyContent : 'space-around'}}>
+										{/* <br/> */}
 									<Comment post={post} />
+									<LikeDislikes post={post}/>
+									</div>
 								</Card>
 							</Col>
 						);

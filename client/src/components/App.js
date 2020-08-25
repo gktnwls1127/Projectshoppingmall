@@ -28,8 +28,10 @@ import adUserPage from './views/Admin/UserPage';
 import SNSList from './views/Admin/SNSList';
 import DashBoard from './views/Admin/DashBoard';
 import SearchPage from './views/NavBar/SearchBar/SearchPage';
+import UserPage_SNS from './views/UserPage/UserPage';
+import EditPostPage from './views/EditPostPage/EditPostPage'
 import Footer from './views/Footer/Footer'
-import UserPage from './views/UserPage/UserPage';
+import UserPage from './views/Admin/UserPage';
 
 function App() {
 	return (
@@ -43,6 +45,15 @@ function App() {
 					<Route exact path="/register" component={Auth(RegisterPage, false)} />
 					<Route exact path="/mypage" component={Auth(Mypage, true)} />
 					<Route exact path="/update" component={Auth(UpdateProfile, true)} />
+					
+					
+					
+					<Route exact path="/edit/:info" component={Auth(EditPostPage, true)} />
+					
+					
+					
+					
+					
 					<Route
 						exact
 						path="/change_password"
@@ -54,6 +65,11 @@ function App() {
 					<Route exact path="/search/:keyword" component={Auth(SearchPage,null)}/>
 
 
+					<Route
+						exact
+						path="/user/:userId"
+						component={Auth(UserPage_SNS, null)}
+					/>
 
 					<Route
 						exact
@@ -75,7 +91,7 @@ function App() {
 						path="/product/:productId"
 						component={Auth(DetailPage, null)}
 					/>
-					<Route exact path="/user/cart" component={Auth(CartPage, true)} />
+					<Route exact path="/user/cart/cartpage" component={Auth(CartPage, true)} />
 					<Route
 						exact
 						path="/shoppingmall/best_item"
@@ -117,14 +133,22 @@ function App() {
 						component={Auth(HistoryPage, true)}
 					/>
 					<Route exact path="/seller" component={Auth(SellerPage, true)} />
-					<Route exact path="/admin" component={Auth(DashBoard, true)} />
-					<Route exact path="/admin/user" component={Auth(adUserPage, true)} />
+					<Route exact path="/admin" component={Auth(DashBoard, true, true)} />
+					<Route
+						exact
+						path="/admin/user"
+						component={Auth(UserPage, true, true)}
+					/>
 					<Route
 						exact
 						path="/admin/product"
-						component={Auth(SellerProducts, true)}
+						component={Auth(SellerProducts, true, true)}
 					/>
-					<Route exact path="/admin/sns" component={Auth(SNSList, true)} />
+					<Route
+						exact
+						path="/admin/sns"
+						component={Auth(SNSList, true, true)}
+					/>
 				</Switch>
 				<Footer/>
 			</Router>

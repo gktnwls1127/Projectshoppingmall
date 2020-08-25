@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import swal from 'sweetalert';
 import SearchFeature from './Sections/SearchFeature'
-import { Layout, Menu } from 'antd';
+import { Layout, Menu , Button } from 'antd';
 import { DashboardOutlined, UserOutlined, ShopOutlined, SolutionOutlined } from '@ant-design/icons';
 
 const { Header, Content, Sider } = Layout;
@@ -40,6 +40,60 @@ function UserPage(props) {
         setUserSearchTerm(newSearchTerm)
         getUsers(body)
     }
+
+
+//일반회원 -> 관리자
+const onRoleAdminHandler = (_id) => {
+    const variables = {
+      _id,
+    };
+    axios.post("/api/users/roleAdmin",variables).then((response) => {
+      if (response.data.success) {
+        swal("관리자 변경완료");
+        
+        getUsers();
+        console.log(response.data);
+      } else {
+        swal("실패");
+      }
+    });
+  };
+ 
+
+ //관리자 -> 일반회원
+  const onRoleUserHandler = (_id) => {
+    const variables = {
+      _id,
+    };
+    axios.post("/api/users/roleUser",variables).then((response) => {
+      if (response.data.success) {
+        swal("회원등급 변경완료");
+        getUsers();
+        console.log(response.data);
+    } else {
+        swal("실패");
+    }
+});
+};
+//판매자
+const onRoleSellerHandler = (_id) => {
+    const variables = {
+        _id,
+    };
+    axios.post("/api/users/roleSeller",variables).then((response) => {
+        if (response.data.success) {
+            swal("회원등급 변경완료");
+            getUsers();
+            console.log(response.data);
+        } else {
+            swal("실패");
+        }
+    });
+};
+
+
+
+
 
     const removeItem = (id) => {
 
@@ -97,9 +151,30 @@ function UserPage(props) {
                 <td>{user.email}</td> 
                 <td>{user.role}</td>
                 <td>
-                    <button onClick={() => removeItem(user._id)}>
+                <Button
+                    type="primary"
+                    style={{
+                      backgroundColor: "#9C88FF",
+                      borderColor: "#9C88FF",
+                    }}
+                    // danger
+                    onClick={() => onRoleAdminHandler(user._id)}
+                  >
+                    관리자
+                  </Button>
+                 
+                  <Button type="primary" onClick={() => onRoleUserHandler(user._id)}>
+                    일반회원
+                  </Button>
+                 
+                  <Button type="primary" onClick={() => onRoleSellerHandler(user._id)}>
+                    판매자
+                  </Button>
+                </td>
+                <td>
+                    <Button onClick={() => removeItem(user._id)}>
                         삭제
-                    </button> 
+                    </Button> 
                 </td>
             </tr>
         ))
@@ -151,10 +226,11 @@ function UserPage(props) {
                         <thead>
                             <tr>
                                 <th>UserID</th>
-                                <th>name</th>
+                                <th>사용자 이름</th>
                                 <th>email</th>
-                                <th>role</th>
-                                <th>remove</th>
+                                <th>등급</th>
+                                <th>관리자 설정</th>
+                                <th>삭제</th>
                             </tr>
                         </thead>
 

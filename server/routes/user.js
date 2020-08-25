@@ -334,10 +334,12 @@ router.post('/withdraw', (req, res) => {
 	});
 });
 
-
 router.post("/roleAdmin",(req, res) => {
 	User.findOneAndUpdate(
-	  { role: 0 , _id: req.body._id },   
+		{$or : [
+			{ role: 0, _id: req.body._id },
+			{ role: 1, _id: req.body._id },
+		]},  
 	  { $set: { role: 1 } },
 	  { new: true }
 	).exec((err, doc) => {
@@ -345,12 +347,31 @@ router.post("/roleAdmin",(req, res) => {
 	  return res.status(200).json({ success: true, doc });
 	});
   });
-  
+
+
   
   router.post("/roleUser",(req, res) => {
 	User.findOneAndUpdate(
-	  { role: 1, _id: req.body._id },
+	  {$or : [
+		  { role: 2, _id: req.body._id },
+		  { role: 1, _id: req.body._id },
+	  ]},
 	  { $set: { role: 0 } },
+	  { new: true }
+	).exec((err, doc) => {
+	  if (err) return res.status(400).json({ success: false, err });
+	  return res.status(200).json({ success: true, doc });
+	});
+  });
+
+  router.post("/roleSeller",(req, res) => {
+	User.findOneAndUpdate(
+		{$or : [
+			{ role: 0, _id: req.body._id },
+			{ role: 1, _id: req.body._id },
+  
+		]},
+	  { $set: { role: 2 } },
 	  { new: true }
 	).exec((err, doc) => {
 	  if (err) return res.status(400).json({ success: false, err });

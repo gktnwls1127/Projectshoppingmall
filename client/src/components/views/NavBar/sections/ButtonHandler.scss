@@ -1,0 +1,16 @@
+.Buttons{
+    display: flex;
+    // justify-content: flex-start;
+    .mobile-button{
+        display: flex;
+        // justify-content: flex-start;
+    }
+}
+
+@media (max-width: 842px) {
+	.cart{
+		display: none;
+    }
+    
+
+}
