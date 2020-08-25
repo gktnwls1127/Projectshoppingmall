@@ -113,7 +113,6 @@ function RenderModal(props) {
 						<LikeDislikes modal useId={localStorage.getItem('userId')} commentId={props.post._id} />
 
 
-
 						{user && user._id === props.post.writer._id && (
 							<button onClick={() => removeItem(props.post._id)}>삭제</button>
 						)}

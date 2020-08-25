@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import axios from 'axios';
-import sanitize from 'sanitize-html';
-function Comment(props) {
-	const user = useSelector((state) => state.user.userData);
+import { MessageOutlined } from '@ant-design/icons';
 
+function Comment(props) {
 	const [comments, setComments] = useState([]);
 
 	useEffect(() => {
@@ -16,61 +14,8 @@ function Comment(props) {
 			}
 		});
 	}, []);
-	const filterComment = (text) => {
-		let preText = text.split(' ');
-		let postingText = '';
 
-		preText.forEach((content) => {
-			if (typeof content !== 'undefined') {
-				if (content.charAt(0) === '#') {
-					postingText += `<a href="/search/${content.substr(
-						1
-					)}">${content} </a>`;
-				} else {
-					postingText += content + ' ';
-				}
-			}
-		});
-		return { __html: sanitize(postingText) };
-	};
-	const renderComments = () => {
-		if (comments.length >= 2) {
-			let slicedComments = comments.slice(0, 2);
-			return slicedComments.map((comment) => (
-				<div>
-
-					<div style={{ display: 'flex' }} key={comment._id}>
-						<img
-							style={{ width: '30px', height: '30px' }}
-							src={`http://localhost:5000/${comment.writer.image}`}
-							alt="유저이미지"
-
-						/>
-						<h3>{comment.writer.name}</h3>
-						{/* {user && user._id == comment.writer._id && <button>x</button>} */}
-					</div>
-					<p dangerouslySetInnerHTML={filterComment(comment.comment)}></p>
-				</div>
-			));
-		} else if (comments.length == 1) {
-			return comments.map((comment) => (
-				<div key={comment._id}>
-					<img
-						style={{ width: '50px', height: '50px' }}
-						src={`http://localhost:5000/${comment.writer.image}`}
-						alt="유저이미지"
-					/>
-					<h3>{comment.writer.name}</h3>
-					<p dangerouslySetInnerHTML={filterComment(comment.comment)}></p>
-					{user && user._id == comment.writer._id && <button>x</button>}
-				</div>
-			));
-		} else {
-			return;
-		}
-	};
-
-	return <div>{renderComments()}</div>;
+	return <div><MessageOutlined/> {comments.length}</div>;
 }
 
 export default Comment;

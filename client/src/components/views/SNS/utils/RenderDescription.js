@@ -5,7 +5,6 @@ import './RenderDescription.scss';
 import axios from 'axios';
 import { Input } from 'antd';
 
-// import LikeDislikes from './LikeDislikes'
 
 function RenderDescription(props) {
 	const user = useSelector((state) => state.user.userData);
@@ -148,7 +147,7 @@ function RenderDescription(props) {
 				<div
 					className="post_text"
 					dangerouslySetInnerHTML={renderText(props.post.text)}
-				>
+					>
 				</div>
 				{/* <div className="post_user_info">{renderPostUser()}</div> */}
 			</div>
@@ -164,7 +163,7 @@ function RenderDescription(props) {
 					<div className="comments_from_user">{commentsRender()}</div>
 				</div>
 				<br />
-				<hr />
+				<br />
 				<form onSubmit={submitHandler}>
 					<Input
 						className="comments_input"
