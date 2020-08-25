@@ -53,6 +53,7 @@ function DashBoard() {
                       
                       <Row justify="space-around">
                         <SellerInfo />
+                        <br/><br/><br/>
                         <UserRatio />
                       </Row>
                     </div>

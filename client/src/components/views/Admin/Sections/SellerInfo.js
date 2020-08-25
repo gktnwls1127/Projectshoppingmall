@@ -74,7 +74,7 @@ function SellerInfo() {
 
 
     const renderItems = User && User.map((user, index) => {
-            if(user.role === 1) {
+            if(user.role === 2) {
             return <tr key={index}>
                     <td>{user._id}</td>
                     <td>

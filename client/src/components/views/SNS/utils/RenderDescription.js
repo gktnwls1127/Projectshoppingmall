@@ -103,9 +103,9 @@ function RenderDescription(props) {
 
 
 				<p dangerouslySetInnerHTML={filterComment(comment.comment)}></p>
-
-
-
+				{user && user._id == comment.writer._id && (
+					<button onClick={() => deleteComment(comment._id)}>x</button>
+				)}
 				<br />
 			</div>
 		));

@@ -1,10 +1,57 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
 import {Card, Row} from 'antd'
+import ImageSlider from '../utils/ImageSlider';
 import './EventPages.scss'
+import { FileExcelFilled } from '@ant-design/icons';
 
 const {Meta} = Card
 
 function EventPages() {
+
+    const [Products, setProducts] = useState([])
+    const [Skip, setSkip] = useState(0)
+    const [Limit, setLimit] = useState(0)
+
+    useEffect(() => {
+        
+        let body = {
+            skip : Skip,
+            limit : Limit
+        }
+
+        getProducts(body)
+  
+    }, [])
+
+    const getProducts = (body) => {
+
+        axios.post('/api/product/products', body)
+            .then(response => {
+                if(response.data.success) {
+                        setProducts(response.data.productInfo.sort((a, b) => b.createdAt.localeCompare(a.createdAt)))
+                } else {
+                    alert("상품들을 가져오는데 실패했습니다.")
+                }
+            })
+
+    }
+
+    const renderCards = Products.map((product, index) => {
+        return (
+            <Card 
+                style ={{width:'280px', height: '400px' , marginRight: '22px', marginBottom : '20px'}}
+                hoverable={true}
+                cover={<a href={`/product/${product._id}`} > <ImageSlider images={product.images} /></a>}
+            >
+                <Meta
+                    title={product.title}
+                    description={`${product.price}원`}
+                />
+            </Card>
+         )
+    })
+
     return (
         <div className="catalog" style={{backgroundColor: 'rgb(255, 127, 127)'}}>
             <article className="catalog-page page">
@@ -25,67 +72,14 @@ function EventPages() {
                     </div>
                 </section>
                 <section>
-                    <div className="goods-card-container in-catalog">
-                        <Row gutter={[32,32]} className="inner-wrapper clearfix">
-            
-                                <Card className="goods-card"
-                                    hoverable
-                                    style={{ width: 200 }}
-                                    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-                                >    
-                                <Meta
-                                    title='aa'
-                                    description='aa'
-                                />
-                                </Card>
-                                <Card
-                                    className="goods-card"
-                                    hoverable
-                                    style={{ width: 200 }}
-                                    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-                                >    
-                                <Meta
-                                    title='aa'
-                                    description='aa'
-                                />
-                                </Card>
-                                <Card
-                                    className="goods-card"
-                                    hoverable
-                                    style={{ width: 200 }}
-                                    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-                                >    
-                                <Meta
-                                    title='aa'
-                                    description='aa'
-                                />
-                                </Card>
-                                <Card
-                                    className="goods-card"
-                                    hoverable
-                                    style={{ width: 200 }}
-                                    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-                                >    
-                                <Meta
-                                    title='aa'
-                                    description='aa'
-                                />
-                                </Card>
-                                <Card
-                                    className="goods-card"
-                                    hoverable
-                                    style={{ width: 200 }}
-                                    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-                                >    
-                                <Meta
-                                    title='aa'
-                                    description='aa'
-                                />
-                                </Card>
+                    <div className="goods-card-container in-catalog" style={{display: 'flex' , justifyContent: 'center'}}>
+                        <Row gutter={[32,32]}>            
+                            {renderCards}
                         </Row>
                     </div>
                 </section>
             </article>
+            <br/><br/><br/><br/><br/>
         </div>
     )
 }

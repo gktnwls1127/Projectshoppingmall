@@ -23,16 +23,14 @@ import SkirtCategory from './views/Shoppingmall/MenuPage/SkirtCategory';
 import ShoesCategory from './views/Shoppingmall/MenuPage/ShoesCategory';
 import HistoryPage from './views/Shoppingmall/HistoryPage/HistoryPage';
 import SellerPage from './views/SellerPage/SellerPage';
-import SellerProducts from './views/Admin/Sections/SellerProducts';
-import UserPage from './views/Admin/Sections/UserPage';
-import SNSList from './views/Admin/Sections/SNSList';
-import DashBoard from './views/Admin/Sections/DashBoard';
+import SellerProducts from './views/Admin/SellerProducts';
+import SNSList from './views/Admin/SNSList';
+import DashBoard from './views/Admin/DashBoard';
 import SearchPage from './views/NavBar/SearchBar/SearchPage';
 import UserPage_SNS from './views/UserPage/UserPage';
-
-
 import EditPostPage from './views/EditPostPage/EditPostPage'
-
+import Footer from './views/Footer/Footer'
+import UserPage from './views/UserPage/UserPage';
 
 function App() {
 	return (
@@ -46,15 +44,7 @@ function App() {
 					<Route exact path="/register" component={Auth(RegisterPage, false)} />
 					<Route exact path="/mypage" component={Auth(Mypage, true)} />
 					<Route exact path="/update" component={Auth(UpdateProfile, true)} />
-					
-					
-					
-					<Route exact path="/edit/:info" component={Auth(EditPostPage, true)} />
-					
-					
-					
-					
-					
+					<Route exact path="/edit/:info" component={Auth(EditPostPage, true)} />		
 					<Route
 						exact
 						path="/change_password"
@@ -63,11 +53,8 @@ function App() {
 					<Route exact path="/sns" component={Auth(Sns_LandingPage, null)} />
 					<Route exact path="/sns/posts" component={Auth(Sns_posts, true)} />
 
-					<Route
-						exact
-						path="/search/:keyword"
-						component={Auth(SearchPage, null)}
-					/>
+					<Route exact path="/search/:keyword" component={Auth(SearchPage,null)}/>
+
 
 					<Route
 						exact
@@ -154,6 +141,7 @@ function App() {
 						component={Auth(SNSList, true, true)}
 					/>
 				</Switch>
+				<Footer/>
 			</Router>
 		</div>
 	);

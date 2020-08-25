@@ -23,7 +23,7 @@ function ProductImage(props) {
         <div width="1,0.5833333333333334" className="feTtOu">
             <div overflow="hidden" className="jbpLml">
                 <picture className ="hOkNKG">
-                    <ImageGallery items={Images} className="ecDCYM lazy loaded"/>
+                    <ImageGallery className="ecDCYM lazy loaded" items={Images} />
                 </picture>
             </div>
         </div>
