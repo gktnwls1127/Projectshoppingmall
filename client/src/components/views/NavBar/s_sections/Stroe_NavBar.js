@@ -17,75 +17,75 @@ function Stroe_NavBar() {
     };
 
     const Home = () => (
-        <h1 >
+        <h2>
             <Link to="/shoppingmall" style={{ color: 'inherit' }}>
                 홈&nbsp;&nbsp;
             </Link>
-        </h1>
+        </h2>
     )
 
 
     const Rangking = () => (
-        <h1 >
+        <h2>
             <Link to="/shoppingmall/best_item" style={{ color: 'inherit' }}>
                 랭킹&nbsp;&nbsp;
             </Link>
-        </h1>
+        </h2>
     )
 
 
     const Outer = () => (
-        <h1 >
+        <h2>
             <Link to="/shoppingmall/outer" style={{ color: 'inherit' }}>
                 아우터&nbsp;&nbsp;
 		    </Link>
-        </h1>
+        </h2>
     )
 
 
     const Top = () => (
-        <h1>
+        <h2>
             <Link to="/shoppingmall/top" style={{ color: 'inherit' }}>
                 상의&nbsp;&nbsp;
             </Link>
-        </h1>
+        </h2>
     )
 
 
     const Pants = () => (
-        <h1>
+        <h2>
             <Link to="/shoppingmall/pants" style={{ color: 'inherit' }}>
                 바지&nbsp;&nbsp;
             </Link>
-        </h1>
+        </h2>
     )
 
 
     const Onepiece = () => (
-        <h1>
+        <h2>
             <Link to="/shoppingmall/onepiece" style={{ color: 'inherit' }}>
                 원피스&nbsp;&nbsp;
             </Link>
-        </h1>
+        </h2>
     )
 
 
     const Skirt = () => (
-        <h1>
+        <h2>
             <Link to="/shoppingmall/skirt" style={{ color: 'inherit' }}>
                 치마&nbsp;&nbsp;
             </Link>
-        </h1>
+        </h2>
 
     )
 
 
     const Shoes = () => (
-        <h1 >
+        <h2>
             <Link to="/shoppingmall/shoes" style={{ color: 'inherit' }}>
                 신발&nbsp;&nbsp;
             </Link>
-        </h1>
+        </h2>
 
     )
 
