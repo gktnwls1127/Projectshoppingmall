@@ -7,8 +7,8 @@ import { Row } from 'antd';
 
 function DashBoardGraph() {
 
-    const [Sold, setSold] = useState(0)
-    const [Date, setDate] = useState(0)
+    const [Sold, setSold] = useState([])
+    const [Date, setDate] = useState([])
     const [Outer, setOuter] = useState(0)
     const [Top, setTop] = useState(0)
     const [Pants, setPants] = useState(0)
@@ -42,8 +42,6 @@ function DashBoardGraph() {
     );
     };
 
-    console.log(typeof(data.name));
-
     useEffect(() => {
 
         let body ={
@@ -52,31 +50,33 @@ function DashBoardGraph() {
         
         getProduct(body)
         getUsers(body)
-
+ 
     }, [])
 
     const getUsers = (body) => {
-      axios.post('/api/users/admin', body)
+      axios.post('/api/users/payment', body)
           .then(response => {
               if(response.data.success) {
-                const userHistory = response.data.users.map((h) => {
-                  h.history.map((u) => {return u})
+                const paymentValue = response.data.pays.map((pay) => {
+                  if(pay.product.length > 0) 
+                    return pay.product
                 })
-                userHistory.forEach(element => {
-                  switch(element) {
-                    case 'quantity' :
-                      setSold(element.quantity * element.price )
-                    
-                  }
+                paymentValue.map((product) => {
+                  product.map(object=> {
+                    let sold = object.quantity * object.price
+                    let date = object.dateOfPurchase
+                     setDate(date)
+                  })
                 })
-                  
+                
+                       
               } else {
-                  alert("유저들을 가져오는데 실패했습니다.")
+                  alert("페이를 가져오는데 실패했습니다.")
               }
           })
     }
 
-    console.log(Sold);
+    console.log(Date);
 
     const getProduct = (body) => {
         axios.post('/api/product/products', body)
